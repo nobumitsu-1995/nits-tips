@@ -13,7 +13,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "generate:cms-type": "yarn microcms-typescript src/lib/schema src/types/cms-type.t.ts",
-    "lint": "eslint ./src/**/*.ts && prettier --write './src/**/*.ts'"
+    "lint": "eslint ./src/**/*.ts && prettier --write ./src/**/*.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.5",
