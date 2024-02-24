@@ -13,7 +13,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "generate:cms-type": "yarn microcms-typescript src/lib/schema src/types/cms-type.t.ts",
-    "lint": "eslint ./src/**/*.ts && prettier --write ./src/**/*.ts"
+    "lint": "eslint ./src/**/*.ts && prettier --write ./src/**/*.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.5",
@@ -41,6 +42,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.33.2",
     "happy-dom": "^13.4.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "microcms-typescript": "^1.0.14",
     "msw": "^2.2.1",
     "prettier": "^3.2.5",
