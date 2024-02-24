@@ -3,6 +3,4 @@ import { sampleResolver } from './resolvers'
 
 const { all, get, post, delete: httpDelete } = http
 
-export const handlers = [
-  all('/sample', sampleResolver),
-]
+export const handlers = [all('/sample', sampleResolver)]
