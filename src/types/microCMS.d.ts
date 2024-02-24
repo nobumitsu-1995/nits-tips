@@ -1,4 +1,4 @@
-import type { blogs, categories, tags } from "./cms-type.t";
+import type { blogs, categories, tags } from './cms-type.t'
 
 type Tag = tags
 type Category = categories
