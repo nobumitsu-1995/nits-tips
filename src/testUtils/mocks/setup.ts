@@ -1,6 +1,6 @@
 import { setupServer } from 'msw/node'
-import { handlers } from './handlers'
 import { afterAll, beforeAll, beforeEach } from 'vitest'
+import { handlers } from './handlers'
 
 export const setupMockServer = () => {
   const server = setupServer(...handlers)

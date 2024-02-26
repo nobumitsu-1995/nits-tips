@@ -1,8 +1,7 @@
 import { HttpResponse } from 'msw'
 
-export const sampleResolver = () => {
-  return HttpResponse.json({
+export const sampleResolver = () =>
+  HttpResponse.json({
     data: 'sample',
     result: true,
   })
-}
