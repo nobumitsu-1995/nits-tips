@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "dependencyDashboard": false,
+  "automergeSchedule": [
+    "before 8am"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchPackagePatterns": ["eslint"],
+      "groupName": "eslint",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchPackagePatterns": ["@storybook"],
+      "groupName": "storybook",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchPackagePatterns": ["@testing-library"],
+      "groupName": "testing-library",
+      "automerge": true
+    }
+  ]
+}
