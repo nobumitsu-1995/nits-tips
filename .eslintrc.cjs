@@ -33,5 +33,11 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function' },
+    ],
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/prop-types': [0],
   },
 }
