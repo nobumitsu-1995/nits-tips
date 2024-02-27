@@ -1,0 +1,23 @@
+import React, { useState } from 'react'
+
+type Props = {
+  /** 名前 */
+  name: string
+}
+
+export const {{pascalCase name}}: React<Props> = ({
+  name
+}) => {
+  const [state, setState] = useState('')
+  const handleClick = () => {
+    setState('click')
+  }
+
+  return (
+    <div>
+      <p>{name}</p>
+      <p>{state}</p>
+      <button type='button' onClick={handleClick}>button</button>
+    </div>
+  )
+}
