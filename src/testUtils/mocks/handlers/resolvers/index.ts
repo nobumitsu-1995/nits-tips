@@ -1,1 +1,1 @@
-export { sampleResolver } from './sample'
+export { sampleResolver } from './sample/all.ts'
