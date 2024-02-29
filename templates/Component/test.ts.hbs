@@ -1,0 +1,10 @@
+import React from 'react'
+import { expect } from 'vitest'
+import { setup } from '@/testUtils'
+import { {{pascalCase name}} } from './{{pascalCase name}}'
+
+test('sample test', async () => {
+  const { getByRole, getByText, user } = setup(<{{pascalCase name}} name="hoge" />)
+  await user.click(getByRole('button', { name: 'button' }))
+  expect(getByText('click').innerHTML).toBe('click')
+})

@@ -1,6 +1,13 @@
 import { http } from 'msw'
-import { sampleResolver } from './resolvers'
+// prettier-ignore
+import { 
+  sampleResolver,
+} from './resolvers'
 
-const { all } = http
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { all, get, post, put, patch, delete: httpDelete } = http
 
-export const handlers = [all('/sample', sampleResolver)]
+// prettier-ignore
+export const handlers = [
+  all('/sample', sampleResolver),
+]
