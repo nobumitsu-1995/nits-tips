@@ -1,0 +1,24 @@
+import { useState } from 'react'
+
+type Use{{pascalCase name}}PayloadType = {
+  id: string
+}
+
+type Use{{pascalCase name}}ReturnType = {
+  data: string
+  handleClick: void
+}
+
+export const use{{pascalCase name}} = ({
+  id,
+}: Use{{pascalCase name}}PayloadType): Use{{pascalCase name}}ReturnType => {
+  const [state, setState] = useState(id)
+  const handleClick = () => {
+    setState('click')
+  }
+
+  return {
+    state,
+    handleClick
+  }
+}

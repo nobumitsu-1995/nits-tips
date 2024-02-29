@@ -12,12 +12,13 @@ const setup = (plop) => {
         type: 'input',
         name: 'path',
         default: '/',
-        message: 'パスを入力してください(粒度直下の場合は/)',
+        message: 'パスを入力してください(粒度直下の場合は/)(例: /hoge)',
       },
       {
         type: 'input',
         name: 'name',
-        message: 'コンポーネント名を入力してください(パスカルケース)',
+        message:
+          'コンポーネント名を入力してください(パスカルケース)(例: sample)',
       },
     ],
     actions: [
@@ -45,6 +46,30 @@ const setup = (plop) => {
   })
   plop.setGenerator('Hooks', {
     description: 'カスタムHooksの作成',
+    prompts: [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Hooks名を入力してください(パスカルケース)(例: clickButton)',
+      },
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/lib/Hooks/use{{pascalCase name}}/use{{pascalCase name}}.tsx',
+        templateFile: 'templates/Hooks/hooks.ts.hbs',
+      },
+      {
+        type: 'add',
+        path: 'src/lib/Hooks/use{{pascalCase name}}/index.ts',
+        templateFile: 'templates/Hooks/index.ts.hbs',
+      },
+      {
+        type: 'add',
+        path: 'src/lib/Hooks/use{{pascalCase name}}/use{{pascalCase name}}.test.ts',
+        templateFile: 'templates/Hooks/test.ts.hbs',
+      },
+    ],
   })
   plop.setGenerator('mockAPI', {
     description: 'mockAPIの設定を追加',
@@ -59,12 +84,13 @@ const setup = (plop) => {
         type: 'input',
         name: 'path',
         default: '/',
-        message: 'mockするAPIのpathを入力してください',
+        message: 'mockするAPIのpathを入力してください(例: /sample)',
       },
       {
         type: 'input',
         name: 'name',
-        message: '作成するresolverの名前を入力してください(キャメルケース)',
+        message:
+          '作成するresolverの名前を入力してください(キャメルケース)(例: sample)',
       },
     ],
     actions: [

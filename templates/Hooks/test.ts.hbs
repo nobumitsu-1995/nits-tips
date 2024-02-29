@@ -1,0 +1,10 @@
+import { renderHook } from '@testing-library/react'
+import { expect } from 'vitest'
+import { use{{pascalCase name}} } from './use{{pascalCase name}}'
+
+test('sample test', () => {
+  const { result, rerender } = renderHook(() => use{{pascalCase name}}({id: '1'}))
+  result.current.handleClick()
+  rerender()
+  expect(result.current.state).toBe('click')
+})
