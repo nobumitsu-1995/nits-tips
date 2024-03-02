@@ -5,8 +5,10 @@
     "jsxImportSource": "react",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["src/*"],
+      "vite": ["node_modules/vite"]
+    },
+    "types": ["vitest/globals"]
   },
   "exclude": ["node_modules"]
 }
