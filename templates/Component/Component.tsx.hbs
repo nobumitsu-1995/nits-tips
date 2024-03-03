@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { {{camelCase name}} } from './{{pascalCase name}}.css'
+import * as styles from './{{pascalCase name}}.css'
 
 type Props = {
   /** 名前 */
@@ -15,7 +15,7 @@ export const {{pascalCase name}}: React.FC<Props> = ({
   }
 
   return (
-    <div className={ {{camelCase name}} }>
+    <div className={ styles.{{camelCase name}} }>
       <p>{name}</p>
       <p>{state}</p>
       <button type='button' onClick={handleClick}>button</button>

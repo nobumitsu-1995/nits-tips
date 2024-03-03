@@ -1,0 +1,20 @@
+import React, { useEffect, useState } from 'react'
+import { Presenter } from './Presenter'
+
+export const Container = () => {
+  const [state, setState] = useState('')
+
+  useEffect(() => {
+    setState('initial')
+  }, [])
+
+  const handleClick = () => {
+    setState('click')
+  }
+
+  return <Presenter 
+    name='button'
+    state={state}
+    handleClick={handleClick}
+  />
+}
