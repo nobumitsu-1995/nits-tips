@@ -9,45 +9,82 @@ const setup = (plop) => {
         choices: ['Entrypoints', 'Organisms', 'UI/Atoms', 'UI/Molecules'],
       },
       {
+        when: (data) =>
+          data.particle === 'Entrypoints' || data.particle === 'Organisms',
         type: 'input',
         name: 'path',
         default: '/',
-        message: 'パスを入力してください(粒度直下の場合は/)(例: /hoge)',
+        message: 'パスを入力してください(例: /hoge/fuga)',
       },
       {
         type: 'input',
         name: 'name',
-        message:
-          'コンポーネント名を入力してください(パスカルケース)(例: Sample)',
+        message: 'コンポーネント名を入力してください(例: SampleHoge)',
       },
     ],
-    actions: [
-      {
-        type: 'add',
-        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.tsx',
-        templateFile: 'templates/Component/Component.tsx.hbs',
-      },
-      {
-        type: 'add',
-        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/index.ts',
-        templateFile: 'templates/Component/index.ts.hbs',
-      },
-      {
-        type: 'add',
-        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
-        templateFile: 'templates/Component/test.ts.hbs',
-      },
-      {
-        type: 'add',
-        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
-        templateFile: 'templates/Component/story.tsx.hbs',
-      },
-      {
-        type: 'add',
-        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.css.ts',
-        templateFile: 'templates/Component/style.css.hbs',
-      },
-    ],
+    actions: (data) => {
+      if (data.particle === 'Entrypoints') {
+        return [
+          {
+            type: 'add',
+            path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/Presenter.tsx',
+            templateFile: 'templates/Component/Entrypoints/Presenter.tsx.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/Container.tsx',
+            templateFile: 'templates/Component/Entrypoints/Container.tsx.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/index.ts',
+            templateFile: 'templates/Component/Entrypoints/index.ts.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
+            templateFile: 'templates/Component/Entrypoints/test.tsx.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
+            templateFile: 'templates/Component/Entrypoints/story.tsx.hbs',
+          },
+          {
+            type: 'add',
+            path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.css.ts',
+            templateFile: 'templates/Component/style.css.hbs',
+          },
+        ]
+      }
+      return [
+        {
+          type: 'add',
+          path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.tsx',
+          templateFile: 'templates/Component/Component.tsx.hbs',
+        },
+        {
+          type: 'add',
+          path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/index.ts',
+          templateFile: 'templates/Component/index.ts.hbs',
+        },
+        {
+          type: 'add',
+          path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
+          templateFile: 'templates/Component/test.ts.hbs',
+        },
+        {
+          type: 'add',
+          path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
+          templateFile: 'templates/Component/story.tsx.hbs',
+        },
+        {
+          type: 'add',
+          path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.css.ts',
+          templateFile: 'templates/Component/style.css.hbs',
+        },
+      ]
+    },
   })
   plop.setGenerator('Hooks', {
     description: 'カスタムHooksの作成',
@@ -55,7 +92,7 @@ const setup = (plop) => {
       {
         type: 'input',
         name: 'name',
-        message: 'Hooks名を入力してください(パスカルケース)(例: clickButton)',
+        message: 'Hooks名を入力してください(例: clickButton)',
       },
     ],
     actions: [
@@ -89,13 +126,12 @@ const setup = (plop) => {
         type: 'input',
         name: 'path',
         default: '/',
-        message: 'mockするAPIのpathを入力してください(例: /sample)',
+        message: 'mockするAPIのpathを入力してください(例: /sample/hoge)',
       },
       {
         type: 'input',
         name: 'name',
-        message:
-          '作成するresolverの名前を入力してください(キャメルケース)(例: sample)',
+        message: '作成するresolverの名前を入力してください(例: sampleHoge)',
       },
     ],
     actions: [
