@@ -27,6 +27,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  ignorePatterns: ['!.storybook/'],
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     'import/no-extraneous-dependencies': 'off',
