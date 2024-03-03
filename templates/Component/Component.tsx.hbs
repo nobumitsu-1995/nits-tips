@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { {{camelCase name}} } from './{{pascalCase name}}.css'
 
 type Props = {
   /** 名前 */
   name: string
 }
 
-export const {{pascalCase name}}: React<Props> = ({
+export const {{pascalCase name}}: React.FC<Props> = ({
   name
 }) => {
   const [state, setState] = useState('')
@@ -14,7 +15,7 @@ export const {{pascalCase name}}: React<Props> = ({
   }
 
   return (
-    <div>
+    <div className={ {{camelCase name}} }>
       <p>{name}</p>
       <p>{state}</p>
       <button type='button' onClick={handleClick}>button</button>
