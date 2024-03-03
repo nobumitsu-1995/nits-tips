@@ -6,7 +6,7 @@ const setup = (plop) => {
         type: 'list',
         name: 'particle',
         message: 'どの粒度に作成しますか？',
-        choices: ['Entrypoints', 'Organisms', 'UI'],
+        choices: ['Entrypoints', 'Organisms', 'UI/Atoms', 'UI/Molecules'],
       },
       {
         type: 'input',
@@ -18,29 +18,34 @@ const setup = (plop) => {
         type: 'input',
         name: 'name',
         message:
-          'コンポーネント名を入力してください(パスカルケース)(例: sample)',
+          'コンポーネント名を入力してください(パスカルケース)(例: Sample)',
       },
     ],
     actions: [
       {
         type: 'add',
-        path: 'src/components/{{particle}}{{path}}{{pascalCase name}}/{{pascalCase name}}.tsx',
+        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile: 'templates/Component/Component.tsx.hbs',
       },
       {
         type: 'add',
-        path: 'src/components/{{particle}}{{path}}{{pascalCase name}}/index.ts',
+        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/index.ts',
         templateFile: 'templates/Component/index.ts.hbs',
       },
       {
         type: 'add',
-        path: 'src/components/{{particle}}{{path}}{{pascalCase name}}/{{pascalCase name}}.test.tsx',
+        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
         templateFile: 'templates/Component/test.ts.hbs',
       },
       {
         type: 'add',
-        path: 'src/components/{{particle}}{{path}}{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
+        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
         templateFile: 'templates/Component/story.tsx.hbs',
+      },
+      {
+        type: 'add',
+        path: 'src/components/{{particle}}{{path}}/{{pascalCase name}}/{{pascalCase name}}.css.ts',
+        templateFile: 'templates/Component/style.css.hbs',
       },
     ],
   })
