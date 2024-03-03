@@ -10,11 +10,11 @@
     "astro": "astro",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest",
+    "test": "vitest -- NODE_ENV=test",
     "coverage": "vitest run --coverage",
     "generate:cms-type": "yarn microcms-typescript src/lib/schema src/types/cms-type.t.ts",
     "generate:scaffold": "plop",
-    "lint": "eslint ./src/**/*.ts && prettier --write ./src/**/*.ts",
+    "lint": "eslint ./src/**/*.{ts,tsx} && prettier --write ./src/**/*.{ts,tsx}",
     "prepare": "husky"
   },
   "dependencies": {
@@ -59,8 +59,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint ./src/**/*.ts --max-warnings=0 --ignore",
-      "prettier --write ./src/**/*.ts"
+      "eslint ./src/**/*.{ts,tsx} --max-warnings=0 --ignore",
+      "prettier --write ./src/**/*.{ts,tsx}"
     ]
   }
 }
