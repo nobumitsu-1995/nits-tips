@@ -3,12 +3,10 @@
     "config:base"
   ],
   "dependencyDashboard": false,
-  "automergeSchedule": [
-    "before 8am"
-  ],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchCurrentVersion": "!/^0/",
       "automerge": true
     },
     {
@@ -27,6 +25,18 @@
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "matchPackagePatterns": ["@testing-library"],
       "groupName": "testing-library",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchPackagePatterns": ["@testing-library"],
+      "groupName": "astro",
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchPackagePatterns": ["@testing-library"],
+      "groupName": "react",
       "automerge": true
     }
   ]
