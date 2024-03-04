@@ -1,9 +1,8 @@
-name: Node.js CI
-on: [push]
+name: create pull request
+on: pull_request
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
