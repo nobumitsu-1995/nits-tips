@@ -1,47 +1,86 @@
-# Astro Starter Kit: Minimal
+# Astro + React + Typescriptテンプレート
+
+## 概要
+
+AstroとReact, Typescriptによる開発環境のテンプレートです。
+microCMSを使用することが前提となっていますが、他のHeadless CMSなどと組み合わせることも可能です。
+
+主に以下ライブラリを導入しており、`npm ci`後にすぐに開発に入れるようになっています。
+
+- Astro
+- React
+- Typescript
+- vanilla-extract
+- storybook
+- msw
+- vitest
+- testing-library
+
+## scaffoldingツールの使用方法
+
+scaffoldingツールであるplopを使用したテンプレートジェネレータを作成しています。
+
+- 新規コンポーネントのテンプレート作成
+- Hooksのテンプレート作成
+- mswのハンドラーのテンプレート作成
+
+を以下の手順で自動で行うことができます。
+
+### 新規コンポーネント
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci　// 初回のみ
+npm run generate:scaffold
+> Component - 新規コンポーネントの作成 → Enter
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### Hooks
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm ci　// 初回のみ
+npm run generate:scaffold
+> Hooks - カスタムHooksの作成  → Enter
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### mswのハンドラー
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm ci　// 初回のみ
+npm run generate:scaffold
+> mockAPI - mockAPIの設定を追加 → Enter
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## microCMSのレスポンス型の自動生成
 
-## 🧞 Commands
+以下の手順を実行することでmicroCMSで作成したAPIのレスポンスの型を自動で生成することができます。
 
-All commands are run from the root of the project, from a terminal:
+1. microCMSのAPIスキーマをエクスポートする（[こちら](https://document.microcms.io/manual/export-and-import-api-schema)を参照）
+2. 出力されたjsonファイルをprojectの`src/lib/schema`下に配置する
+3. `npm run generate:cms-type`を実行する
+4. `src/types/cms-type.t.ts`に型が吐き出されます
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## ディレクトリ構造
 
-## 👀 Want to learn more?
+以下のような使用方法を想定しています。
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```
+components
+┣ UI
+┃ ┣ Atoms　　　　全ページで共通使用されるコンポーネントの最小単位
+┃ ┗ Molecules　 　全ページで共通使用されるコンポーネントでAtomsを組み合わせて作成されている
+┣ Organisms　　 　そのEntrypointsで使用される固有のコンポーネント、通常使いまわされることはない
+┗ Entrypoints　　　pagesで呼び出されるコンポーネント。
+     ┗ Pagename　　URLと対応したディレクトリにコンポーネントは定義していく。
+         ┣ Container 　実際のコンポーネントはContainer/Presentationalパターンで作成する。Hooksはここで呼ばれる。
+         ┗ Presenter 　見た目はここで完成させる。
+
+lib
+┣ API　　fetchする関数を置く
+┣ Hooks  カスタムHooksを置く
+┣ interfaces　共通で使用される定数や型
+┗ helpers　　 共通で使用できるような関数を定義する
+
+testUtils
+┣ mocks　　  mswの設定ファイル
+┗ fixtures　   テストなどで使用するデータやデータ作成用関数を置く
+```
