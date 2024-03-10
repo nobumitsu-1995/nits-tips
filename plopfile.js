@@ -108,7 +108,7 @@ const setup = (plop) => {
       },
       {
         type: 'add',
-        path: 'src/lib/Hooks/use{{pascalCase name}}/use{{pascalCase name}}.test.ts',
+        path: 'src/lib/Hooks/use{{pascalCase name}}/use{{pascalCase name}}.test.tsx',
         templateFile: 'templates/Hooks/test.ts.hbs',
       },
     ],

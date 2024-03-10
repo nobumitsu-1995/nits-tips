@@ -5,8 +5,8 @@ type Use{{pascalCase name}}PayloadType = {
 }
 
 type Use{{pascalCase name}}ReturnType = {
-  data: string
-  handleClick: void
+  state: string
+  handleClick: () => void
 }
 
 export const use{{pascalCase name}} = ({

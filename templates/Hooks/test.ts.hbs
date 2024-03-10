@@ -1,10 +1,21 @@
-import { renderHook } from '@testing-library/react'
-import { expect } from 'vitest'
+import React from 'react'
+import { setup } from '@/testUtils'
 import { use{{pascalCase name}} } from './use{{pascalCase name}}'
 
-test('sample test', () => {
-  const { result, rerender } = renderHook(() => use{{pascalCase name}}({id: '1'}))
-  result.current.handleClick()
-  rerender()
-  expect(result.current.state).toBe('click')
+const Component = () => {
+  const { state, handleClick } = use{{pascalCase name}}({ id: 'test' })
+
+  return (
+    <div>
+      <p>{state}</p>
+      <button type='button' onClick={handleClick}>button</button>
+    </div>
+  )
+}
+
+test('sample test', async () => {
+  const { user, getByRole, getByText } = setup(<Component />)
+  expect(getByText('test').innerHTML).toBe('test')
+  await user.click(getByRole('button', { name: 'button' }))
+  expect(getByText('click').innerHTML).toBe('click')
 })
