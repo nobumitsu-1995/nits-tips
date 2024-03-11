@@ -5,7 +5,15 @@
     "jsxImportSource": "react",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@Entrypoints/*": ["src/components/Entrypoints/*"],
+      "@Organisms/*": ["src/components/Organisms/*"],
+      "@Atoms/*": ["src/components/UI/Atoms/*"],
+      "@Molecules/*": ["src/components/UI/Molecules/*"],
+      "@API/*": ["src/lib/API/*"],
+      "@helpers/*": ["src/lib/helpers/*"],
+      "@Hooks/*": ["src/lib/Hooks/*"],
+      "@interfaces/*": ["src/lib/interfaces/*"]
     },
     "types": ["vitest/globals"]
   },
