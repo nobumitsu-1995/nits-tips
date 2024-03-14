@@ -29,13 +29,13 @@
     },
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "matchPackagePatterns": ["@testing-library"],
+      "matchPackagePatterns": ["astro"],
       "groupName": "astro",
       "automerge": true
     },
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "matchPackagePatterns": ["@testing-library"],
+      "matchPackagePatterns": ["react"],
       "groupName": "react",
       "automerge": true
     }
