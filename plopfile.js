@@ -161,6 +161,29 @@ const setup = (plop) => {
       },
     ],
   })
+  plop.setGenerator('page', {
+    description: 'ページの作成',
+    prompts: [
+      {
+        type: 'input',
+        name: 'path',
+        default: '/',
+        message: '作成するページの階層パスを入力してください(例: /sample/hoge)',
+      },
+      {
+        type: 'input',
+        name: 'name',
+        message: '作成するページ名を入力してください(例: sampleHoge)',
+      },
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: 'src/pages{{path}}/{{name}}.astro',
+        templateFile: 'templates/pages/page.ts.hbs',
+      },
+    ],
+  })
 }
 
 export default setup
