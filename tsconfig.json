@@ -16,7 +16,8 @@
       "@interfaces/*": ["src/lib/interfaces/*"],
       "@layout/*": ["src/layout/*"]
     },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "exclude": ["node_modules"]
 }
