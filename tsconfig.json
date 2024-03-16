@@ -13,7 +13,8 @@
       "@API/*": ["src/lib/API/*"],
       "@helpers/*": ["src/lib/helpers/*"],
       "@Hooks/*": ["src/lib/Hooks/*"],
-      "@interfaces/*": ["src/lib/interfaces/*"]
+      "@interfaces/*": ["src/lib/interfaces/*"],
+      "@layout/*": ["src/layout/*"]
     },
     "types": ["vitest/globals"]
   },
