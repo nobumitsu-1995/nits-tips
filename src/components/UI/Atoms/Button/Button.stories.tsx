@@ -35,10 +35,8 @@ export const IsLoading: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const button = canvas.getByRole('button')
-    await userEvent.click(button)
-    expect(mockedOnClick).not.toBeCalled()
-    expect(button).toHaveAttribute('disabled')
+    const button = canvas.queryByRole('button')
+    expect(button).not.toBeInTheDocument()
   },
 }
 
