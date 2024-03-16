@@ -30,6 +30,8 @@ export const Button: React.FC<Props> = ({
       ${isDisabled ? styles.disabled : ''}
       ${isLoading ? styles.loading : ''}
     `}
+    aria-busy={isLoading}
+    aria-hidden={isLoading}
   >
     {!isLoading && children}
   </button>
