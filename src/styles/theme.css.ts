@@ -14,7 +14,10 @@ export const vars = createGlobalTheme(':root', {
     background: '#f5fbff',
   },
   font: {
-    primary: 'arial',
+    nicoKaku:
+      '"NicoKaku", "BIZ UDPGothic", "Hiragino Kaku Gothic Pro", "Noto Sans JP", sans-serif',
+    bizUD:
+      '"BIZ UDPGothic", "Hiragino Kaku Gothic Pro", "Noto Sans JP", sans-serif',
   },
 })
 
