@@ -8,7 +8,7 @@ export const button = style({
   backgroundColor: vars.color.link,
   boxShadow: '2px 4px 12px 0px rgba(0, 0, 0, 0.2)',
   border: 'none',
-  borderRadius: 4,
+  borderRadius: 8,
   color: '#fff',
   fontSize: 20,
   fontWeight: 'bold',
