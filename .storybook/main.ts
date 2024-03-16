@@ -1,6 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { mergeConfig } from 'vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 const storybookConfig: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -20,7 +21,7 @@ const storybookConfig: StorybookConfig = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
-      plugins: [vanillaExtractPlugin()],
+      plugins: [tsconfigPaths(), vanillaExtractPlugin()],
     })
   },
 }
