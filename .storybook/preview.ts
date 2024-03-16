@@ -1,8 +1,10 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from '@storybook/react'
+import 'a11y-css-reset/combo.css'
+import '../src/styles/global.css'
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -10,6 +12,6 @@ const preview: Preview = {
       },
     },
   },
-};
+}
 
-export default preview;
+export default preview
