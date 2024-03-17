@@ -10,39 +10,50 @@ type Props = {
   tooltipText: string
   /** button押下時に発火する関数 */
   onClick: React.MouseEventHandler<HTMLButtonElement>
+  /** tooltipを表示する */
+  withTooltip?: boolean
   /** iconの色 */
   iconColor?: string
   /** iconのサイズ */
   iconSize?: number
+  /** iconに追加するstyle(className) */
+  iconStyle?: string
   /** ボタンの背景色 */
   buttonColor?: string
   /** ボタンのサイズ */
   buttonSize?: number
+  /** buttonに追加するstyle(className) */
+  buttonStyle?: string
 }
 
 export const CircleButton: React.FC<Props> = ({
   iconType,
   tooltipText,
   onClick,
+  withTooltip = true,
   iconColor = vars.color.darkGray,
   iconSize = 28,
+  iconStyle = '',
   buttonColor = vars.color.lightGray,
   buttonSize = 48,
+  buttonStyle = '',
 }) => (
   <button
     type="button"
     onClick={onClick}
     aria-label={tooltipText}
-    className={styles.circleButton}
+    className={`${styles.circleButton} ${buttonStyle}`}
     style={{
       backgroundColor: buttonColor,
       width: buttonSize,
       height: buttonSize,
     }}
   >
-    <Icon type={iconType} size={iconSize} color={iconColor} />
-    <span aria-hidden="true" className={styles.toolTip}>
-      {tooltipText}
-    </span>
+    <Icon type={iconType} size={iconSize} color={iconColor} style={iconStyle} />
+    {withTooltip && (
+      <span aria-hidden="true" className={styles.toolTip}>
+        {tooltipText}
+      </span>
+    )}
   </button>
 )
