@@ -12,3 +12,13 @@ export const visuallyHidden = style({
   clipPath: 'inset(50%)',
   margin: -1,
 })
+
+export const lineClamp = style({
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
+  WebkitLineClamp: 3,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  wordBreak: 'break-word',
+  wordWrap: 'normal',
+})

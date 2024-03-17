@@ -18,7 +18,7 @@ export const tag: TagType = {
 }
 
 export const tagData: TagType[] = [
-  createTag('frontend', undefined),
+  createTag('frontend', ''),
   createTag(),
   createTag('typescript'),
   createTag('react'),
