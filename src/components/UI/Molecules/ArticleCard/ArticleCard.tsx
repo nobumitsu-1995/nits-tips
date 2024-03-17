@@ -27,7 +27,7 @@ export const ArticleCard: React.FC<Props> = ({
   updatedAt,
 }) => (
   /** TODO: URL決まり次第修正 */
-  <a href={id} className={styles.articleCard}>
+  <a href={id} className={styles.articleCard} aria-label={title}>
     <Card padding="24px 20px">
       <p className={styles.date}>
         {updatedAt && <span>最終更新日: {updatedAt}&#x3000;&#x3000;</span>}
