@@ -2,12 +2,13 @@ import { createGlobalTheme } from '@vanilla-extract/css'
 
 export const vars = createGlobalTheme(':root', {
   color: {
+    attention: '#FF1D1D',
     link: '#4969DA',
     black: '#000',
     darkGray: '#3d3d3d',
     gray: '#646464',
     lightGray: '#bfbfbf',
-    error: '#ff2f2f',
+    error: '#DA0000',
     success: '#22e959',
     important: '#2271e9',
     white: '#fff',

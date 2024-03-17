@@ -8,11 +8,18 @@ type Props = {
   size?: number
   /** アイコンの色 */
   color?: string
+  /** iconに追加するstyle(className) */
+  style?: string
 }
 
-export const Icon: React.FC<Props> = ({ type, size = 16, color }) => (
+export const Icon: React.FC<Props> = ({
+  type,
+  size = 16,
+  color,
+  style = '',
+}) => (
   <span
-    className="material-symbols-outlined"
+    className={`material-symbols-outlined ${style}`}
     style={{ fontSize: `${size}px`, color: `${color}` }}
     aria-hidden
   >

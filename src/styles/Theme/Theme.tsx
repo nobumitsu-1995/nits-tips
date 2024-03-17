@@ -6,6 +6,7 @@ import * as fontStyles from './fontTheme.css'
 type ThemeColorKey = keyof typeof colorStyles
 type ThemeFontKey = keyof typeof fontStyles
 const THEME_COLOR_ARRAY: MappedConstKey<ThemeColorKey> = [
+  'attention',
   'background',
   'black',
   'darkGray',

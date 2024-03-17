@@ -71,3 +71,10 @@ export const white = style([
     backgroundColor: vars.color.white,
   },
 ])
+
+export const attention = style([
+  base,
+  {
+    backgroundColor: vars.color.attention,
+  },
+])

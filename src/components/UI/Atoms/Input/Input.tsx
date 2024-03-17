@@ -19,6 +19,8 @@ type Props = {
   isRequired?: boolean
   /** trueの時、エラー表示になる */
   isError?: boolean
+  /** error時に紐付けるdescription */
+  a11yId?: string
 }
 
 export const Input: React.FC<Props> = ({
@@ -30,6 +32,7 @@ export const Input: React.FC<Props> = ({
   isDisabled = false,
   isRequired = false,
   isError = false,
+  a11yId,
 }) => (
   <input
     id={name}
@@ -42,6 +45,7 @@ export const Input: React.FC<Props> = ({
     required={isRequired}
     aria-required={isRequired}
     aria-invalid={isError}
+    aria-describedby={a11yId}
     className={`${styles.input} ${isError ? styles.isError : ''}`}
   />
 )
