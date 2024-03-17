@@ -1,18 +1,16 @@
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { SampleButton } from './SampleButton'
+import { Card } from './Card'
 
-type ComponentType = typeof SampleButton
+type ComponentType = typeof Card
 type Story = StoryObj<ComponentType>
 
 export default {
-  component: SampleButton,
-  args: {
-    name: 'hoge',
-  },
+  component: Card,
 } as Meta<ComponentType>
 
 export const Primary: Story = {
   args: {
-    name: 'primary',
+    children: <p>card</p>,
   },
 }

@@ -3,7 +3,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), vanillaExtractPlugin()] as Plugin[],
+  plugins: [tsconfigPaths(), vanillaExtractPlugin()],
   test: {
     globals: true,
     environment: 'happy-dom',
