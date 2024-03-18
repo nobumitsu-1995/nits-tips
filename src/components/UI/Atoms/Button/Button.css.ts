@@ -10,7 +10,7 @@ export const button = style({
   border: 'none',
   borderRadius: 8,
   color: '#fff',
-  fontSize: 20,
+  fontSize: 16,
   fontWeight: 'bold',
   cursor: 'pointer',
   ':hover': {

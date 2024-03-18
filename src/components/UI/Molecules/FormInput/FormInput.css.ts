@@ -8,6 +8,14 @@ export const formInput = style({
   gap: 40,
 })
 
+export const isTextArea = style({
+  alignItems: 'flex-start',
+})
+
+export const isTextAreaLabel = style({
+  marginTop: 12,
+})
+
 export const label = style({
   minWidth: 262,
   fontWeight: 'bold',
