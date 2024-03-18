@@ -19,3 +19,6 @@ export const createArticle = ({
   publishedAt,
   updatedAt,
 })
+
+export const createArtilceArray = (n = 15) =>
+  [...new Array(n)].map((_, index) => createArticle({ id: index.toString() }))
