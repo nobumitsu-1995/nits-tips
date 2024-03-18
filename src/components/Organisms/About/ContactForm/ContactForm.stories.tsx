@@ -21,7 +21,7 @@ export const Default: Story = {
     })
 
     await userEvent.type(name, 'hoge')
-    await userEvent.type(email, 'example@example')
+    await userEvent.type(email, 'example')
     await userEvent.type(message, 'hoge')
   },
 }
