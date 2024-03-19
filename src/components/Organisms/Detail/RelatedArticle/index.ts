@@ -1,0 +1,1 @@
+export { RelatedArticle } from './RelatedArticle'
