@@ -1,6 +1,7 @@
 import React from 'react'
-import { Heading } from '@Atoms/Heading'
 import { type MarkdownComponents } from '@md-parser/react'
+import { Heading } from '@Atoms/Heading'
+import { Border } from '@Atoms/Border'
 
 const HeadingRenderer: MarkdownComponents['heading'] = ({ children }) => (
   <Heading text={children} />
@@ -92,9 +93,7 @@ const TableDataRenderer: MarkdownComponents['tableData'] = ({
   align,
 }) => <td style={{ textAlign: align }}>{children}</td>
 
-const DividerRenderer: MarkdownComponents['divider'] = () => (
-  <hr style={{ borderTop: '1px dashed #ccc', margin: '36px 0' }} />
-)
+const DividerRenderer: MarkdownComponents['divider'] = () => <Border />
 
 const CheckboxRenderer: MarkdownComponents['checkbox'] = ({
   checked,
