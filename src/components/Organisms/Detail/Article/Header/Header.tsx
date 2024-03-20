@@ -2,7 +2,7 @@ import React, { type ComponentProps } from 'react'
 import { TagList } from '@Molecules/TagList'
 import { PublishedAt } from '@Atoms/PublishedAt'
 import * as styles from './Header.css'
-import { Author } from './Header/Author'
+import { Author } from './Author'
 
 type Props = {
   /** 著者 */
