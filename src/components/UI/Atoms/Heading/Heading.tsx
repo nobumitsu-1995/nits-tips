@@ -3,7 +3,7 @@ import * as styles from './Heading.css'
 
 type Props = {
   /** タイトル */
-  text: string
+  text: string | React.ReactNode
   /** id */
   id?: string
 }
