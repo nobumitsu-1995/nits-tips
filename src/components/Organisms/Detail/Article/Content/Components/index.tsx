@@ -7,16 +7,7 @@ import { ParagraphRenderer } from './ParagraphRenderer'
 import { BlockquoteRenderer } from './BlockquoteRenderer'
 import { ListRenderer } from './ListRenderer'
 import { TableRenderer } from './TableRenderer'
-
-const CodeRenderer: MarkdownComponents['code'] = ({ value }) => (
-  <pre>
-    <code>{value}</code>
-  </pre>
-)
-
-const InlineCodeRenderer: MarkdownComponents['inlineCode'] = ({ value }) => (
-  <code>{value}</code>
-)
+import { CodeRenderer, InlineCodeRenderer } from './CodeRenderer'
 
 export const components: MarkdownComponents = {
   heading: HeadingRenderer,
