@@ -19,5 +19,5 @@ export const containerLeft = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 20,
-  width: 500,
+  width: 430,
 })
