@@ -6,9 +6,4 @@ export const blockquote = style({
   marginLeft: 28,
   borderLeft: `5px solid ${vars.color.lightGray}`,
   color: vars.color.gray,
-  selectors: {
-    '> p': {
-      margin: 0,
-    },
-  },
 })
