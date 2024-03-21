@@ -1,7 +1,7 @@
 import { articleContent } from './articleConetnts'
 
 export const blog = (id = 'h8mr8y9vhx') => ({
-  id: id,
+  id,
   createdAt: '2024-02-24T11:19:08.516Z',
   updatedAt: '2024-02-24T12:14:45.636Z',
   publishedAt: '2024-02-24T11:19:08.516Z',
