@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import hljs from 'highlight.js/lib/core'
 import 'highlight.js/styles/a11y-dark.min.css'
 import { setupHljs } from '@/lib/helpers/setupHljs'
@@ -12,14 +12,31 @@ type Props = {
 setupHljs()
 
 export const Content: React.FC<Props> = ({ content }) => {
+  const ref = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     hljs.initHighlighting()
   })
 
+  useEffect(() => {
+    ref.current &&
+      ref.current.querySelectorAll('code').forEach((pre) => {
+        pre.setAttribute('tabindex', '0')
+      })
+  })
+
+  useEffect(() => {
+    ref.current &&
+      ref.current.querySelectorAll('table').forEach((pre) => {
+        pre.setAttribute('tabindex', '0')
+      })
+  })
+
   return (
-    // eslint-disable-next-line react/no-danger
     <div
+      ref={ref}
       className={styles.content}
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: content }}
     />
   )

@@ -73,8 +73,9 @@ globalStyle(`${content} code`, {
 })
 
 globalStyle(`${content} table`, {
+  display: 'block',
+  overflowX: 'auto',
   tableLayout: 'auto',
-  border: `2px solid ${vars.color.lightGray}`,
   borderCollapse: 'collapse',
 })
 
