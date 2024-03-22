@@ -1,1 +1,0 @@
-export { HeadingRenderer } from './HeadingRederer'
