@@ -2,6 +2,7 @@ import React, { type ComponentProps } from 'react'
 import { Card } from '@Atoms/Card'
 import * as styles from './ArticleCard.css'
 import { TagList } from '../TagList'
+import { PublishedAt } from '../../Atoms/PublishedAt'
 
 type Props = {
   /** 記事ID */
@@ -29,10 +30,7 @@ export const ArticleCard: React.FC<Props> = ({
   /** TODO: URL決まり次第修正 */
   <a href={id} className={styles.articleCard} aria-label={title}>
     <Card padding="24px 20px">
-      <p className={styles.date}>
-        {updatedAt && <span>最終更新日: {updatedAt}&#x3000;&#x3000;</span>}
-        <span>記事投稿日: {publishedAt}</span>
-      </p>
+      <PublishedAt publishedAt={publishedAt} updatedAt={updatedAt} />
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.text}>{description}</p>
       <TagList tagData={tagData} />

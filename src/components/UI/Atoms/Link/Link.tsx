@@ -4,7 +4,12 @@ import { ICON_TYPE, Icon } from '../Icon'
 
 type Props = {
   /** 表示するテキスト */
-  text: string
+  text:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>>
+    | Iterable<React.ReactNode>
   /** 遷移先URL */
   href: string
   /** trueの時、target=_blank指定になる */

@@ -11,11 +11,6 @@ export const articleCard = style([
   },
 ])
 
-export const date = style({
-  color: vars.color.gray,
-  fontSize: 11,
-})
-
 export const title = style([
   lineClamp,
   {
