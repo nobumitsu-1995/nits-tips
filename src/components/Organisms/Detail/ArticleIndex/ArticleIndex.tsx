@@ -12,11 +12,10 @@ type Title = {
 }
 
 type Props = {
-  articleIndex: Title &
-    {
-      /** 子タイトル */
-      childTitle?: Title[]
-    }[]
+  articleIndex: (Title & {
+    /** 子タイトル */
+    childTitle?: Title[]
+  })[]
 }
 
 export const ArticleIndex: React.FC<Props> = ({ articleIndex }) => (
@@ -28,7 +27,7 @@ export const ArticleIndex: React.FC<Props> = ({ articleIndex }) => (
         <li className={styles.listItem} key={title.href}>
           <p className={styles.text}>
             <span className={styles.number}>{index + 1}. </span>
-            <a href={title.href} className={styles.link}>
+            <a href={`#${title.href}`} className={styles.link}>
               {title.title}
             </a>
           </p>
@@ -40,7 +39,7 @@ export const ArticleIndex: React.FC<Props> = ({ articleIndex }) => (
                     <span className={styles.number}>
                       {index + 1}-{childIndex + 1}.{' '}
                     </span>
-                    <a href={child.href} className={styles.link}>
+                    <a href={`#${title.href}`} className={styles.link}>
                       {child.title}
                     </a>
                   </p>
