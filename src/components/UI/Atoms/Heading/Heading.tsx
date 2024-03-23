@@ -3,9 +3,13 @@ import * as styles from './Heading.css'
 
 type Props = {
   /** タイトル */
-  text: string
+  text: string | React.ReactNode
+  /** id */
+  id?: string
 }
 
-export const Heading: React.FC<Props> = ({ text }) => (
-  <h2 className={styles.heading}>{text}</h2>
+export const Heading: React.FC<Props> = ({ text, id }) => (
+  <h2 id={id} className={styles.heading}>
+    {text}
+  </h2>
 )
