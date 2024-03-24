@@ -27,7 +27,7 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
     const link = canvas.getByRole('link', { name: defaultData.title })
-    expect(link).toHaveAttribute('href', defaultData.id)
+    expect(link).toHaveAttribute('href', `/detail/${defaultData.id}/`)
   },
 }
 
