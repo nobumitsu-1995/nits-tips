@@ -1,16 +1,12 @@
 ---
+import BaseLayout from '@/layout/BaseLayout.astro'
+import { Top } from '@/components/Entrypoints/top/Top'
+import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 
+const title = 'nits-tips | 最新記事'
+const blogs = (await getBlogsData()) ?? []
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={title}>
+  <Top blogs={blogs} />
+</BaseLayout>
