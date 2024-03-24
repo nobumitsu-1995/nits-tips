@@ -1,0 +1,24 @@
+---
+import { About } from '@Entrypoints/about/About'
+import { ContactForm } from '@Organisms/About/ContactForm'
+import { Border } from '@Atoms/Border'
+import { Card } from '@Atoms/Card'
+import BaseLayout from '@layout/BaseLayout.astro'
+import * as styles from '@/styles/pages/about.css'
+
+const pageTitle = 'nits-tips | About'
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <main class={styles.container}>
+    <div class={styles.cardContainer}>
+      <Card padding='48px 28px'>
+        <About />
+        <Border />
+        <div id='contact' class={styles.contactForm}>
+          <ContactForm client:load />
+        </div>
+      </Card>
+    </div>
+  </main>
+</BaseLayout>

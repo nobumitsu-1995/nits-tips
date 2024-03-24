@@ -17,14 +17,14 @@ export const About: React.FC = () => (
         &emsp;詳しい規約につきましては
         <Link
           text="プライバシーポリシーページ"
-          href="/privacy-policy"
+          href="/privacy-policy/"
           isTagetBlank
         />
         をご確認ください。
       </p>
       <p className={styles.text}>
         &emsp;当サイトに関する、ご意見、ご感想、ご質問などは
-        <Link text="お問い合わせフォーム" href="#contact" isTargetBlank />
+        <Link text="お問い合わせフォーム" href="#contact" />
         からお受付しております。
       </p>
     </div>
