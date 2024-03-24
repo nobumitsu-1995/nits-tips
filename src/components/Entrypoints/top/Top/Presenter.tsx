@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const Presenter: React.FC<Props> = ({ articles }) => (
-  <section>
+  <section className={styles.top}>
     <Heading text="記事一覧" />
     <div className={styles.container}>
       <ArticleList articles={articles} />
