@@ -27,13 +27,14 @@ export const ArticleCard: React.FC<Props> = ({
   publishedAt,
   updatedAt,
 }) => (
-  /** TODO: URL決まり次第修正 */
-  <a href={`/detail/${id}/`} className={styles.articleCard} aria-label={title}>
-    <Card padding="24px 20px">
-      <PublishedAt publishedAt={publishedAt} updatedAt={updatedAt} />
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.text}>{description}</p>
-      <TagList tagData={tagData} />
-    </Card>
-  </a>
+  <Card padding="24px 20px">
+    <PublishedAt publishedAt={publishedAt} updatedAt={updatedAt} />
+    <h3>
+      <a href={`/detail/${id}/`} className={styles.title}>
+        {title}
+      </a>
+    </h3>
+    <p className={styles.text}>{description}</p>
+    <TagList tagData={tagData} />
+  </Card>
 )
