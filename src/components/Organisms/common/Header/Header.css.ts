@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { vars } from '../../../../styles/theme.css'
+import { hover } from '../../../../styles/global.css'
 
 export const header = style({
   padding: '48px 0',
@@ -9,9 +10,11 @@ export const header = style({
   color: vars.color.white,
 })
 
-export const main = style({
+export const main = style([hover, {
+  textDecoration: 'none',
   fontSize: 48,
-})
+  color: vars.color.white,
+}])
 
 export const sub = style({
   fontSize: 20,

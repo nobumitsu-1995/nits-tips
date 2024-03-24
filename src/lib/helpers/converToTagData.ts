@@ -4,6 +4,6 @@ import type { MicroCMS } from '@/types/microCMS'
 export const convertToTagData = (tags: MicroCMS['tag'][]) =>
   tags.map((data) => ({
     label: data.label,
-    href: `https://example.com/?id=${data.id}`,
-    src: data.id,
+    href: `/search/result/?tag=${data.id}`,
+    src: data.icon.url,
   }))

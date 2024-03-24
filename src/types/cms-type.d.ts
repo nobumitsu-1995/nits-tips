@@ -28,6 +28,10 @@ export type tags<T = 'get'> = Structure<
      * タグ名ラベル
      */
     label: string
+    /**
+     * アイコン
+     */
+    icon?: { url: string; width: number; height: number }
   }
 >
 

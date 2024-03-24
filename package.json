@@ -13,7 +13,7 @@
     "test": "vitest -- NODE_ENV=test",
     "test:storybook": "test-storybook",
     "coverage": "vitest run --coverage",
-    "generate:cms-type": "yarn microcms-typescript src/lib/schema src/types/cms-type.t.ts",
+    "generate:cms-type": "yarn microcms-typescript src/lib/schema src/types/cms-type.d.ts",
     "generate:scaffold": "plop",
     "lint": "eslint ./src/**/*.{ts,tsx} && prettier --write ./src/**/*.{ts,tsx}",
     "prepare": "husky"
