@@ -32,6 +32,11 @@ export const blog = (id = 'h8mr8y9vhx') => ({
       revisedAt: '2024-02-24T11:29:45.128Z',
       name: 'react',
       label: 'React',
+      icon: {
+        url: '',
+        width: 1,
+        height: 1,
+      },
     },
     {
       id: 'ff4hsrq4ra1',
@@ -41,6 +46,11 @@ export const blog = (id = 'h8mr8y9vhx') => ({
       revisedAt: '2024-02-24T11:29:54.321Z',
       name: 'typescript',
       label: 'typescript',
+      icon: {
+        url: '',
+        width: 1,
+        height: 1,
+      },
     },
   ],
   isHidden: false,
