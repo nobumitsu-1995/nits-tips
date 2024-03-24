@@ -43,7 +43,5 @@ export const TextBox: React.FC<Props> = ({
     aria-describedby={a11yId}
     className={`${styles.textBox} ${isError ? styles.isError : ''}`}
     rows={6}
-  >
-    {value}
-  </textarea>
+  />
 )
