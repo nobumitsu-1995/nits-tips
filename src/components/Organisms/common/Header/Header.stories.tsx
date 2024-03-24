@@ -6,13 +6,6 @@ type Story = StoryObj<ComponentType>
 
 export default {
   component: Header,
-  args: {
-    name: 'hoge',
-  },
 } as Meta<ComponentType>
 
-export const Primary: Story = {
-  args: {
-    name: 'primary',
-  },
-}
+export const Default: Story = {}

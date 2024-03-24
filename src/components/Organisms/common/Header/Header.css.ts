@@ -16,4 +16,5 @@ export const main = style({
 export const sub = style({
   fontSize: 20,
   letterSpacing: 5,
+  transform: 'scaleY(0.7)',
 })
