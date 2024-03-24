@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@layout/BaseLayout.astro'
+import { Main } from '@Entrypoints/detail/Main'
+import { SideBar } from '@Entrypoints/detail/SideBar'
+import { getAllBlogs } from '@/lib/API/microCMS/getAllBlogs'
+import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
+import { getGithubAccount } from '@/lib/API/getGithubAccount'
+import * as styles from '@/styles/pages/detail.css'
+
+export async function getStaticPaths() {
+  const allBlogs = await getAllBlogs()
+
+  return allBlogs.map((data) => ({
+    params: { id: data.id },
+    props: { blog: data },
+  }))
+}
+
+const { blog } = Astro.props
+const pageTitle = `nits-tips | ${blog.title}`
+const relatedBlogs =
+  (await getBlogsData({
+    filters: `category[equals]${blog.category.id}`,
+    limit: 4,
+  })) ?? []
+const githubAccount = await getGithubAccount()
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class={styles.container}>
+    <main class={styles.mainContainer}>
+      <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
+    </main>
+    <SideBar content={blog.content} />
+  </div>
+</BaseLayout>
+<script>
+  import hljs from 'highlight.js/lib/core'
+  import javascript from 'highlight.js/lib/languages/javascript'
+  import typescript from 'highlight.js/lib/languages/typescript'
+  import json from 'highlight.js/lib/languages/json'
+  import css from 'highlight.js/lib/languages/css'
+  import go from 'highlight.js/lib/languages/go'
+  import ruby from 'highlight.js/lib/languages/ruby'
+  import php from 'highlight.js/lib/languages/php'
+  import 'highlight.js/styles/a11y-dark.min.css'
+  hljs.registerLanguage('javascript', javascript)
+  hljs.registerLanguage('typescript', typescript)
+  hljs.registerLanguage('json', json)
+  hljs.registerLanguage('css', css)
+  hljs.registerLanguage('go', go)
+  hljs.registerLanguage('ruby', ruby)
+  hljs.registerLanguage('php', php)
+  hljs.initHighlighting()
+</script>
+<script>
+  document.querySelectorAll('code').forEach((pre) => {
+    pre.setAttribute('tabindex', '0')
+  })
+  document.querySelectorAll('table').forEach((pre) => {
+    pre.setAttribute('tabindex', '0')
+  })
+</script>

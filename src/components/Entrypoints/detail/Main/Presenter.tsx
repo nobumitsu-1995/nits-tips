@@ -12,8 +12,8 @@ type Props = {
 }
 
 export const Presenter: React.FC<Props> = ({ article, relatedArticles }) => (
-  <main className={styles.main}>
+  <article className={styles.main}>
     <Article {...article} />
     <RelatedArticle articles={relatedArticles} />
-  </main>
+  </article>
 )
