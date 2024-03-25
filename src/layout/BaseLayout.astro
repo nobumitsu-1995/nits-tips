@@ -1,6 +1,7 @@
 ---
 import 'a11y-css-reset/combo.css'
 import '../styles/global.css'
+import SpeedInsights from '@vercel/speed-insights/astro'
 import { Header } from '../components/Organisms/common/Header'
 import { Nav } from '../components/Organisms/common/Nav'
 import { Footer } from '../components/Organisms/common/Footer'
@@ -37,5 +38,6 @@ const { pageTitle } = Astro.props
     <slot />
     <ToTopButton client:load />
     <Footer />
+    <SpeedInsights />
   </body>
 </html>
