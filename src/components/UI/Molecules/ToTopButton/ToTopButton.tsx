@@ -15,17 +15,20 @@ export const ToTopButton: React.FC = () => {
   }
 
   return (
-    <CircleButton
-      iconType={ICON_TYPE.arrow_upward}
-      iconColor={vars.color.white}
-      iconStyle={styles.icon}
-      iconSize={24}
-      buttonColor={vars.color.attention}
-      buttonSize={60}
-      buttonStyle={`${styles.toTopButton} ${isShow ? styles.isShow : styles.isHidden}`}
-      withTooltip={false}
-      tooltipText="ページトップへスクロール"
-      onClick={handleClick}
-    />
+    <div
+      className={`${styles.toTopButton} ${isShow ? styles.isShow : styles.isHidden}`}
+    >
+      <CircleButton
+        iconType={ICON_TYPE.arrow_upward}
+        iconColor={vars.color.white}
+        iconStyle={styles.icon}
+        iconSize={24}
+        buttonColor={vars.color.attention}
+        buttonSize={60}
+        withTooltip={false}
+        tooltipText="ページトップへスクロール"
+        onClick={handleClick}
+      />
+    </div>
   )
 }
