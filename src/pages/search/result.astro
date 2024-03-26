@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@layout/BaseLayout.astro'
+import { Result as ResultComponent } from '@Entrypoints/search/Result'
+import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
+
+export const prerender = false
+
+const url = new URL(Astro.request.url)
+const params = new URLSearchParams(url.search)
+const category = params.get('category')
+const tag = params.get('tag')
+
+const pageTitle = 'nits-tips | 検索結果'
+const blogs =
+  (await getBlogsData({
+    filters: `tags[contains]${tag}[or]category[equals]${category}`,
+    limit: 100,
+  })) ?? []
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <ResultComponent blogs={blogs} />
+</BaseLayout>
