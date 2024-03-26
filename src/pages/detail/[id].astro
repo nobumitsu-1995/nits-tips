@@ -7,6 +7,7 @@ import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 import { getGithubAccount } from '@/lib/API/getGithubAccount'
 import * as styles from '@/styles/pages/detail.css'
 
+export const prerender = true
 export async function getStaticPaths() {
   const allBlogs = await getAllBlogs()
 

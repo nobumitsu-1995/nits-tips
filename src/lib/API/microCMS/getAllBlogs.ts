@@ -6,11 +6,11 @@ type Blog = MicroCMS['blog']
 const ENDPOINT = 'blogs'
 
 export const getAllBlogs = async () => {
-  const data = await client
-    .getAllContents<Blog>({
-      endpoint: ENDPOINT,
-    })
-    .then((req) => req)
+  const data = await client.getAllContents<Blog>({
+    endpoint: ENDPOINT,
+  })
+
+  if (!data) return []
 
   return data
 }

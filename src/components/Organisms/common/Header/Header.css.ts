@@ -10,11 +10,14 @@ export const header = style({
   color: vars.color.white,
 })
 
-export const main = style([hover, {
-  textDecoration: 'none',
-  fontSize: 48,
-  color: vars.color.white,
-}])
+export const main = style([
+  hover,
+  {
+    textDecoration: 'none',
+    fontSize: 48,
+    color: vars.color.white,
+  },
+])
 
 export const sub = style({
   fontSize: 20,
