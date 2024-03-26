@@ -9,6 +9,7 @@ export default {
   component: Share,
   args: {
     description: 'hogehogehoge',
+    url: 'https://example.com',
   },
 } as Meta<ComponentType>
 

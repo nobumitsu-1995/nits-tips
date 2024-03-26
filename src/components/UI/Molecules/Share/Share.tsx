@@ -6,23 +6,25 @@ import { CircleButton } from '../CircleButton'
 type Props = {
   /** 共有する内容のコンテンツ */
   description: string
+  /** 共有するURL */
+  url: string
 }
 
-export const Share: React.FC<Props> = ({ description }) => {
+export const Share: React.FC<Props> = ({ description, url }) => {
   const SNS_DATA = [
     {
       name: 'X',
-      href: `http://twitter.com/share?url=${global.location.href}&text=${description}`,
+      href: `http://twitter.com/share?url=${url}&text=${description}`,
     },
     {
       name: 'Facebook',
-      href: `http://www.facebook.com/share.php?u=${global.location.href}`,
+      href: `http://www.facebook.com/share.php?u=${url}`,
     },
   ]
 
   /** TODO: ここでToastを表示させたい */
   const handleClick = async () => {
-    await global.navigator.clipboard.writeText(global.location.href)
+    await global.navigator.clipboard.writeText(url)
   }
 
   return (
