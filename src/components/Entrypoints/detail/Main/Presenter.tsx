@@ -14,6 +14,8 @@ type Props = {
 export const Presenter: React.FC<Props> = ({ article, relatedArticles }) => (
   <article className={styles.main}>
     <Article {...article} />
-    <RelatedArticle articles={relatedArticles} />
+    {relatedArticles.length !== 0 && (
+      <RelatedArticle articles={relatedArticles} />
+    )}
   </article>
 )
