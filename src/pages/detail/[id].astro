@@ -2,6 +2,7 @@
 import BaseLayout from '@layout/BaseLayout.astro'
 import { Main } from '@Entrypoints/detail/Main'
 import { SideBar } from '@Entrypoints/detail/SideBar'
+import { Share } from '@Molecules/Share'
 import { getAllBlogs } from '@/lib/API/microCMS/getAllBlogs'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 import { getGithubAccount } from '@/lib/API/getGithubAccount'
@@ -32,7 +33,9 @@ const githubAccount = await getGithubAccount()
     <main class={styles.mainContainer}>
       <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
     </main>
-    <SideBar content={blog.content} />
+    <SideBar content={blog.content}>
+      <Share description={blog.description} client:load />
+    </SideBar>
   </div>
 </BaseLayout>
 <script>
