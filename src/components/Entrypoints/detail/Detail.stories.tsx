@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { Share } from '@Molecules/Share'
 import { articleContent } from '@/testUtils/fixtures/articleConetnts'
 import { Main } from './Main'
 import { SideBar } from './SideBar'
@@ -16,7 +17,9 @@ const Component: React.FC = () => (
         githubAccount={githubAccount}
       />
     </div>
-    <SideBar content={articleContent} />
+    <SideBar content={articleContent}>
+      <Share description="hoge" url="https://example.com" />
+    </SideBar>
     <ToTopButton />
   </div>
 )

@@ -7,6 +7,10 @@ type Story = StoryObj<ComponentType>
 
 export default {
   component: Share,
+  args: {
+    description: 'hogehogehoge',
+    url: 'https://example.com',
+  },
 } as Meta<ComponentType>
 
 export const Default: Story = {
