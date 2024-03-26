@@ -4,7 +4,7 @@ import { Main } from '@Entrypoints/detail/Main'
 import { SideBar } from '@Entrypoints/detail/SideBar'
 import { Share } from '@Molecules/Share'
 import { getAllBlogs } from '@/lib/API/microCMS/getAllBlogs'
-import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
+import { getRelativeBlogs } from '@/lib/API/microCMS/getRelativeBlogs'
 import { getGithubAccount } from '@/lib/API/getGithubAccount'
 import * as styles from '@/styles/pages/detail.css'
 
@@ -20,11 +20,7 @@ export async function getStaticPaths() {
 
 const { blog } = Astro.props
 const pageTitle = `nits-tips | ${blog.title}`
-const relatedBlogs =
-  (await getBlogsData({
-    filters: `category[equals]${blog.category.id}`,
-    limit: 4,
-  })) ?? []
+const relatedBlogs = await getRelativeBlogs(blog)
 const githubAccount = await getGithubAccount()
 ---
 
