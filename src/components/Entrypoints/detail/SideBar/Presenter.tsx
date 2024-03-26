@@ -1,20 +1,17 @@
-import React, { type ComponentProps } from 'react'
+import React, { type ComponentProps, type PropsWithChildren } from 'react'
 import { ArticleIndex } from '@Organisms/Detail/ArticleIndex'
-import { Share } from '@Molecules/Share'
 import * as styles from './SideBar.css'
 import { Card } from '@/components/UI/Atoms/Card'
 
-type Props = {
+type Props = PropsWithChildren<{
   articleIndex: ComponentProps<typeof ArticleIndex>['articleIndex']
-}
+}>
 
-export const Presenter: React.FC<Props> = ({ articleIndex }) => (
+export const Presenter: React.FC<Props> = ({ articleIndex, children }) => (
   <div className={styles.sideBar}>
     <ArticleIndex articleIndex={articleIndex} />
     <Card>
-      <div className={styles.shareContainer}>
-        <Share />
-      </div>
+      <div className={styles.shareContainer}>{children}</div>
     </Card>
   </div>
 )
