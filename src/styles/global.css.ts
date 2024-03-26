@@ -5,6 +5,7 @@ import { vars } from './theme.css'
 globalStyle(':root', {
   fontFamily: vars.font.bizUD,
   color: vars.color.darkGray,
+  scrollBehavior: 'smooth',
 })
 
 export const hover = style({
