@@ -34,7 +34,11 @@ const githubAccount = await getGithubAccount()
       <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
     </main>
     <SideBar content={blog.content}>
-      <Share description={blog.description} url={`https://hoge/detail/${blog.id}/`} client:load />
+      <Share
+        description={blog.description}
+        url={`https://nits-tips.blog/detail/${blog.id}/`}
+        client:load
+      />
     </SideBar>
   </div>
 </BaseLayout>
