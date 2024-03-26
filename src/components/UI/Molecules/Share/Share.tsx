@@ -3,19 +3,23 @@ import { ICON_TYPE } from '@Atoms/Icon'
 import * as styles from './Share.css'
 import { CircleButton } from '../CircleButton'
 
-/** TODO: shareリンクは後ほど対応 */
-const SNS_DATA = [
-  {
-    name: 'X',
-    href: 'todo',
-  },
-  {
-    name: 'Facebook',
-    href: 'todo',
-  },
-]
+type Props = {
+  /** 共有する内容のコンテンツ */
+  description: string
+}
 
-export const Share: React.FC = () => {
+export const Share: React.FC<Props> = ({ description }) => {
+  const SNS_DATA = [
+    {
+      name: 'X',
+      href: `http://twitter.com/share?url=${global.location.href}&text=${description}`,
+    },
+    {
+      name: 'Facebook',
+      href: `http://www.facebook.com/share.php?u=${global.location.href}`,
+    },
+  ]
+
   /** TODO: ここでToastを表示させたい */
   const handleClick = async () => {
     await global.navigator.clipboard.writeText(global.location.href)
