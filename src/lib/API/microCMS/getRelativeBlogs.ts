@@ -15,7 +15,7 @@ export const getRelativeBlogs = async (blog: Blog) => {
 
   const tagRelatives =
     (await getBlogsData({
-      filters: `tag[equals]${blog.tags[0].id}[and]id[not_equals]${blog.id}`,
+      filters: `tags[contains]${blog.tags[0].id}[and]id[not_equals]${blog.id}`,
       limit: 4,
     })) ?? []
 
