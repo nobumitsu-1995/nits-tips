@@ -26,8 +26,8 @@ type Props = PropsWithChildren<{
 
 const initialState = {
   isShow: false,
-  // eslint-disable-next-line no-console
   showToast: (data: Omit<ToastStatus, 'isShow'>) => {
+    // eslint-disable-next-line no-console
     console.log(data)
   },
   hideToast: () => {},
