@@ -2,6 +2,7 @@ import React from 'react'
 import { ICON_TYPE } from '@Atoms/Icon'
 import * as styles from './Share.css'
 import { CircleButton } from '../CircleButton'
+import { TOAST_TYPE, useToastProvider } from '@/lib/Hooks/useToastProvider'
 
 type Props = {
   /** 共有する内容のコンテンツ */
@@ -11,6 +12,7 @@ type Props = {
 }
 
 export const Share: React.FC<Props> = ({ description, url }) => {
+  const { showToast } = useToastProvider()
   const SNS_DATA = [
     {
       name: 'X',
@@ -22,9 +24,12 @@ export const Share: React.FC<Props> = ({ description, url }) => {
     },
   ]
 
-  /** TODO: ここでToastを表示させたい */
   const handleClick = async () => {
-    await global.navigator.clipboard.writeText(url)
+    await window.navigator.clipboard.writeText(url)
+    showToast({
+      message: '記事URLをコピーしました。',
+      type: TOAST_TYPE.succeed,
+    })
   }
 
   return (
