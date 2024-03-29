@@ -1,32 +1,17 @@
-import React, { useId, useState } from 'react'
+import React, { useId } from 'react'
+import { Heading } from '@Atoms/Heading'
+import { FormInput } from '@Molecules/FormInput'
+import { BUTTON_TYPE, Button } from '@Atoms/Button'
+import { useContactForm } from '@/lib/Hooks/useContactForm'
 import * as styles from './ContactForm.css'
-import { Heading } from '@/components/UI/Atoms/Heading'
-import { FormInput } from '@/components/UI/Molecules/FormInput'
-import { BUTTON_TYPE, Button } from '@/components/UI/Atoms/Button'
 
 export const ContactForm: React.FC = () => {
   const a11yId = useId()
-  const [isLoading, setIsLoading] = useState(false)
-  const [mailData, setMailData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setMailData({
-      ...mailData,
-      [name]: value,
-    })
-  }
-
-  const handleSubmit = () => {
-    setIsLoading(true)
-    /** TODO: 一旦ダミーの実装 */
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
+  const { postData, handleChange, isLoading, error, mailData } =
+    useContactForm()
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    postData()
   }
 
   return (
@@ -40,7 +25,7 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             label="名前(Name)"
             isDisabled={isLoading}
-            errorText=""
+            errorText={error.name}
           />
           <FormInput
             name="email"
@@ -49,16 +34,16 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             label="メールアドレス(e-mail)"
             isDisabled={isLoading}
-            errorText=""
+            errorText={error.email}
           />
           <FormInput
-            name="message"
-            value={mailData.message}
+            name="content"
+            value={mailData.content}
             onChange={handleChange}
             label="お問い合わせ内容(message)"
             isTextArea
             isDisabled={isLoading}
-            errorText=""
+            errorText={error.content}
           />
         </div>
 
