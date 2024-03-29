@@ -20,11 +20,12 @@ export async function getStaticPaths() {
 
 const { blog } = Astro.props
 const pageTitle = `nits-tips | ${blog.title}`
+const description = `${blog.description}`
 const relatedBlogs = await getRelativeBlogs(blog)
 const githubAccount = await getGithubAccount()
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description={description}>
   <div class={styles.container}>
     <main class={styles.mainContainer}>
       <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
