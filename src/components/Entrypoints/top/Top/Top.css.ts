@@ -7,6 +7,7 @@ export const top = style({
   maxWidth: 1196,
   '@media': {
     [`${breakpoint.medium}`]: {
+      margin: '32px auto',
       width: '100%',
     },
   },
