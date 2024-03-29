@@ -23,7 +23,7 @@ export const vars = createGlobalTheme(':root', {
 })
 
 export const breakpoint = {
-  small: 'screen and (max-width: 450px)',
+  small: 'screen and (max-width: 550px)',
   medium: 'screen and (max-width: 1023px)',
   large: 'screen and (min-width: 1024px)',
 }
