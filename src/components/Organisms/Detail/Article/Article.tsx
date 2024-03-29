@@ -13,7 +13,7 @@ type Props = ComponentProps<typeof Header> & {
 export const Article: React.FC<Props> = (props) => {
   const { content, ...headerProps } = props
   return (
-    <Card padding="36px 48px">
+    <Card padding="30px 32px">
       <Header {...headerProps} />
       <Border margin="36px 0" />
       <Content content={content} />

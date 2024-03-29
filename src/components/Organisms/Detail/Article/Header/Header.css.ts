@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css'
+import { breakpoint } from '../../../../../styles/theme.css'
 
 export const title = style({
   wordBreak: 'break-all',
@@ -13,6 +14,13 @@ export const container = style({
   display: 'flex',
   alignItems: 'flex-end',
   justifyContent: 'space-between',
+  '@media': {
+    [`${breakpoint.medium}`]: {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: 24,
+    },
+  },
 })
 
 export const containerLeft = style({
@@ -20,4 +28,9 @@ export const containerLeft = style({
   flexDirection: 'column',
   gap: 20,
   width: 430,
+  '@media': {
+    [`${breakpoint.medium}`]: {
+      width: '100%',
+    },
+  },
 })

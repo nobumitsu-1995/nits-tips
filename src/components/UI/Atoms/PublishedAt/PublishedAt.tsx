@@ -16,7 +16,7 @@ export const PublishedAt: React.FC<Props> = ({
   fontSize = 11,
 }) => (
   <p className={styles.publishedAt} style={{ fontSize }}>
-    {updatedAt && <span>最終更新日: {updatedAt}&#x3000;&#x3000;</span>}
+    {updatedAt && <span>最終更新日: {updatedAt}</span>}
     <span>記事投稿日: {publishedAt}</span>
   </p>
 )

@@ -102,3 +102,7 @@ globalStyle(`${content} td`, {
   padding: '4px 12px',
   border: `1px solid ${vars.color.lightGray}`,
 })
+
+globalStyle(`${content} u`, {
+  overflowWrap: 'break-word',
+})

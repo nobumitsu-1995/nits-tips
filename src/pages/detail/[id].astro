@@ -27,16 +27,20 @@ const githubAccount = await getGithubAccount()
 
 <BaseLayout pageTitle={pageTitle} description={description}>
   <div class={styles.container}>
-    <main class={styles.mainContainer}>
-      <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
-    </main>
-    <SideBar content={blog.content}>
-      <Share
-        description={blog.description}
-        url={`https://nits-tips.blog/detail/${blog.id}/`}
-        client:load
-      />
-    </SideBar>
+    <div class={styles.wrapper}>
+      <main class={styles.mainContainer}>
+        <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
+      </main>
+      <aside class={styles.asideContainer}>
+        <SideBar content={blog.content}>
+          <Share
+            description={blog.description}
+            url={`https://nits-tips.blog/detail/${blog.id}/`}
+            client:load
+          />
+        </SideBar>
+      </aside>
+    </div>
   </div>
 </BaseLayout>
 <script>

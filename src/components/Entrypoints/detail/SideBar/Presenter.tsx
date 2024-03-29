@@ -8,10 +8,12 @@ type Props = PropsWithChildren<{
 }>
 
 export const Presenter: React.FC<Props> = ({ articleIndex, children }) => (
-  <div className={styles.sideBar}>
-    <ArticleIndex articleIndex={articleIndex} />
-    <Card>
-      <div className={styles.shareContainer}>{children}</div>
-    </Card>
+  <div className={styles.stickyContainer}>
+    <div className={styles.sideBar}>
+      <ArticleIndex articleIndex={articleIndex} />
+      <Card>
+        <div className={styles.shareContainer}>{children}</div>
+      </Card>
+    </div>
   </div>
 )
