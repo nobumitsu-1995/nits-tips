@@ -6,6 +6,13 @@ export const formInput = style({
   display: 'flex',
   alignItems: 'center',
   gap: 40,
+  '@media': {
+    'screen and (max-width: 660px)': {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: 20,
+    },
+  },
 })
 
 export const isTextArea = style({
@@ -39,4 +46,9 @@ export const error = style({
   fontSize: 12,
   fontWeight: 'bold',
   color: vars.color.error,
+  '@media': {
+    'screen and (max-width: 660px)': {
+      left: 0,
+    },
+  },
 })

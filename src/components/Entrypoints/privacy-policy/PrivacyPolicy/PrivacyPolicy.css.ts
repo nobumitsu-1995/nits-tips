@@ -1,14 +1,24 @@
 import { style, globalStyle } from '@vanilla-extract/css'
-import { vars } from '../../../../styles/theme.css'
+import { breakpoint, vars } from '../../../../styles/theme.css'
 
 export const container = style({
-  padding: '80px 0',
+  padding: '80px 12px',
   backgroundColor: vars.color.background,
+  '@media': {
+    [`${breakpoint.medium}`]: {
+      padding: '24px 12px',
+    },
+  },
 })
 
 export const privacyPolicy = style({
   width: 994,
   margin: '0 auto',
+  '@media': {
+    [`${breakpoint.medium}`]: {
+      width: '100%',
+    },
+  },
 })
 
 export const content = style({})
@@ -23,6 +33,11 @@ globalStyle(`${content} h2`, {
   paddingLeft: 24,
   fontSize: 28,
   letterSpacing: 2,
+  '@media': {
+    [`${breakpoint.medium}`]: {
+      fontSize: 20,
+    },
+  },
 })
 
 globalStyle(`${content} h2::before`, {
@@ -81,6 +96,10 @@ globalStyle(`${content} ul`, {
   gap: 12,
   listStyle: 'square',
   paddingLeft: 20,
+})
+
+globalStyle(`${content} li`, {
+  lineHeight: 1.4,
 })
 
 globalStyle(`${content} ol`, {

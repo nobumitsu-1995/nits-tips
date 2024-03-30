@@ -1,8 +1,16 @@
 import { style } from '@vanilla-extract/css'
+import { breakpoint } from '../../../../styles/theme.css'
 
 export const top = style({
   margin: '80px auto',
-  width: 1196,
+  padding: '0 12px',
+  maxWidth: 1196,
+  '@media': {
+    [`${breakpoint.medium}`]: {
+      margin: '32px auto',
+      width: '100%',
+    },
+  },
 })
 
 export const container = style({

@@ -11,5 +11,5 @@ export const input = style({
 
 export const button = style({
   margin: '36px auto 0',
-  width: 423,
+  maxWidth: 423,
 })

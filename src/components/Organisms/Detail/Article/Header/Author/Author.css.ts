@@ -6,6 +6,8 @@ export const author = style({
   display: 'flex',
   alignItems: 'center',
   gap: 16,
+  width: 232,
+  flexShrink: 0,
 })
 
 export const img = style([

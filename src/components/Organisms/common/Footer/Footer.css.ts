@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from '../../../../styles/theme.css'
+import { breakpoint, vars } from '../../../../styles/theme.css'
 import { hover } from '../../../../styles/global.css'
 
 export const footer = style({
@@ -13,6 +13,13 @@ export const nav = style({
   display: 'flex',
   justifyContent: 'center',
   gap: 40,
+  '@media': {
+    [`${breakpoint.small}`]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 16,
+    },
+  },
 })
 
 export const link = style([
