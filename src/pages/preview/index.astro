@@ -1,0 +1,91 @@
+---
+import BaseLayout from '@layout/BaseLayout.astro'
+import { Main } from '@Entrypoints/detail/Main'
+import { SideBar } from '@Entrypoints/detail/SideBar'
+import { Share } from '@Entrypoints/detail/Share'
+import { getDraftBlog } from '@/lib/API/microCMS/getDraftBlog'
+import { getRelativeBlogs } from '@/lib/API/microCMS/getRelativeBlogs'
+import { getGithubAccount } from '@/lib/API/getGithubAccount'
+import * as styles from '@/styles/pages/detail.css'
+
+export const prerender = false
+
+const url = new URL(Astro.request.url)
+const params = new URLSearchParams(url.search)
+const contentId = params.get('contentId') ?? ''
+const draftKey = params.get('draftKey') ?? ''
+
+const pageTitle = 'nits-tips | 記事プレビュー'
+const description = '記事のプレビュー確認用ページ'
+const blog = await getDraftBlog({
+  contentId,
+  draftKey,
+})
+
+if (!blog) return
+blog['publishedAt'] = '2024-03-30T06:49:42.006Z'
+const relatedBlogs = await getRelativeBlogs(blog)
+const githubAccount = await getGithubAccount()
+
+const authorization = Astro.request.headers.get('authorization')
+const pieces = authorization?.split(/\s+/g)
+
+if (authorization) {
+  if (pieces) {
+    if (pieces[0] === 'Basic') {
+      const buffer = Buffer.from(pieces[1], 'base64')
+      const credentials = buffer.toString()
+      console.log(credentials)
+      const [username, password] = credentials.split(':')
+
+      if (username === import.meta.env.ADMIN_ID && password === import.meta.env.ADMIN_PASSWORD) {
+        Astro.response.status = 200
+        Astro.response.headers.delete('WWW-Authenticate')
+        Astro.response.headers.delete('Content-Length')
+      }
+    }
+  }
+} else {
+  Astro.response.status = 401
+  Astro.response.headers.set('WWW-Authenticate', 'Basic realm="realm"')
+  Astro.response.headers.set('Content-Length', '0')
+}
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <div class={styles.container}>
+    <main class={styles.mainContainer}>
+      <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
+    </main>
+    <SideBar content={blog.content}>
+      <Share description={blog.description} url={`https://nits-tips.blog/detail/${blog.id}/`} />
+    </SideBar>
+  </div>
+</BaseLayout>
+<script>
+  import hljs from 'highlight.js/lib/core'
+  import javascript from 'highlight.js/lib/languages/javascript'
+  import typescript from 'highlight.js/lib/languages/typescript'
+  import json from 'highlight.js/lib/languages/json'
+  import css from 'highlight.js/lib/languages/css'
+  import go from 'highlight.js/lib/languages/go'
+  import ruby from 'highlight.js/lib/languages/ruby'
+  import php from 'highlight.js/lib/languages/php'
+  import 'highlight.js/styles/a11y-dark.min.css'
+  hljs.registerLanguage('javascript', javascript)
+  hljs.registerLanguage('typescript', typescript)
+  hljs.registerLanguage('json', json)
+  hljs.registerLanguage('css', css)
+  hljs.registerLanguage('go', go)
+  hljs.registerLanguage('ruby', ruby)
+  hljs.registerLanguage('php', php)
+  hljs.initHighlighting()
+</script>
+<script>
+  document.querySelectorAll('code').forEach((pre) => {
+    pre.setAttribute('tabindex', '0')
+  })
+  document.querySelectorAll('table').forEach((pre) => {
+    pre.setAttribute('tabindex', '0')
+  })
+</script>
