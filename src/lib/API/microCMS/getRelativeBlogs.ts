@@ -9,19 +9,19 @@ type Blog = MicroCMS['blog']
 export const getRelativeBlogs = async (blog: Blog) => {
   const titleRelatives =
     (await getBlogsData({
-      filters: `title[contains]${blog.title}[and]id[not_equals]${blog.id}`,
+      filters: `title[contains]${blog.title}[and]id[not_equals]${blog.id}[and]isHidden[not_equals]true`,
       limit: 4,
     })) ?? []
 
   const tagRelatives =
     (await getBlogsData({
-      filters: `tags[contains]${blog.tags[0].id}[and]id[not_equals]${blog.id}`,
+      filters: `tags[contains]${blog.tags[0].id}[and]id[not_equals]${blog.id}[and]isHidden[not_equals]true`,
       limit: 4,
     })) ?? []
 
   const categoryRelatives =
     (await getBlogsData({
-      filters: `category[equals]${blog.category.id}[and]id[not_equals]${blog.id}`,
+      filters: `category[equals]${blog.category.id}[and]id[not_equals]${blog.id}[and]isHidden[not_equals]true`,
       limit: 4,
     })) ?? []
 

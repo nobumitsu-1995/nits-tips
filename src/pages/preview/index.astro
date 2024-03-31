@@ -54,12 +54,14 @@ if (authorization) {
 
 <BaseLayout pageTitle={pageTitle} description={description}>
   <div class={styles.container}>
-    <main class={styles.mainContainer}>
-      <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
-    </main>
-    <SideBar content={blog.content}>
-      <Share description={blog.description} url={`https://nits-tips.blog/detail/${blog.id}/`} />
-    </SideBar>
+    <div class={styles.wrapper}>
+      <main class={styles.mainContainer}>
+        <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
+      </main>
+      <SideBar content={blog.content}>
+        <Share description={blog.description} url={`https://nits-tips.blog/detail/${blog.id}/`} />
+      </SideBar>
+    </div>
   </div>
 </BaseLayout>
 <script>

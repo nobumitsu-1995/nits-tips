@@ -8,6 +8,16 @@ globalStyle(`${content} img`, {
   height: 'auto',
 })
 
+globalStyle(`${content} h2`, {
+  margin: '16px 0',
+  lineHeight: 2,
+})
+
+globalStyle(`${content} h3`, {
+  margin: '16px 0',
+  lineHeight: 2,
+})
+
 globalStyle(`${content} p`, {
   margin: '16px 0',
   lineHeight: 2,
