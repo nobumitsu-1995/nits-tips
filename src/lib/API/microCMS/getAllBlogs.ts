@@ -8,6 +8,9 @@ const ENDPOINT = 'blogs'
 export const getAllBlogs = async () => {
   const data = await client.getAllContents<Blog>({
     endpoint: ENDPOINT,
+    queries: {
+      filters: `isHidden[not_equals]true`,
+    },
   })
 
   if (!data) return []

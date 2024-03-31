@@ -5,7 +5,10 @@ import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 
 const pageTitle = 'nits-tips | 最新記事'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。最新記事一覧ページです。'
-const blogs = (await getBlogsData()) ?? []
+const blogs =
+  (await getBlogsData({
+    filters: 'isHidden[not_equals]true',
+  })) ?? []
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description}>

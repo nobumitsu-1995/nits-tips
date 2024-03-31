@@ -14,7 +14,7 @@ const pageTitle = 'nits-tips | 検索結果'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。検索結果ページです。'
 const blogs =
   (await getBlogsData({
-    filters: `tags[contains]${tag}[or]category[equals]${category}`,
+    filters: `tags[contains]${tag}[or]category[equals]${category}[and]isHidden[not_equals]true`,
     limit: 100,
   })) ?? []
 ---
