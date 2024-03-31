@@ -18,9 +18,9 @@ export const Author: React.FC = () => (
             isTagetBlank
           />
         </li>
-        <li>
+        {/* <li>
           <Link text="X" href="/" isTagetBlank />
-        </li>
+        </li> */}
         <li>
           <Link
             text="Wantedly"
@@ -28,9 +28,9 @@ export const Author: React.FC = () => (
             isTagetBlank
           />
         </li>
-        <li>
+        {/* <li>
           <Link text="zenn" href="/" isTagetBlank />
-        </li>
+        </li> */}
       </ul>
     </div>
   </section>
