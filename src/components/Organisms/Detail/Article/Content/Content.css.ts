@@ -21,6 +21,7 @@ globalStyle(`${content} h3`, {
 globalStyle(`${content} p`, {
   margin: '16px 0',
   lineHeight: 2,
+  overflowWrap: 'break-word',
 })
 
 globalStyle(`${content} blockquote`, {
@@ -49,6 +50,7 @@ globalStyle(`${content} hr`, {
 globalStyle(`${content} a`, {
   color: vars.color.link,
   fontWeight: 'bold',
+  overflowWrap: 'break-word',
 })
 
 globalStyle(`${content} a:hover`, {
