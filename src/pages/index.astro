@@ -3,11 +3,11 @@ import BaseLayout from '@/layout/BaseLayout.astro'
 import { Top } from '@/components/Entrypoints/top/Top'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 
-const title = 'nits-tips | 最新記事'
+const pageTitle = 'nits-tips | 最新記事'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。最新記事一覧ページです。'
 const blogs = (await getBlogsData()) ?? []
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout pageTitle={pageTitle} description={description}>
   <Top blogs={blogs} />
 </BaseLayout>
