@@ -1,6 +1,6 @@
 import type { MicroCMS } from '@/types/microCMS'
 import type { GithubAccount } from './Container'
-import { convertToTagData } from '@/lib/helpers/converToTagData'
+import { convertToTagData } from '@/lib/helpers/convertToTagData'
 import { convertDate } from '@/lib/helpers/convertDate'
 
 type Args = {

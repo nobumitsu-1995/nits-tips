@@ -2,7 +2,7 @@ import type { ComponentProps } from 'react'
 import type { ArticleCard } from '@Molecules/ArticleCard'
 import type { MicroCMS } from '@/types/microCMS'
 import { convertDate } from '@/lib/helpers/convertDate'
-import { convertToTagData } from './converToTagData'
+import { convertToTagData } from './convertToTagData'
 
 export const convertToArticles = (
   blogs: MicroCMS['blog'][],
