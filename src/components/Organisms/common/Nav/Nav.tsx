@@ -13,6 +13,9 @@ export const Nav: React.FC = () => (
       <a href="/search/result/?category=air585mxa" className={styles.link}>
         Other
       </a>
+      <a href="/search/" className={styles.link}>
+        Search
+      </a>
     </nav>
   </div>
 )
