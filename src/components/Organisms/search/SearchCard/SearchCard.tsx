@@ -18,11 +18,17 @@ export const SearchCard: React.FC = () => {
     <Card padding="24px 36px">
       <SubHeading text="記事検索" id={a11yId} />
       <Border margin="20px 0" />
-      <form aria-labelledby={a11yId} className={styles.form}>
+      <form
+        aria-labelledby={a11yId}
+        className={styles.form}
+        action="/search/result/"
+        method="get"
+      >
         <input
           type="search"
           placeholder="検索"
           aria-labelledby={a11yId}
+          name="q"
           value={searchWord}
           onChange={handleChangeSearch}
           className={styles.input}
