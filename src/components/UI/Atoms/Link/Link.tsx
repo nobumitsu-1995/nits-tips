@@ -14,14 +14,21 @@ type Props = {
   href: string
   /** trueの時、target=_blank指定になる */
   isTagetBlank?: boolean
+  /** 追加で指定したいスタイルを付与するためのクラス */
+  className?: string
 }
 
-export const Link: React.FC<Props> = ({ text, href, isTagetBlank = false }) => (
+export const Link: React.FC<Props> = ({
+  text,
+  href,
+  isTagetBlank = false,
+  className,
+}) => (
   <a
     href={href}
     target={isTagetBlank ? '_blank' : '_self'}
     rel={`noreferrer${isTagetBlank ? ' noopener' : ''}`}
-    className={styles.link}
+    className={`${styles.link} ${className}`}
   >
     {text}
     {isTagetBlank && <Icon type={ICON_TYPE.open_in_new} />}
