@@ -6,9 +6,6 @@ type Story = StoryObj<ComponentType>
 
 export default {
   component: SearchCard,
-  args: {
-    name: 'hoge',
-  },
 } as Meta<ComponentType>
 
 export const Default: Story = {}
