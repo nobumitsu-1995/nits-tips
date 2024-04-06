@@ -7,6 +7,9 @@ import { getAllBlogs } from '@/lib/API/microCMS/getAllBlogs'
 import { getRelativeBlogs } from '@/lib/API/microCMS/getRelativeBlogs'
 import { getGithubAccount } from '@/lib/API/getGithubAccount'
 import * as styles from '@/styles/pages/detail.css'
+import { Card } from '@Atoms/Card'
+import { SearchCard } from '@Organisms/search/SearchCard'
+import { SearchForm } from '@Organisms/search/SearchForm'
 
 export const prerender = true
 export async function getStaticPaths() {
@@ -33,11 +36,18 @@ const githubAccount = await getGithubAccount()
       </main>
       <aside class={styles.asideContainer}>
         <SideBar content={blog.content}>
-          <Share
-            description={blog.description}
-            url={`https://nits-tips.blog/detail/${blog.id}/`}
-            client:load
-          />
+          <Card>
+            <div class={styles.shareContainer}>
+              <Share
+                description={blog.description}
+                url={`https://nits-tips.blog/detail/${blog.id}/`}
+                client:load
+              />
+            </div>
+          </Card>
+          <SearchCard>
+            <SearchForm client:load />
+          </SearchCard>
         </SideBar>
       </aside>
     </div>

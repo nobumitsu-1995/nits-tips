@@ -44,3 +44,8 @@ export const asideContainer = style({
     },
   },
 })
+
+export const shareContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+})
