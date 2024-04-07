@@ -8,8 +8,10 @@ export const title = style([
   lineClamp,
   {
     marginTop: 8,
+    height: 48,
     fontSize: 20,
     lineHeight: 1.2,
+    WebkitLineClamp: 2,
     color: vars.color.darkGray,
   },
 ])
