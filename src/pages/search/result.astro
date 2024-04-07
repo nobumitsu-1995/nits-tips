@@ -2,6 +2,8 @@
 import BaseLayout from '@layout/BaseLayout.astro'
 import { Result as ResultComponent } from '@Entrypoints/search/Result'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
+import { generateFilters } from '@/lib/helpers/generateFilters'
+import { replaceSpacesWithComma } from '@/lib/helpers/replaceSpacesWithComma'
 
 export const prerender = false
 
@@ -9,13 +11,21 @@ const url = new URL(Astro.request.url)
 const params = new URLSearchParams(url.search)
 const category = params.get('category')
 const tag = params.get('tag')
+const searchWord = params.get('searchWord')
+const filters = generateFilters({
+  category,
+  tag,
+  searchWord: '',
+})
+const q = encodeURI(replaceSpacesWithComma(searchWord ?? ''))
 
 const pageTitle = 'nits-tips | 検索結果'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。検索結果ページです。'
 const blogs =
   (await getBlogsData({
-    filters: `tags[contains]${tag}[or]category[equals]${category}[and]isHidden[not_equals]true`,
+    filters,
     limit: 100,
+    q,
   })) ?? []
 ---
 
