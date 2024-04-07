@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const RelatedArticle: React.FC<Props> = ({ articles }) => (
-  <Card padding="36px 48px">
+  <Card padding="30px 32px">
     <Heading text="関連記事" />
     <ul className={styles.list}>
       {articles.map((article) => (
