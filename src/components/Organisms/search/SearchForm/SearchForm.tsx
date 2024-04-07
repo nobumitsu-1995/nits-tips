@@ -25,7 +25,7 @@ export const SearchForm: React.FC<Props> = ({ id }) => {
         type="search"
         placeholder="検索"
         aria-labelledby={id}
-        name="q"
+        name="searchWord"
         value={searchWord}
         onChange={handleChangeSearch}
         required
