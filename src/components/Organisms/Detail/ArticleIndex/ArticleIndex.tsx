@@ -39,7 +39,7 @@ export const ArticleIndex: React.FC<Props> = ({ articleIndex }) => (
                     <span className={styles.number}>
                       {index + 1}-{childIndex + 1}.{' '}
                     </span>
-                    <a href={`#${title.href}`} className={styles.link}>
+                    <a href={`#${child.href}`} className={styles.link}>
                       {child.title}
                     </a>
                   </p>
