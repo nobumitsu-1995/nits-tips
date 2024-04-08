@@ -19,6 +19,6 @@ const blogs =
   })) ?? []
 ---
 
-<BaseLayout pageTitle={pageTitle} description={description}>
+<BaseLayout pageTitle={pageTitle} description={description} ogTitle={pageTitle}>
   <ResultComponent blogs={blogs} />
 </BaseLayout>
