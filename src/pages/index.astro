@@ -6,12 +6,13 @@ import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 export const prerender = true
 const pageTitle = 'nits-tips | 最新記事'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。最新記事一覧ページです。'
+const ogType = 'blog'
 const blogs =
   (await getBlogsData({
     filters: 'isHidden[not_equals]true',
   })) ?? []
 ---
 
-<BaseLayout pageTitle={pageTitle} description={description}>
+<BaseLayout pageTitle={pageTitle} description={description} ogType={ogType} ogTitle={pageTitle}>
   <Top blogs={blogs} />
 </BaseLayout>
