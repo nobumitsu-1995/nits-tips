@@ -11,7 +11,8 @@ export const generateFilters = ({ category, tag, searchWord }: Args) => {
     filters.push(`category[equals]${category}`)
   }
   if (tag) {
-    filters.push(`tags[contains]${tag}`)
+    const tags = tag.split(',').map((v) => `tags[contains]${v}`)
+    filters.push(`${tags.join('[and]')}`)
   }
   if (searchWord) {
     filters.push(`title[contains]${searchWord}`)

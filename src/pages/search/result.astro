@@ -19,8 +19,7 @@ const filters = generateFilters({
   tag,
   searchWord: searchType === SEARCH_TYPE.title ? searchWord : '',
 })
-const q =
-  searchType === SEARCH_TYPE.all ? encodeURI(replaceSpacesWithComma(searchWord ?? '')) : undefined
+const q = searchType === SEARCH_TYPE.all ? encodeURI(replaceSpacesWithComma(searchWord ?? '')) : ''
 
 const pageTitle = 'nits-tips | 検索結果'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。検索結果ページです。'
