@@ -35,7 +35,6 @@ if (authorization) {
     if (pieces[0] === 'Basic') {
       const buffer = Buffer.from(pieces[1], 'base64')
       const credentials = buffer.toString()
-      console.log(credentials)
       const [username, password] = credentials.split(':')
 
       if (username === import.meta.env.ADMIN_ID && password === import.meta.env.ADMIN_PASSWORD) {
