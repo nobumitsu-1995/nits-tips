@@ -12,7 +12,7 @@ export const TextSearch: React.FC = () => {
   const [searchType, setSearchType] = useState<SearchType>(SEARCH_TYPE.all)
   const a11yId = useId()
   return (
-    <section className={styles.textSearch}>
+    <section>
       <Heading id={a11yId} text="ワード検索" />
       <div className={styles.formContainer}>
         <SearchTypeSelector
