@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layout/BaseLayout.astro'
 import { Result as ResultComponent } from '@Entrypoints/search/Result'
+import { SEARCH_TYPE } from '@Organisms/search/TextSearch'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 import { generateFilters } from '@/lib/helpers/generateFilters'
 import { replaceSpacesWithComma } from '@/lib/helpers/replaceSpacesWithComma'
@@ -12,12 +13,13 @@ const params = new URLSearchParams(url.search)
 const category = params.get('category')
 const tag = params.get('tag')
 const searchWord = params.get('searchWord')
+const searchType = params.get('searchType')
 const filters = generateFilters({
   category,
   tag,
-  searchWord: '',
+  searchWord: searchType === SEARCH_TYPE.title ? searchWord : '',
 })
-const q = encodeURI(replaceSpacesWithComma(searchWord ?? ''))
+const q = searchType === SEARCH_TYPE.all ? encodeURI(replaceSpacesWithComma(searchWord ?? '')) : ''
 
 const pageTitle = 'nits-tips | 検索結果'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。検索結果ページです。'
