@@ -5,6 +5,7 @@ export type IconType =
   | 'folder'
   | 'link'
   | 'open_in_new'
+  | 'sort'
 
 export const ICON_TYPE: MappedConst<IconType> = {
   arrow_upward: 'arrow_upward',
@@ -13,6 +14,7 @@ export const ICON_TYPE: MappedConst<IconType> = {
   folder: 'folder',
   link: 'link',
   open_in_new: 'open_in_new',
+  sort: 'sort',
 }
 
 export const ICON_TYPE_ARRAY: MappedConstKey<IconType> = [
@@ -22,4 +24,5 @@ export const ICON_TYPE_ARRAY: MappedConstKey<IconType> = [
   'folder',
   'link',
   'open_in_new',
+  'sort',
 ]
