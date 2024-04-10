@@ -6,6 +6,7 @@ export type IconType =
   | 'link'
   | 'open_in_new'
   | 'sort'
+  | 'cancel'
 
 export const ICON_TYPE: MappedConst<IconType> = {
   arrow_upward: 'arrow_upward',
@@ -15,6 +16,7 @@ export const ICON_TYPE: MappedConst<IconType> = {
   link: 'link',
   open_in_new: 'open_in_new',
   sort: 'sort',
+  cancel: 'cancel',
 }
 
 export const ICON_TYPE_ARRAY: MappedConstKey<IconType> = [
@@ -25,4 +27,5 @@ export const ICON_TYPE_ARRAY: MappedConstKey<IconType> = [
   'link',
   'open_in_new',
   'sort',
+  'cancel',
 ]
