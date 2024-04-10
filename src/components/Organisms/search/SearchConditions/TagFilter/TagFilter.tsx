@@ -18,23 +18,25 @@ export const TagFilter: React.FC<Props> = ({ tags, onClick }) => (
     </p>
     <div className={styles.buttonContainer}>
       {tags.map((tag) => (
-        <button
-          type="button"
-          key={tag.id}
-          onClick={() => onClick(tag.id)}
-          className={styles.button}
-        >
-          <Icon
-            type={ICON_TYPE.cancel}
-            size={24}
-            color={vars.color.lightGray}
-          />
+        <div key={tag.id} className={styles.tagContainer}>
+          <button
+            type="button"
+            onClick={() => onClick(tag.id)}
+            aria-label={`${tag.label}を絞り込み条件から削除`}
+            className={styles.button}
+          >
+            <Icon
+              type={ICON_TYPE.cancel}
+              size={24}
+              color={vars.color.lightGray}
+            />
+          </button>
           <Tag
             src={tag.icon?.url}
             label={tag.label}
             href={`/search/result/?tag=${tag.id}`}
           />
-        </button>
+        </div>
       ))}
     </div>
   </div>

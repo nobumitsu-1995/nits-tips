@@ -10,6 +10,7 @@ export const tagFilter = style({
 export const title = style({
   display: 'flex',
   alignItems: 'center',
+  flexShrink: 0,
   transform: 'translateY(2px)',
   fontWeight: 'bold',
 })
@@ -20,7 +21,7 @@ export const buttonContainer = style({
   gap: 4,
 })
 
-export const button = style({
+export const tagContainer = style({
   display: 'flex',
   alignItems: 'center',
   gap: 2,
@@ -28,6 +29,15 @@ export const button = style({
   backgroundColor: vars.color.white,
   border: `2px solid ${vars.color.lightGray}`,
   borderRadius: 16,
+})
+
+export const button = style({
+  padding: 0,
+  width: 24,
+  height: 24,
+  border: 'none',
+  borderRadius: '50%',
+  backgroundColor: vars.color.white,
   cursor: 'pointer',
   ':hover': {
     backgroundColor: '#eee',
