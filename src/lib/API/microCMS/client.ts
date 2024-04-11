@@ -4,7 +4,10 @@ const SERVICE_DOMAIN = 'nits-tips'
 
 export const client = createClient({
   serviceDomain: SERVICE_DOMAIN,
-  apiKey: import.meta.env.MICROCMS_API_KEY,
+  apiKey:
+    import.meta.env.STORYBOOK_ENV === 'true'
+      ? import.meta.env.VITE_MICROCMS_API_KEY
+      : import.meta.env.PUBLIC_MICROCMS_API_KEY,
 })
 
 export const getMicroCMSContents = <T>({
