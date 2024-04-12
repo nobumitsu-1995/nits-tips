@@ -11,6 +11,7 @@ const rotate = keyframes({
 })
 
 export const loading = style({
+  margin: '0 auto',
   position: 'relative',
   display: 'block',
   width: LOADING_SIZE,
