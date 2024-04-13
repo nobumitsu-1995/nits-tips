@@ -31,7 +31,11 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   }
 
   const handleClick = () => {
-    window.location.href = `/search/result/?category=${category}&tag=${tags.join(',')}`
+    const url =
+      tags.length > 0
+        ? `/search/result/?category=${category}&tag=${tags.join(',')}`
+        : `/search/result/?category=${category}`
+    window.location.href = url
   }
 
   return (
