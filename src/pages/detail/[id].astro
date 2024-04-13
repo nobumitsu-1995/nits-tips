@@ -9,7 +9,7 @@ import { getGithubAccount } from '@/lib/API/getGithubAccount'
 import * as styles from '@/styles/pages/detail.css'
 import { Card } from '@Atoms/Card'
 import { SearchCard } from '@Organisms/search/SearchCard'
-import { SearchForm } from '@Organisms/search/SearchForm'
+import { SearchCardForm } from '@Entrypoints/search/SearchCardForm'
 
 export const prerender = true
 export async function getStaticPaths() {
@@ -47,7 +47,7 @@ const githubAccount = await getGithubAccount()
             </div>
           </Card>
           <SearchCard>
-            <SearchForm client:load />
+            <SearchCardForm client:load />
           </SearchCard>
         </SideBar>
       </aside>
