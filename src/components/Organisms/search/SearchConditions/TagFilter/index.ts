@@ -1,1 +1,1 @@
-export { TagFilter } from './TagFilter'
+export { TagFilter, type TagType } from './TagFilter'

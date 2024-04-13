@@ -3,14 +3,12 @@ import * as styles from './SearchConditions.css'
 import { Card } from '@/components/UI/Atoms/Card'
 import { UpdatedAtSort } from './UpdatedAtSort'
 import { type SortType } from './UpdatedAtSort/UpdatedAtSort'
-import type { MicroCMS } from '@/types/microCMS'
-import { CategoryFilter } from './CategoryFilter'
-import { TagFilter } from './TagFilter'
-import type { TagType } from './TagFilter/TagFilter'
+import { CategoryFilter, type CategoryType } from './CategoryFilter'
+import { TagFilter, type TagType } from './TagFilter'
 
 type Props = {
   sortType: SortType
-  categories: MicroCMS['category'][]
+  categories: CategoryType[]
   tags: TagType[]
   selectedCategory: string
   selectedTags: string[]

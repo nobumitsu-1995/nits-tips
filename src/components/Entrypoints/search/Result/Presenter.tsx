@@ -4,15 +4,15 @@ import type { ArticleCard } from '@Molecules/ArticleCard'
 import type { SortType } from '@Organisms/search/SearchConditions/UpdatedAtSort/UpdatedAtSort'
 import { SearchConditions } from '@Organisms/search/SearchConditions'
 import { SearchResult } from '@Organisms/search/SearchResult'
+import type { TagType } from '@Organisms/search/SearchConditions/TagFilter'
+import type { CategoryType } from '@Organisms/search/SearchConditions/CategoryFilter'
 import * as styles from './Result.css'
-import type { MicroCMS } from '@/types/microCMS'
-import type { TagType } from '@/components/Organisms/search/SearchConditions/TagFilter/TagFilter'
 
 type Props = {
   /** 記事一覧 */
   articles: ComponentProps<typeof ArticleCard>[]
   sortType: SortType
-  categories: MicroCMS['category'][]
+  categories: CategoryType[]
   tags: TagType[]
   selectedCategory: string
   selectedTags: string[]
