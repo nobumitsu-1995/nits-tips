@@ -1,0 +1,1 @@
+export { WordFilter } from './WordFilter'

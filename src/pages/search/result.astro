@@ -44,5 +44,7 @@ const selectedTags = tag?.split(',') ?? []
     tags={tags}
     selectedCategory={category ?? ''}
     selectedTags={selectedTags}
+    searchType={searchType === SEARCH_TYPE.title ? SEARCH_TYPE.title : SEARCH_TYPE.all}
+    searchWord={searchWord ?? ''}
   />
 </BaseLayout>

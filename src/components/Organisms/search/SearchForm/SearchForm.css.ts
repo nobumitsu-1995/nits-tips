@@ -30,3 +30,7 @@ export const button = style({
   borderRadius: '0 16px 16px 0',
   cursor: 'pointer',
 })
+
+export const slim = style({
+  height: 32,
+})

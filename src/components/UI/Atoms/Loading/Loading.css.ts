@@ -2,8 +2,8 @@ import { createVar, keyframes, style } from '@vanilla-extract/css'
 import { vars } from '../../../../styles/theme.css'
 
 const CIRCLE_NUMBER = 10
-const CIRCLE_SIZE = 12
-const LOADING_SIZE = 72
+const CIRCLE_SIZE = 16
+const LOADING_SIZE = 104
 const LOADING_RADIUS = (LOADING_SIZE - CIRCLE_SIZE) / 2
 
 const rotate = keyframes({

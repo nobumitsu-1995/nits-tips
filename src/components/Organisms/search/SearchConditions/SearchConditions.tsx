@@ -1,10 +1,13 @@
 import React from 'react'
+import { Card } from '@Atoms/Card'
+import { Border } from '@Atoms/Border'
 import * as styles from './SearchConditions.css'
-import { Card } from '@/components/UI/Atoms/Card'
 import { UpdatedAtSort } from './UpdatedAtSort'
 import { type SortType } from './UpdatedAtSort/UpdatedAtSort'
 import { CategoryFilter, type CategoryType } from './CategoryFilter'
 import { TagFilter, type TagType } from './TagFilter'
+import { type SearchType } from '../TextSearch/SearchTypeSelector'
+import { WordFilter } from './WordFilter'
 
 type Props = {
   sortType: SortType
@@ -12,9 +15,14 @@ type Props = {
   tags: TagType[]
   selectedCategory: string
   selectedTags: string[]
+  searchWord: string
+  searchType: SearchType
   setSortType: React.Dispatch<React.SetStateAction<SortType>>
   setCategory: React.Dispatch<React.SetStateAction<string>>
   setTags: React.Dispatch<React.SetStateAction<string[]>>
+  setSearchType: React.Dispatch<React.SetStateAction<SearchType>>
+  handleSubmitSearch: (e: React.FormEvent<HTMLFormElement>) => void
+  handleChangeSearch: React.ChangeEventHandler<HTMLInputElement>
 }
 
 export const SearchConditions: React.FC<Props> = ({
@@ -23,9 +31,14 @@ export const SearchConditions: React.FC<Props> = ({
   tags,
   selectedCategory,
   selectedTags,
+  searchWord,
+  searchType,
   setSortType,
   setCategory,
   setTags,
+  setSearchType,
+  handleSubmitSearch,
+  handleChangeSearch,
 }) => {
   const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortType(e.target.value as SortType)
@@ -55,27 +68,37 @@ export const SearchConditions: React.FC<Props> = ({
 
   return (
     <Card padding="12px 32px">
-      <div className={styles.searchConditions}>
-        <div className={styles.itemContainer}>
-          <UpdatedAtSort
-            selected={sortType}
-            handleChange={handleChangeSortType}
-          />
+      <div className={styles.container}>
+        <WordFilter
+          searchWord={searchWord}
+          searchType={searchType}
+          setSearchType={setSearchType}
+          handleSubmitSearch={handleSubmitSearch}
+          handleChangeSearch={handleChangeSearch}
+        />
+        <Border margin="20px 0" />
+        <div className={styles.searchConditions}>
+          <div className={styles.itemContainer}>
+            <UpdatedAtSort
+              selected={sortType}
+              handleChange={handleChangeSortType}
+            />
+          </div>
+          <div className={styles.itemContainer}>
+            <CategoryFilter
+              selected={selectedCategory}
+              handleChange={handleChangeCategory}
+              categories={categories}
+            />
+          </div>
         </div>
-        <div className={styles.itemContainer}>
-          <CategoryFilter
-            selected={selectedCategory}
-            handleChange={handleChangeCategory}
-            categories={categories}
-          />
-        </div>
+        <TagFilter
+          selectedTags={selectedTags}
+          tags={tags}
+          onClick={handleClickTagButton}
+          onChange={handleChange}
+        />
       </div>
-      <TagFilter
-        selectedTags={selectedTags}
-        tags={tags}
-        onClick={handleClickTagButton}
-        onChange={handleChange}
-      />
     </Card>
   )
 }
