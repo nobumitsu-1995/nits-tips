@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Presenter } from './Presenter'
 import type { MicroCMS } from '@/types/microCMS'
 import { convertToArticles } from '@/lib/helpers/convertToArticles'
@@ -24,6 +24,7 @@ export const Container: React.FC<Props> = ({
   selectedTags: _selectedTags,
   selectedCategory: _selectedCategory = '',
 }) => {
+  const isFirstRender = useRef(true)
   const [sortType, setSortType] = useState<SortType>(SORT_TYPE.desc)
   const [selectedCategory, setCategory] = useState<string>(_selectedCategory)
   const [selectedTags, setTags] = useState<string[]>(_selectedTags)
@@ -31,6 +32,10 @@ export const Container: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
     setIsLoading(true)
     const filters = generateFilters({
       category: selectedCategory,
@@ -49,7 +54,10 @@ export const Container: React.FC<Props> = ({
   return (
     <Presenter
       articles={articles}
-      categories={categories}
+      categories={categories.map((category) => ({
+        id: category.id,
+        label: category.label,
+      }))}
       tags={tags.map((tag) => ({
         id: tag.id,
         label: tag.label,
