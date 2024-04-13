@@ -1,12 +1,21 @@
 import React from 'react'
 import { ICON_TYPE } from '@Atoms/Icon'
 import { DropDown } from '@Molecules/DropDown'
-import type { MicroCMS } from '@/types/microCMS'
+
+export type CategoryType = {
+  id: string
+  label: string
+}
 
 type Props = {
   selected: string
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  categories: MicroCMS['category'][]
+  categories: CategoryType[]
+}
+
+const ALL = {
+  id: '',
+  label: 'すべて',
 }
 
 export const CategoryFilter: React.FC<Props> = ({
@@ -17,7 +26,7 @@ export const CategoryFilter: React.FC<Props> = ({
   <DropDown
     name="category"
     label="カテゴリ"
-    items={categories.map((category) => ({
+    items={[ALL, ...categories].map((category) => ({
       value: category.id,
       label: category.label,
     }))}

@@ -13,6 +13,7 @@ type Props = {
   blogs: MicroCMS['blog'][]
   categories: MicroCMS['category'][]
   tags: MicroCMS['tag'][]
+  selectedCategory: string
   selectedTags: string[]
 }
 
@@ -21,9 +22,10 @@ export const Container: React.FC<Props> = ({
   categories,
   tags,
   selectedTags: _selectedTags,
+  selectedCategory: _selectedCategory = '',
 }) => {
   const [sortType, setSortType] = useState<SortType>(SORT_TYPE.desc)
-  const [selectedCategory, setCategory] = useState<string>(categories[0].id)
+  const [selectedCategory, setCategory] = useState<string>(_selectedCategory)
   const [selectedTags, setTags] = useState<string[]>(_selectedTags)
   const [articles, setArticles] = useState(convertToArticles(blogs))
   const [isLoading, setIsLoading] = useState(false)
