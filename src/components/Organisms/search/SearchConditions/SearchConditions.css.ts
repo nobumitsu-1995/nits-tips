@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css'
+import { breakpoint } from '../../../../styles/theme.css'
 
 export const searchConditions = style({
   display: 'flex',
@@ -6,6 +7,12 @@ export const searchConditions = style({
   alignItems: 'flex-start',
   flexWrap: 'wrap',
   marginBottom: 16,
+  '@media': {
+    [`${breakpoint.small}`]: {
+      gap: 4,
+      marginBottom: 4,
+    },
+  },
 })
 
 export const itemContainer = style({
