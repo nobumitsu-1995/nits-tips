@@ -10,14 +10,20 @@ export type TagType = {
 }
 
 type Props = {
-  selectedTags: TagType[]
+  selectedTags: string[]
   tags: TagType[]
   onClick: (id: string) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const TagFilter: React.FC<Props> = ({ selectedTags, tags, onClick }) => (
+export const TagFilter: React.FC<Props> = ({
+  selectedTags,
+  tags,
+  onClick,
+  onChange,
+}) => (
   <div className={styles.tagFilter}>
-    <TagTitle tags={tags} />
-    <CurrentTags selectedTags={selectedTags} onClick={onClick} />
+    <TagTitle tags={tags} selectedTags={selectedTags} onChange={onChange} />
+    <CurrentTags selectedTags={selectedTags} tags={tags} onClick={onClick} />
   </div>
 )

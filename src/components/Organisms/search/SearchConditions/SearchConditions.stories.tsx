@@ -10,7 +10,8 @@ export default {
   component: SearchConditions,
   args: {
     categories,
-    selectedTags: tags,
+    tags,
+    selectedTags: tags.map((tag) => tag.id),
   },
 } as Meta<ComponentType>
 

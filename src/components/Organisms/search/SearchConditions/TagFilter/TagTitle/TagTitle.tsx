@@ -5,9 +5,11 @@ import { TagSelector } from '../../../FilterSearch/TagSelector'
 
 type Props = {
   tags: ComponentProps<typeof TagSelector>['tags']
+  selectedTags: string[]
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const TagTitle: React.FC<Props> = ({ tags }) => (
+export const TagTitle: React.FC<Props> = ({ tags, selectedTags, onChange }) => (
   // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
   <div className={styles.tagTitle} tabIndex={0}>
     <Icon type={ICON_TYPE.sell} size={24} />
@@ -16,8 +18,8 @@ export const TagTitle: React.FC<Props> = ({ tags }) => (
     <div className={styles.tooltip}>
       <TagSelector
         tags={tags}
-        selectedTags={tags.map((tag) => tag.id)}
-        handleChange={() => {}}
+        selectedTags={selectedTags}
+        handleChange={onChange}
       />
     </div>
   </div>

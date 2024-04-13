@@ -1,25 +1,34 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as styles from './SearchConditions.css'
 import { Card } from '@/components/UI/Atoms/Card'
 import { UpdatedAtSort } from './UpdatedAtSort'
-import { SORT_TYPE, type SortType } from './UpdatedAtSort/UpdatedAtSort'
+import { type SortType } from './UpdatedAtSort/UpdatedAtSort'
 import type { MicroCMS } from '@/types/microCMS'
 import { CategoryFilter } from './CategoryFilter'
 import { TagFilter } from './TagFilter'
+import type { TagType } from './TagFilter/TagFilter'
 
 type Props = {
+  sortType: SortType
   categories: MicroCMS['category'][]
-  selectedTags: MicroCMS['tag'][]
+  tags: TagType[]
+  selectedCategory: string
+  selectedTags: string[]
+  setSortType: React.Dispatch<React.SetStateAction<SortType>>
+  setCategory: React.Dispatch<React.SetStateAction<string>>
+  setTags: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 export const SearchConditions: React.FC<Props> = ({
+  sortType,
   categories,
+  tags,
+  selectedCategory,
   selectedTags,
+  setSortType,
+  setCategory,
+  setTags,
 }) => {
-  const [sortType, setSortType] = useState<SortType>(SORT_TYPE.desc)
-  const [category, setCategory] = useState(categories[0].id)
-  const [tags, setTags] = useState(selectedTags)
-
   const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortType(e.target.value as SortType)
   }
@@ -27,8 +36,23 @@ export const SearchConditions: React.FC<Props> = ({
     setCategory(e.target.value)
   }
   const handleClickTagButton = (id: string) => {
-    const updatedTags = tags.filter((tag) => tag.id !== id)
-    setTags(updatedTags)
+    const index = selectedTags.indexOf(id)
+    const newValue = [...selectedTags]
+    newValue.splice(index, 1)
+    setTags(newValue)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value: _val } = e.target
+    const index = selectedTags.indexOf(_val)
+
+    if (index > -1) {
+      const newValue = [...selectedTags]
+      newValue.splice(index, 1)
+      setTags(newValue)
+    } else {
+      setTags((prev) => [...prev, _val])
+    }
   }
 
   return (
@@ -42,12 +66,17 @@ export const SearchConditions: React.FC<Props> = ({
         </div>
         <div className={styles.itemContainer}>
           <CategoryFilter
-            selected={category}
+            selected={selectedCategory}
             handleChange={handleChangeCategory}
             categories={categories}
           />
         </div>
-        <TagFilter tags={tags} onClick={handleClickTagButton} />
+        <TagFilter
+          selectedTags={selectedTags}
+          tags={tags}
+          onClick={handleClickTagButton}
+          onChange={handleChange}
+        />
       </div>
     </Card>
   )
