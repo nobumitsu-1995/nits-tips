@@ -21,3 +21,9 @@ export const result = style({
 export const container = style({
   marginTop: 34,
 })
+
+export const searchConditionsContainer = style({
+  marginBottom: 34,
+  position: 'sticky',
+  top: 0,
+})

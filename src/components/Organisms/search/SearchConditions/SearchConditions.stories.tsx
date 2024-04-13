@@ -1,16 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Container } from './Container'
-import { blogs } from '@/testUtils/fixtures/blogsData'
+import { SearchConditions } from './SearchConditions'
 import { categories } from '@/testUtils/fixtures/categories'
 import { tags } from '@/testUtils/fixtures/tags'
 
-type ComponentType = typeof Container
+type ComponentType = typeof SearchConditions
 type Story = StoryObj<ComponentType>
 
 export default {
-  component: Container,
+  component: SearchConditions,
   args: {
-    blogs: blogs(15),
     categories,
     tags,
     selectedTags: tags.map((tag) => tag.id),

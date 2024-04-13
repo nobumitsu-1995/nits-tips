@@ -16,6 +16,7 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   const a11yId = useId()
   const [category, setCategory] = useState(categoriesData[0].id)
   const [tags, setTags] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: _val } = e.target
@@ -31,7 +32,12 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   }
 
   const handleClick = () => {
-    window.location.href = `/search/result/?category=${category}&tag=${tags.join(',')}`
+    setIsLoading(true)
+    const url =
+      tags.length > 0
+        ? `/search/result/?category=${category}&tag=${tags.join(',')}`
+        : `/search/result/?category=${category}`
+    window.location.href = url
   }
 
   return (
@@ -60,7 +66,7 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
       <div className={styles.buttonContainer}>
         <Button
           buttonType={BUTTON_TYPE.button}
-          isLoading={false}
+          isLoading={isLoading}
           isDisabled={false}
           onClick={handleClick}
         >
