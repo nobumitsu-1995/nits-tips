@@ -1,17 +1,13 @@
-import React, { useId } from 'react'
+import React from 'react'
+import { Card } from '@Atoms/Card'
+import { Border } from '@Atoms/Border'
 import * as styles from './SearchConditions.css'
-import { Card } from '@/components/UI/Atoms/Card'
 import { UpdatedAtSort } from './UpdatedAtSort'
 import { type SortType } from './UpdatedAtSort/UpdatedAtSort'
 import { CategoryFilter, type CategoryType } from './CategoryFilter'
 import { TagFilter, type TagType } from './TagFilter'
-import { Border } from '@/components/UI/Atoms/Border'
-import {
-  type SearchType,
-  SearchTypeSelector,
-} from '../TextSearch/SearchTypeSelector'
-import { SearchForm } from '../SearchForm'
-import { Icon, ICON_TYPE } from '@/components/UI/Atoms/Icon'
+import { type SearchType } from '../TextSearch/SearchTypeSelector'
+import { WordFilter } from './WordFilter'
 
 type Props = {
   sortType: SortType
@@ -44,7 +40,6 @@ export const SearchConditions: React.FC<Props> = ({
   handleSubmitSearch,
   handleChangeSearch,
 }) => {
-  const a11yId = useId()
   const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortType(e.target.value as SortType)
   }
@@ -73,23 +68,12 @@ export const SearchConditions: React.FC<Props> = ({
 
   return (
     <Card padding="12px 32px">
-      <div className={styles.container}>
-        <p id={a11yId} className={styles.label}>
-          <Icon type={ICON_TYPE.search} size={24} />
-          ワード検索
-        </p>
-        <SearchTypeSelector
-          searchType={searchType}
-          setSearchType={setSearchType}
-        />
-      </div>
-      <SearchForm
-        id={a11yId}
+      <WordFilter
         searchWord={searchWord}
-        onSubmit={handleSubmitSearch}
-        handleChangeSearch={handleChangeSearch}
         searchType={searchType}
-        isSlimType
+        setSearchType={setSearchType}
+        handleSubmitSearch={handleSubmitSearch}
+        handleChangeSearch={handleChangeSearch}
       />
       <Border margin="20px 0" />
       <div className={styles.searchConditions}>
