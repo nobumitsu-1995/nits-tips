@@ -71,13 +71,13 @@ export const SearchConditions: React.FC<Props> = ({
             categories={categories}
           />
         </div>
-        <TagFilter
-          selectedTags={selectedTags}
-          tags={tags}
-          onClick={handleClickTagButton}
-          onChange={handleChange}
-        />
       </div>
+      <TagFilter
+        selectedTags={selectedTags}
+        tags={tags}
+        onClick={handleClickTagButton}
+        onChange={handleChange}
+      />
     </Card>
   )
 }

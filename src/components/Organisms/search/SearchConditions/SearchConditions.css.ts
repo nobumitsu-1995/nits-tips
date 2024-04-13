@@ -5,6 +5,7 @@ export const searchConditions = style({
   gap: 16,
   alignItems: 'flex-start',
   flexWrap: 'wrap',
+  marginBottom: 16,
 })
 
 export const itemContainer = style({
