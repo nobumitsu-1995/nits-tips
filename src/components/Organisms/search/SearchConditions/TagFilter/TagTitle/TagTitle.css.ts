@@ -38,7 +38,7 @@ export const tooltip = style({
   overflow: 'scroll',
   display: 'none',
   padding: 12,
-  maxHeight: 150,
+  maxHeight: 250,
   backgroundColor: vars.color.white,
   border: `2px solid ${vars.color.lightGray}`,
   borderRadius: 4,
