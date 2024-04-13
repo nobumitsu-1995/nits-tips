@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useId } from 'react'
 import * as styles from './SearchConditions.css'
 import { Card } from '@/components/UI/Atoms/Card'
 import { UpdatedAtSort } from './UpdatedAtSort'
 import { type SortType } from './UpdatedAtSort/UpdatedAtSort'
 import { CategoryFilter, type CategoryType } from './CategoryFilter'
 import { TagFilter, type TagType } from './TagFilter'
+import { Border } from '@/components/UI/Atoms/Border'
+import {
+  type SearchType,
+  SearchTypeSelector,
+} from '../TextSearch/SearchTypeSelector'
+import { SearchForm } from '../SearchForm'
+import { Icon, ICON_TYPE } from '@/components/UI/Atoms/Icon'
 
 type Props = {
   sortType: SortType
@@ -12,9 +19,14 @@ type Props = {
   tags: TagType[]
   selectedCategory: string
   selectedTags: string[]
+  searchWord: string
+  searchType: SearchType
   setSortType: React.Dispatch<React.SetStateAction<SortType>>
   setCategory: React.Dispatch<React.SetStateAction<string>>
   setTags: React.Dispatch<React.SetStateAction<string[]>>
+  setSearchType: React.Dispatch<React.SetStateAction<SearchType>>
+  handleSubmitSearch: (e: React.FormEvent<HTMLFormElement>) => void
+  handleChangeSearch: React.ChangeEventHandler<HTMLInputElement>
 }
 
 export const SearchConditions: React.FC<Props> = ({
@@ -23,10 +35,16 @@ export const SearchConditions: React.FC<Props> = ({
   tags,
   selectedCategory,
   selectedTags,
+  searchWord,
+  searchType,
   setSortType,
   setCategory,
   setTags,
+  setSearchType,
+  handleSubmitSearch,
+  handleChangeSearch,
 }) => {
+  const a11yId = useId()
   const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortType(e.target.value as SortType)
   }
@@ -55,6 +73,25 @@ export const SearchConditions: React.FC<Props> = ({
 
   return (
     <Card padding="12px 32px">
+      <div className={styles.container}>
+        <p id={a11yId} className={styles.label}>
+          <Icon type={ICON_TYPE.search} size={24} />
+          ワード検索
+        </p>
+        <SearchTypeSelector
+          searchType={searchType}
+          setSearchType={setSearchType}
+        />
+      </div>
+      <SearchForm
+        id={a11yId}
+        searchWord={searchWord}
+        onSubmit={handleSubmitSearch}
+        handleChangeSearch={handleChangeSearch}
+        searchType={searchType}
+        isSlimType
+      />
+      <Border margin="20px 0" />
       <div className={styles.searchConditions}>
         <div className={styles.itemContainer}>
           <UpdatedAtSort
