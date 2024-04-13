@@ -1,10 +1,16 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from '../../../../../../styles/theme.css'
+import { breakpoint, vars } from '../../../../../../styles/theme.css'
 
 export const list = style({
   display: 'flex',
   flexWrap: 'wrap',
   gap: 4,
+  '@media': {
+    [`${breakpoint.small}`]: {
+      maxHeight: 80,
+      overflow: 'scroll',
+    },
+  },
 })
 
 export const listitem = style({

@@ -68,35 +68,37 @@ export const SearchConditions: React.FC<Props> = ({
 
   return (
     <Card padding="12px 32px">
-      <WordFilter
-        searchWord={searchWord}
-        searchType={searchType}
-        setSearchType={setSearchType}
-        handleSubmitSearch={handleSubmitSearch}
-        handleChangeSearch={handleChangeSearch}
-      />
-      <Border margin="20px 0" />
-      <div className={styles.searchConditions}>
-        <div className={styles.itemContainer}>
-          <UpdatedAtSort
-            selected={sortType}
-            handleChange={handleChangeSortType}
-          />
+      <div className={styles.container}>
+        <WordFilter
+          searchWord={searchWord}
+          searchType={searchType}
+          setSearchType={setSearchType}
+          handleSubmitSearch={handleSubmitSearch}
+          handleChangeSearch={handleChangeSearch}
+        />
+        <Border margin="20px 0" />
+        <div className={styles.searchConditions}>
+          <div className={styles.itemContainer}>
+            <UpdatedAtSort
+              selected={sortType}
+              handleChange={handleChangeSortType}
+            />
+          </div>
+          <div className={styles.itemContainer}>
+            <CategoryFilter
+              selected={selectedCategory}
+              handleChange={handleChangeCategory}
+              categories={categories}
+            />
+          </div>
         </div>
-        <div className={styles.itemContainer}>
-          <CategoryFilter
-            selected={selectedCategory}
-            handleChange={handleChangeCategory}
-            categories={categories}
-          />
-        </div>
+        <TagFilter
+          selectedTags={selectedTags}
+          tags={tags}
+          onClick={handleClickTagButton}
+          onChange={handleChange}
+        />
       </div>
-      <TagFilter
-        selectedTags={selectedTags}
-        tags={tags}
-        onClick={handleClickTagButton}
-        onChange={handleChange}
-      />
     </Card>
   )
 }

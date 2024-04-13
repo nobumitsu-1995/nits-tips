@@ -1,6 +1,14 @@
 import { style } from '@vanilla-extract/css'
 import { breakpoint } from '../../../../styles/theme.css'
 
+export const container = style({
+  '@media': {
+    [`${breakpoint.small}`]: {
+      fontSize: 12,
+    },
+  },
+})
+
 export const searchConditions = style({
   display: 'flex',
   gap: 16,
