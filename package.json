@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "STORYBOOK_ENV=true storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest -- NODE_ENV=test",
     "test:storybook": "test-storybook",

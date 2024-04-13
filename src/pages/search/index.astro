@@ -1,0 +1,29 @@
+---
+import { FilterSearch } from '@/components/Organisms/search/FilterSearch'
+import { TextSearch } from '@/components/Organisms/search/TextSearch'
+import { Border } from '@/components/UI/Atoms/Border'
+import { Card } from '@/components/UI/Atoms/Card'
+import BaseLayout from '@layout/BaseLayout.astro'
+import { getAllCategories } from '@/lib/API/microCMS/getAllCategories'
+import { getAllTags } from '@/lib/API/microCMS/getAllTags'
+import * as styles from '@/styles/pages/search.css'
+
+export const prerender = false
+
+const pageTitle = 'nits-tips | 検索画面'
+const description = 'nobumitsu-1995による技術tipsの備忘録集。検索画面です。'
+const categories = await getAllCategories()
+const tags = await getAllTags()
+---
+
+<BaseLayout pageTitle={pageTitle} description={description}>
+  <main class={styles.container}>
+    <div class={styles.cardContainer}>
+      <Card padding='48px 28px'>
+        <TextSearch client:load />
+        <Border />
+        <FilterSearch client:load categoriesData={categories} tagsData={tags} />
+      </Card>
+    </div>
+  </main>
+</BaseLayout>

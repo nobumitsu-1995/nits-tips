@@ -11,8 +11,3 @@ export const sideBar = style({
   flexDirection: 'column',
   gap: 24,
 })
-
-export const shareContainer = style({
-  display: 'flex',
-  justifyContent: 'center',
-})

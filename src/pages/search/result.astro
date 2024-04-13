@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '@layout/BaseLayout.astro'
 import { Result as ResultComponent } from '@Entrypoints/search/Result'
+import { SEARCH_TYPE } from '@Organisms/search/TextSearch'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
+import { getAllCategories } from '@/lib/API/microCMS/getAllCategories'
+import { getAllTags } from '@/lib/API/microCMS/getAllTags'
+import { generateFilters } from '@/lib/helpers/generateFilters'
+import { replaceSpacesWithComma } from '@/lib/helpers/replaceSpacesWithComma'
 
 export const prerender = false
 
@@ -9,16 +14,37 @@ const url = new URL(Astro.request.url)
 const params = new URLSearchParams(url.search)
 const category = params.get('category')
 const tag = params.get('tag')
+const searchWord = params.get('searchWord')
+const searchType = params.get('searchType')
+const filters = generateFilters({
+  category,
+  tag,
+  searchWord: searchType === SEARCH_TYPE.title ? searchWord : '',
+})
+const q = searchType === SEARCH_TYPE.all ? encodeURI(replaceSpacesWithComma(searchWord ?? '')) : ''
 
 const pageTitle = 'nits-tips | 検索結果'
 const description = 'nobumitsu-1995による技術tipsの備忘録集。検索結果ページです。'
 const blogs =
   (await getBlogsData({
-    filters: `tags[contains]${tag}[or]category[equals]${category}[and]isHidden[not_equals]true`,
+    filters,
     limit: 100,
+    q,
   })) ?? []
+const categories = await getAllCategories()
+const tags = await getAllTags()
+const selectedTags = tag?.split(',') ?? []
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description} ogTitle={pageTitle}>
-  <ResultComponent blogs={blogs} />
+  <ResultComponent
+    client:load
+    blogs={blogs}
+    categories={categories}
+    tags={tags}
+    selectedCategory={category ?? ''}
+    selectedTags={selectedTags}
+    searchType={searchType === SEARCH_TYPE.title ? SEARCH_TYPE.title : SEARCH_TYPE.all}
+    searchWord={searchWord ?? ''}
+  />
 </BaseLayout>

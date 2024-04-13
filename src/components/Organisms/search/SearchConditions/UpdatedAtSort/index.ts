@@ -1,0 +1,1 @@
+export { UpdatedAtSort } from './UpdatedAtSort'
