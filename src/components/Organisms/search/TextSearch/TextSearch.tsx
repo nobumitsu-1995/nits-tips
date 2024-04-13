@@ -10,7 +10,11 @@ import {
 
 export const TextSearch: React.FC = () => {
   const [searchType, setSearchType] = useState<SearchType>(SEARCH_TYPE.all)
+  const [searchWord, setSearchWord] = useState('')
   const a11yId = useId()
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.target.value)
+  }
   return (
     <section>
       <Heading id={a11yId} text="ワード検索" />
@@ -19,7 +23,12 @@ export const TextSearch: React.FC = () => {
           searchType={searchType}
           setSearchType={setSearchType}
         />
-        <SearchForm id={a11yId} searchType={searchType} />
+        <SearchForm
+          id={a11yId}
+          searchType={searchType}
+          searchWord={searchWord}
+          handleChangeSearch={handleChangeSearch}
+        />
       </div>
     </section>
   )
