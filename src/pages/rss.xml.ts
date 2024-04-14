@@ -1,6 +1,8 @@
 import rss, { type RSSOptions } from '@astrojs/rss'
 import { getAllBlogs } from '@/lib/API/microCMS/getAllBlogs'
 
+export const prerender = true
+
 export async function GET(context: RSSOptions) {
   const blogs = await getAllBlogs()
   const items = blogs.map((blog) => ({
