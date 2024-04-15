@@ -12,6 +12,17 @@ const { pageTitle, description, ogUrl, ogType = 'article', ogTitle } = Astro.pro
 
 <html lang='ja'>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=G-WT4JB13CS1'></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-WT4JB13CS1')
+    </script>
     <meta charset='UTF-8' />
     <link rel='icon' type='image/svg+xml' href='https://nits-tips.blog/favicon@3x.png' />
     <link rel='apple-touch-icon' type='image/png' href='https://nits-tips.blog/favicon@3x.png' />
