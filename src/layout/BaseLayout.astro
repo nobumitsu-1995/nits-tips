@@ -15,12 +15,15 @@ const { pageTitle, description, ogUrl, ogType = 'article', ogTitle } = Astro.pro
     <!-- Google tag (gtag.js) -->
     <script async src='https://www.googletagmanager.com/gtag/js?id=G-WT4JB13CS1'></script>
     <script>
+      // @ts-ignore
       window.dataLayer = window.dataLayer || []
       function gtag() {
+        // @ts-ignore
         dataLayer.push(arguments)
       }
+      // @ts-ignore
       gtag('js', new Date())
-
+      /* @ts-ignore */
       gtag('config', 'G-WT4JB13CS1')
     </script>
     <meta charset='UTF-8' />
