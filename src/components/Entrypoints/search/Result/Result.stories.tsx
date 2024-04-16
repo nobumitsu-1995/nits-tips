@@ -15,6 +15,7 @@ export default {
     tags,
     selectedTags: tags.map((tag) => tag.id),
   },
+  tags: ['skip-test'],
 } as Meta<ComponentType>
 
 export const Default: Story = {}

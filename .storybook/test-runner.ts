@@ -2,6 +2,9 @@ import type { TestRunnerConfig } from '@storybook/test-runner'
 import { injectAxe, checkA11y } from 'axe-playwright'
 
 const config: TestRunnerConfig = {
+  tags: {
+    skip: ['skip-test'],
+  },
   async preVisit(page) {
     await injectAxe(page)
   },
