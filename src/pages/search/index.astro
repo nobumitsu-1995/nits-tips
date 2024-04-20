@@ -26,11 +26,11 @@ const tags = await getAllTags()
       </Card>
     </div>
   </main>
-  <script>
+  <script is:inline>
     /** safariでブラウザバックした時、disabledがそのままになってしまうので
      * コンポーネントのアンマウント時にfalseになるように調整する。
      */
-    const resetLoading = (event: PageTransitionEvent) => {
+    const resetLoading = (event) => {
       if (event.persisted) {
         window.location.reload()
       }
