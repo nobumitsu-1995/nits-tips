@@ -17,14 +17,18 @@ test('ボタンを押したとき、onClickが発火する', async () => {
 })
 
 test('isLoading=trueのとき、ボタンのテキストは表示されない', async () => {
-  const { queryByRole } = setup(<IsLoading />)
+  const { queryByRole, container } = setup(<IsLoading />)
   const button = await queryByRole('button', { name: '送信する(submit)' })
-  expect(button).toBeFalsy()
+  expect(button).not.toBeInTheDocument()
+  expect(container.querySelector('[aria-busy]="true"')).toHaveAttribute(
+    'disabled',
+  )
 })
 
-test('isLoading=trueのとき、ボタンのテキストは表示されない', async () => {
+test('isDisabled=trueのとき、ボタンを押せない', async () => {
   const { getByRole, user } = setup(<IsDisabled onClick={mockedOnClick} />)
   const button = getByRole('button', { name: '送信する(submit)' })
   await user.click(button)
+  expect(button).toHaveAttribute('disabled')
   expect(mockedOnClick).not.toBeCalled()
 })
