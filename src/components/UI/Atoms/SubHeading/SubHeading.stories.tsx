@@ -11,4 +11,4 @@ export default {
   },
 } as Meta<ComponentType>
 
-export const Primary: Story = {}
+export const Default: Story = {}

@@ -16,7 +16,7 @@
       "@interfaces/*": ["src/lib/interfaces/*"],
       "@layout/*": ["src/layout/*"]
     },
-    "types": ["vitest/globals"]
+    "types": ["@testing-library/jest-dom", "vitest/globals"]
   },
   "exclude": ["node_modules"]
 }
