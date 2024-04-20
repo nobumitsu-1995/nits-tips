@@ -25,7 +25,7 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   useEffect(() => {
     const resetLoading = (event: PageTransitionEvent) => {
       if (event.persisted) {
-        setIsLoading(false)
+        window.location.reload()
       }
     }
     window.addEventListener('pageshow', resetLoading)
