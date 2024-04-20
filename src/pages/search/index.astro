@@ -27,3 +27,14 @@ const tags = await getAllTags()
     </div>
   </main>
 </BaseLayout>
+<script>
+  /** safariでブラウザバックした時、disabledがそのままになってしまうので
+   * コンポーネントのアンマウント時にfalseになるように調整する。
+   */
+  const resetLoading = (event: PageTransitionEvent) => {
+    if (event.persisted) {
+      window.location.reload()
+    }
+  }
+  window.addEventListener('pageshow', resetLoading)
+</script>

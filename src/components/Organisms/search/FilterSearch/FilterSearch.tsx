@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useId, useState } from 'react'
+import React, { useId, useState } from 'react'
 import * as styles from './FilterSearch.css'
 import { Heading } from '@/components/UI/Atoms/Heading'
 import { SubHeading } from '@/components/UI/Atoms/SubHeading'
@@ -19,19 +19,6 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   const [category, setCategory] = useState(categoriesData[0].id)
   const [tags, setTags] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
-
-  /** safariでブラウザバックした時、disabledがそのままになってしまうので
-   * コンポーネントのアンマウント時にfalseになるように調整する。
-   */
-  useEffect(() => {
-    const resetLoading = (event: PageTransitionEvent) => {
-      if (event.persisted) {
-        setIsLoading(false)
-        window.location.reload()
-      }
-    }
-    window.addEventListener('pageshow', resetLoading)
-  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: _val } = e.target
