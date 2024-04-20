@@ -22,12 +22,12 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   /** safariでブラウザバックした時、disabledがそのままになってしまうので
    * コンポーネントのアンマウント時にfalseになるように調整する。
    */
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    setIsLoading(false)
+    return () => {
       setIsLoading(false)
-    },
-    [],
-  )
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: _val } = e.target
