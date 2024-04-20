@@ -20,7 +20,7 @@ test('isDisabled: trueの時、inputは操作できない', async () => {
   expect(input).toHaveAttribute('disabled')
 })
 
-test('isDisabled: trueの時、inputは操作できない', async () => {
+test('isError: trueの時、inputは操作できない', async () => {
   const { getByRole } = setup(<IsError />)
   const input = getByRole('textbox')
   expect(input).toHaveAttribute('aria-invalid', 'true')
