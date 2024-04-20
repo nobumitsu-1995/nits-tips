@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useEffect, useId, useState } from 'react'
 import * as styles from './FilterSearch.css'
 import { Heading } from '@/components/UI/Atoms/Heading'
@@ -24,7 +25,10 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
    */
   useEffect(() => {
     const resetLoading = (event: PageTransitionEvent) => {
+      console.log('all')
+
       if (event.persisted) {
+        console.log('persisted')
         setIsLoading(false)
         window.location.reload()
       }
@@ -34,7 +38,7 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
     return () => {
       window.removeEventListener('pageshow', resetLoading)
     }
-  }, [])
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: _val } = e.target
