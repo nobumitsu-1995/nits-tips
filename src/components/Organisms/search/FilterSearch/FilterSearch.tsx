@@ -23,9 +23,15 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
    * コンポーネントのアンマウント時にfalseになるように調整する。
    */
   useEffect(() => {
-    setIsLoading(false)
+    const resetLoading = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        setIsLoading(false)
+      }
+    }
+    window.addEventListener('pageshow', resetLoading)
+
     return () => {
-      setIsLoading(false)
+      window.removeEventListener('pageshow', resetLoading)
     }
   }, [window.location.href])
 
