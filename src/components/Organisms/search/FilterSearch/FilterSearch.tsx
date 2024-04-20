@@ -27,7 +27,7 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
     return () => {
       setIsLoading(false)
     }
-  }, [])
+  }, [window.location.href])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: _val } = e.target
