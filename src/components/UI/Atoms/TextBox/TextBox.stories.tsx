@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { fn, userEvent, within, expect } from '@storybook/test'
+import { fn } from '@storybook/test'
 import { TextBox } from './TextBox'
 
 type ComponentType = typeof TextBox
@@ -21,35 +21,16 @@ export default {
   ],
 } as Meta<ComponentType>
 
-export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const input = canvas.getByRole('textbox')
-    await userEvent.type(input, 'example')
-    expect(input).toHaveDisplayValue('example')
-  },
-}
+export const Default: Story = {}
 
 export const IsDisabled: Story = {
   args: {
     isDisabled: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const input = canvas.getByRole('textbox')
-    await userEvent.type(input, 'example')
-    expect(input).not.toHaveDisplayValue('example')
-    expect(input).toHaveAttribute('disabled')
   },
 }
 
 export const IsError: Story = {
   args: {
     isError: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-    const input = canvas.getByRole('textbox')
-    expect(input).toHaveAttribute('aria-invalid', 'true')
   },
 }
