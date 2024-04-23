@@ -8,5 +8,8 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     setupFiles: ['./src/testUtils/mocks/setup.ts'],
+    env: {
+      PUBLIC_MICROCMS_API_KEY: 'sample',
+    },
   },
 })
