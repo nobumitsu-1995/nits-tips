@@ -1,1 +1,1 @@
-export { ArticleIndex } from './ArticleIndex'
+export { ArticleIndex, type ArticleIndexType } from './ArticleIndex'

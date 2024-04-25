@@ -1,9 +1,12 @@
-import React, { type ComponentProps, type PropsWithChildren } from 'react'
-import { ArticleIndex } from '@Organisms/Detail/ArticleIndex'
+import React, { type PropsWithChildren } from 'react'
+import {
+  ArticleIndex,
+  type ArticleIndexType,
+} from '@Organisms/Detail/ArticleIndex'
 import * as styles from './SideBar.css'
 
 type Props = PropsWithChildren<{
-  articleIndex: ComponentProps<typeof ArticleIndex>['articleIndex']
+  articleIndex: ArticleIndexType[]
 }>
 
 export const Presenter: React.FC<Props> = ({ articleIndex, children }) => (
