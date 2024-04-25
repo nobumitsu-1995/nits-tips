@@ -1,8 +1,5 @@
-import type { ComponentProps } from 'react'
-import type { ArticleCard } from '@Molecules/ArticleCard'
 import { tagData as tags } from './tagData'
-
-type ArticleType = ComponentProps<typeof ArticleCard>
+import type { ArticleCardData } from '@/lib/interfaces/Article'
 
 export const createArticle = ({
   id = '1',
@@ -11,7 +8,7 @@ export const createArticle = ({
   tagData = tags,
   publishedAt = '2024/03/17',
   updatedAt = '2024/03/17',
-}: Partial<ArticleType>): ArticleType => ({
+}: Partial<ArticleCardData>): ArticleCardData => ({
   id,
   title,
   description,

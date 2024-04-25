@@ -1,11 +1,11 @@
-import React, { type ComponentProps } from 'react'
-import type { ArticleCard } from '@Molecules/ArticleCard'
+import React from 'react'
 import { ArticleList } from '@Organisms/Top/ArticleList'
 import { NoResult } from '../NoResult'
 import { Loading } from '@/components/UI/Atoms/Loading'
+import type { ArticleCardData } from '@/lib/interfaces/Article'
 
 type Props = {
-  articles: ComponentProps<typeof ArticleCard>[]
+  articles: ArticleCardData[]
   isLoading: boolean
 }
 

@@ -1,12 +1,11 @@
-import type { ComponentProps } from 'react'
-import type { ArticleCard } from '@Molecules/ArticleCard'
 import type { MicroCMS } from '@/types/microCMS'
 import { convertDate } from '@/lib/helpers/convertDate'
 import { convertToTagData } from './convertToTagData'
+import type { ArticleCardData } from '../interfaces/Article'
 
 export const convertToArticles = (
   blogs: MicroCMS['blog'][],
-): ComponentProps<typeof ArticleCard>[] =>
+): ArticleCardData[] =>
   blogs.map((data) => ({
     id: data.id,
     title: data.title,

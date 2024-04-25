@@ -3,24 +3,9 @@ import { TagList } from '@Molecules/TagList'
 import { PublishedAt } from '@Atoms/PublishedAt'
 import * as styles from './Header.css'
 import { Author } from './Author'
-import type { TagData } from '@/lib/interfaces/Tag'
+import type { ArticleData } from '@/lib/interfaces/Article'
 
-type Props = {
-  /** 著者 */
-  author: {
-    name: string
-    src: string
-    href: string
-  }
-  /** 名前 */
-  title: string
-  /** タグデータ */
-  tagData: TagData[]
-  /** 公開日 */
-  publishedAt: string
-  /** 最終更新日 */
-  updatedAt?: string
-}
+type Props = Omit<ArticleData, 'content'>
 
 export const Header: React.FC<Props> = ({
   author,
