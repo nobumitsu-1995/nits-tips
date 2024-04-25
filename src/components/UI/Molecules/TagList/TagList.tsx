@@ -1,10 +1,11 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import * as styles from './TagList.css'
 import { Tag } from '../Tag'
+import type { TagData } from '@/lib/interfaces/Tag'
 
 type Props = {
   /** タグデータの配列 */
-  tagData: ComponentProps<typeof Tag>[]
+  tagData: TagData[]
 }
 
 export const TagList: React.FC<Props> = ({ tagData }) => (

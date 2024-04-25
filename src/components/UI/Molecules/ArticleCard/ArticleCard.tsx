@@ -1,8 +1,9 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import { Card } from '@Atoms/Card'
 import * as styles from './ArticleCard.css'
 import { TagList } from '../TagList'
 import { PublishedAt } from '../../Atoms/PublishedAt'
+import type { TagData } from '@/lib/interfaces/Tag'
 
 type Props = {
   /** 記事ID */
@@ -12,7 +13,7 @@ type Props = {
   /** 記事概要 */
   description: string
   /** タグデータ */
-  tagData: ComponentProps<typeof TagList>['tagData']
+  tagData: TagData[]
   /** 公開日 */
   publishedAt: string
   /** 最終更新日 */

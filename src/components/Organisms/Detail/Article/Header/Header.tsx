@@ -1,8 +1,9 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import { TagList } from '@Molecules/TagList'
 import { PublishedAt } from '@Atoms/PublishedAt'
 import * as styles from './Header.css'
 import { Author } from './Author'
+import type { TagData } from '@/lib/interfaces/Tag'
 
 type Props = {
   /** 著者 */
@@ -14,7 +15,7 @@ type Props = {
   /** 名前 */
   title: string
   /** タグデータ */
-  tagData: ComponentProps<typeof TagList>['tagData']
+  tagData: TagData[]
   /** 公開日 */
   publishedAt: string
   /** 最終更新日 */

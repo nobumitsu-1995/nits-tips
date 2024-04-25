@@ -1,15 +1,9 @@
 import React from 'react'
 import { ICON_TYPE, Icon } from '@Atoms/Icon'
 import * as styles from './Tag.css'
+import type { TagData } from '@/lib/interfaces/Tag'
 
-type Props = {
-  /** tagのラベル */
-  label: string
-  /** 遷移先URL */
-  href: string
-  /** imageのsrc */
-  src?: string
-}
+type Props = TagData
 
 export const Tag: React.FC<Props> = ({ label, href, src }) => (
   <a href={href} className={styles.tag}>
