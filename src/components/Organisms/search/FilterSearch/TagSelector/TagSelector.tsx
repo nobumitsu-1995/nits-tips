@@ -1,11 +1,11 @@
 import React from 'react'
 import { Select } from '@Atoms/Select'
 import * as styles from './TagSelector.css'
-import type { MicroCMS } from '@/types/microCMS'
+import type { TagType } from '../../SearchConditions/TagFilter'
 
 type Props = {
   selectedTags: string[]
-  tags: Pick<MicroCMS['tag'], 'id' | 'label'>[]
+  tags: TagType[]
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
