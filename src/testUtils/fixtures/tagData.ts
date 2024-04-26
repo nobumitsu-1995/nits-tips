@@ -1,11 +1,11 @@
 import type { TagData } from '@/lib/interfaces/Tag'
 
-const createTag = (
+const createTag = ({
   id = 'id',
   label = 'javascript',
   src = 'https://placehold.co/400x400/F0DB4F/000',
   href = '/',
-) => ({
+}) => ({
   id,
   label,
   href,
@@ -18,8 +18,8 @@ export const tag: TagData = {
 }
 
 export const tagData: TagData[] = [
-  createTag('frontend', ''),
-  createTag(),
-  createTag('typescript'),
-  createTag('react'),
+  createTag({ label: 'frontend', src: '' }),
+  createTag({}),
+  createTag({ label: 'typescript' }),
+  createTag({ label: 'react' }),
 ]
