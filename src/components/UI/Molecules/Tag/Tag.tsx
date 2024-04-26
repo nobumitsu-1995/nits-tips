@@ -3,7 +3,7 @@ import { ICON_TYPE, Icon } from '@Atoms/Icon'
 import * as styles from './Tag.css'
 import type { TagData } from '@/lib/interfaces/Tag'
 
-type Props = TagData
+type Props = Omit<TagData, 'id'>
 
 export const Tag: React.FC<Props> = ({ label, href, src }) => (
   <a href={href} className={styles.tag}>
