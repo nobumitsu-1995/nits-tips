@@ -13,6 +13,8 @@ import {
   type SearchType,
 } from '@/components/Organisms/search/TextSearch'
 import { replaceSpacesWithComma } from '@/lib/helpers/replaceSpacesWithComma'
+import { convertToTagData } from '@/lib/helpers/convertToTagData'
+import { convertToCategoryData } from '@/lib/helpers/convertToCategoryData'
 
 type Props = {
   blogs: MicroCMS['blog'][]
@@ -97,15 +99,8 @@ export const Container: React.FC<Props> = ({
   return (
     <Presenter
       articles={articles}
-      categories={categories.map((category) => ({
-        id: category.id,
-        label: category.label,
-      }))}
-      tags={tags.map((tag) => ({
-        id: tag.id,
-        label: tag.label,
-        src: tag.icon?.url,
-      }))}
+      categories={convertToCategoryData(categories)}
+      tags={convertToTagData(tags)}
       sortType={sortType}
       selectedCategory={selectedCategory}
       selectedTags={selectedTags}

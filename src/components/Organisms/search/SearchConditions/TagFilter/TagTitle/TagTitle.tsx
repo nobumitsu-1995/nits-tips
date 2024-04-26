@@ -1,10 +1,11 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import * as styles from './TagTitle.css'
 import { Icon, ICON_TYPE } from '@/components/UI/Atoms/Icon'
 import { TagSelector } from '../../../FilterSearch/TagSelector'
+import type { TagType } from '../TagFilter'
 
 type Props = {
-  tags: ComponentProps<typeof TagSelector>['tags']
+  tags: TagType[]
   selectedTags: string[]
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }

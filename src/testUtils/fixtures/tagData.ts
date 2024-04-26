@@ -1,25 +1,25 @@
-import type { ComponentProps } from 'react'
-import type { Tag } from '@Molecules/Tag'
+import type { TagData } from '@/lib/interfaces/Tag'
 
-type TagType = ComponentProps<typeof Tag>
-
-const createTag = (
+const createTag = ({
+  id = 'id',
   label = 'javascript',
   src = 'https://placehold.co/400x400/F0DB4F/000',
   href = '/',
-) => ({
+}) => ({
+  id,
   label,
   href,
   src,
 })
-export const tag: TagType = {
+export const tag: TagData = {
+  id: 'id',
   label: 'frontend',
   href: '/',
 }
 
-export const tagData: TagType[] = [
-  createTag('frontend', ''),
-  createTag(),
-  createTag('typescript'),
-  createTag('react'),
+export const tagData: TagData[] = [
+  createTag({ label: 'frontend', src: '' }),
+  createTag({}),
+  createTag({ label: 'typescript' }),
+  createTag({ label: 'react' }),
 ]

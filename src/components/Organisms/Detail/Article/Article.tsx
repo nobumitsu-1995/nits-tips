@@ -1,14 +1,12 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import { Card } from '@Atoms/Card'
 import { Border } from '@Atoms/Border'
 import { TagList } from '@Molecules/TagList'
 import { Header } from './Header'
 import { Content } from './Content'
+import type { ArticleData } from '@/lib/interfaces/Article'
 
-type Props = ComponentProps<typeof Header> & {
-  /** コンテンツ情報 */
-  content: string
-}
+type Props = ArticleData
 
 export const Article: React.FC<Props> = (props) => {
   const { content, ...headerProps } = props

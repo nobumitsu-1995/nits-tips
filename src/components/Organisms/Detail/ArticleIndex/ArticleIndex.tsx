@@ -11,11 +11,13 @@ type Title = {
   href: string
 }
 
+export type ArticleIndexType = Title & {
+  /** 子タイトル */
+  childTitle?: Title[]
+}
+
 type Props = {
-  articleIndex: (Title & {
-    /** 子タイトル */
-    childTitle?: Title[]
-  })[]
+  articleIndex: ArticleIndexType[]
 }
 
 export const ArticleIndex: React.FC<Props> = ({ articleIndex }) => (

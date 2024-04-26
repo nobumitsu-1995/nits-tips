@@ -12,11 +12,13 @@ const expected = [
     publishedAt: '2024-02-24',
     tagData: [
       {
+        id: 'o39i0-i8y7r',
         href: '/search/result/?tag=o39i0-i8y7r',
         label: 'React',
         src: '',
       },
       {
+        id: 'ff4hsrq4ra1',
         href: '/search/result/?tag=ff4hsrq4ra1',
         label: 'typescript',
         src: '',
@@ -35,11 +37,13 @@ const expected = [
     publishedAt: '2024-02-24',
     tagData: [
       {
+        id: 'o39i0-i8y7r',
         href: '/search/result/?tag=o39i0-i8y7r',
         label: 'React',
         src: '',
       },
       {
+        id: 'ff4hsrq4ra1',
         href: '/search/result/?tag=ff4hsrq4ra1',
         label: 'typescript',
         src: '',

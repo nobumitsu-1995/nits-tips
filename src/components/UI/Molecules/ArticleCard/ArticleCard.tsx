@@ -1,23 +1,11 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import { Card } from '@Atoms/Card'
 import * as styles from './ArticleCard.css'
 import { TagList } from '../TagList'
 import { PublishedAt } from '../../Atoms/PublishedAt'
+import type { ArticleCardData } from '@/lib/interfaces/Article'
 
-type Props = {
-  /** 記事ID */
-  id: string
-  /** 記事タイトル */
-  title: string
-  /** 記事概要 */
-  description: string
-  /** タグデータ */
-  tagData: ComponentProps<typeof TagList>['tagData']
-  /** 公開日 */
-  publishedAt: string
-  /** 最終更新日 */
-  updatedAt?: string
-}
+type Props = ArticleCardData
 
 export const ArticleCard: React.FC<Props> = ({
   id,

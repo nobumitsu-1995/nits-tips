@@ -1,12 +1,13 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import { Card } from '@Atoms/Card'
 import { Heading } from '@Atoms/Heading'
 import { ArticleCard } from '@Molecules/ArticleCard'
 import * as styles from './RelatedArticle.css'
+import type { ArticleCardData } from '@/lib/interfaces/Article'
 
 type Props = {
   /** 記事情報 */
-  articles: ComponentProps<typeof ArticleCard>[]
+  articles: ArticleCardData[]
 }
 
 export const RelatedArticle: React.FC<Props> = ({ articles }) => (

@@ -1,10 +1,11 @@
-import React, { type ComponentProps } from 'react'
+import React from 'react'
 import * as styles from './ArticleList.css'
 import { ArticleCard } from '@/components/UI/Molecules/ArticleCard'
+import type { ArticleCardData } from '@/lib/interfaces/Article'
 
 type Props = {
   /** 記事情報 */
-  articles: ComponentProps<typeof ArticleCard>[]
+  articles: ArticleCardData[]
 }
 
 export const ArticleList: React.FC<Props> = ({ articles }) => (
