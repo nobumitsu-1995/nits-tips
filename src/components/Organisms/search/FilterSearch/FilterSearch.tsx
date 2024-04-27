@@ -1,4 +1,4 @@
-import React, { useId, useState } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import * as styles from './FilterSearch.css'
 import { Heading } from '@/components/UI/Atoms/Heading'
 import { SubHeading } from '@/components/UI/Atoms/SubHeading'
@@ -6,17 +6,30 @@ import { CategorySelector } from './CategorySelector'
 import type { MicroCMS } from '@/types/microCMS'
 import { Button, BUTTON_TYPE } from '@/components/UI/Atoms/Button'
 import { TagSelector } from './TagSelector'
+import { useSearchParams } from '@/lib/Hooks/useSearchParams'
 
 type Props = {
   categoriesData: Pick<MicroCMS['category'], 'id' | 'label'>[]
   tagsData: Pick<MicroCMS['tag'], 'id' | 'label'>[]
 }
 
+type Storage = {
+  tags?: string[]
+  category?: string
+}
+
 export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
   const a11yId = useId()
+  const { searchParams, setSearchParamsToStorage } = useSearchParams<Storage>()
   const [category, setCategory] = useState(categoriesData[0].id)
   const [tags, setTags] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    if (!searchParams) return
+    searchParams.category && setCategory(searchParams.category)
+    searchParams.tags && setTags(searchParams.tags)
+  }, [searchParams])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: _val } = e.target
@@ -37,6 +50,8 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
       tags.length > 0
         ? `/search/result/?category=${category}&tag=${tags.join(',')}`
         : `/search/result/?category=${category}`
+
+    setSearchParamsToStorage({ category, tags })
     window.location.href = url
   }
 
