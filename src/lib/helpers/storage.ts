@@ -11,7 +11,7 @@ export const setStorage = <T extends object>({
   localStorage.setItem(key, value)
 }
 
-export const getStorage = <T extends object>(key: string): T => {
+export const getStorage = <T extends object>(key: string): T | null => {
   const value = localStorage.getItem(key)
   return value ? JSON.parse(value) : null
 }
