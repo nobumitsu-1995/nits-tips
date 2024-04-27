@@ -9,7 +9,7 @@ beforeEach(() => {
 
 test('オブジェクトをストレージに保存する', () => {
   setStorage({ params: PARAMS, key: KEY })
-  expect(localStorage.getItem(KEY)).toBeDefined()
+  expect(localStorage.getItem(KEY)).toBe('{"foo":"bar","baz":123}')
 })
 
 test('保存したオブジェクトを取得する', () => {
