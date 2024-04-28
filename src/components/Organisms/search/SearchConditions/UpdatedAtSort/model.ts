@@ -13,3 +13,6 @@ export const ITEMS = [
     label: '古い順',
   },
 ]
+
+export const isSortType = (value: string): value is SortType =>
+  value === 'desc' || value === 'asc'

@@ -1,2 +1,2 @@
 export { UpdatedAtSort } from './UpdatedAtSort'
-export { type SortType, SORT_TYPE } from './model'
+export { type SortType, SORT_TYPE, isSortType } from './model'
