@@ -12,12 +12,12 @@ type WordParams = {
   q: string
 }
 
-type UseWordSearchPayloadType = {
+export type UseWordSearchPayloadType = {
   initialSearchWord?: string
   initialSearchType?: SearchType
 }
 
-type UseWordSearchReturnType = {
+export type UseWordSearchReturnType = {
   wordParams?: WordParams
   handleSetSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleSetSearchType: (e: React.ChangeEvent<HTMLInputElement>) => void

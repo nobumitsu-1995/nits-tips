@@ -17,12 +17,12 @@ type FilterParams = {
   orders: Order
 }
 
-type UseFilterSearchPayloadType = {
+export type UseFilterSearchPayloadType = {
   initialCategory?: string
   initialTags: string[]
 }
 
-type UseFilterSearchReturnType = {
+export type UseFilterSearchReturnType = {
   filterParams?: FilterParams
   handleSetCategory: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleSetTags: (e: React.ChangeEvent<HTMLInputElement>) => void
