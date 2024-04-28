@@ -6,13 +6,36 @@ import {
 } from './useSearchForm'
 import { createCustomComtext } from '@/lib/helpers/createCustomContext'
 
-type Common = 'articles' | 'isLoading' | 'selectedFilters' | 'selectedWord'
+type Common =
+  | 'articles'
+  | 'isLoading'
+  | 'searchWord'
+  | 'searchType'
+  | 'tags'
+  | 'category'
+  | 'sortType'
 type SearchFormAction = Omit<UseSearchFormReturnType, Common>
 type SearchFormState = Pick<UseSearchFormReturnType, Common>
 
 const [ActionProvider, useActionContext] =
-  createCustomComtext<SearchFormAction>()
-const [StateProvider, useStateContext] = createCustomComtext<SearchFormState>()
+  createCustomComtext<SearchFormAction>({
+    handleSetCategory: () => {},
+    handleSetTags: () => {},
+    handleDeleteTag: () => {},
+    handleChangeSortType: () => {},
+    handleSetSearch: () => {},
+    handleSetSearchType: () => {},
+    handleSubmitSearch: () => {},
+  })
+const [StateProvider, useStateContext] = createCustomComtext<SearchFormState>({
+  tags: [],
+  category: '',
+  sortType: 'desc',
+  searchWord: '',
+  searchType: 'all',
+  articles: [],
+  isLoading: false,
+})
 
 export const SearchFormProvider = ({
   initialArticles,
@@ -25,8 +48,11 @@ export const SearchFormProvider = ({
   const {
     articles,
     isLoading,
-    selectedFilters,
-    selectedWord,
+    tags,
+    category,
+    sortType,
+    searchWord,
+    searchType,
     handleSetCategory,
     handleSetTags,
     handleDeleteTag,
@@ -58,8 +84,11 @@ export const SearchFormProvider = ({
         value={{
           articles,
           isLoading,
-          selectedFilters,
-          selectedWord,
+          tags,
+          category,
+          sortType,
+          searchWord,
+          searchType,
         }}
       >
         {children}
@@ -68,5 +97,5 @@ export const SearchFormProvider = ({
   )
 }
 
-export const useSearchFormAction = useActionContext
-export const useSearchFormState = useStateContext
+export const useSearchFormAction = () => useActionContext()
+export const useSearchFormState = () => useStateContext()

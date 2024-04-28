@@ -26,14 +26,20 @@ export const SearchConditions: React.FC<Props> = ({ categories, tags }) => {
     handleSetSearchType,
     handleSubmitSearch,
   } = useSearchFormAction()
-  const { selectedFilters, selectedWord } = useSearchFormState()
+  const {
+    tags: selectedTags,
+    category,
+    sortType,
+    searchWord,
+    searchType,
+  } = useSearchFormState()
 
   return (
     <Card padding="12px 32px">
       <div className={styles.container}>
         <WordFilter
-          searchWord={selectedWord.searchWord}
-          searchType={selectedWord.searchType}
+          searchWord={searchWord}
+          searchType={searchType}
           setSearchType={handleSetSearchType}
           handleSubmitSearch={handleSubmitSearch}
           handleChangeSearch={handleSetSearch}
@@ -42,20 +48,20 @@ export const SearchConditions: React.FC<Props> = ({ categories, tags }) => {
         <div className={styles.searchConditions}>
           <div className={styles.itemContainer}>
             <UpdatedAtSort
-              selected={selectedFilters.sortType}
+              selected={sortType}
               handleChange={handleChangeSortType}
             />
           </div>
           <div className={styles.itemContainer}>
             <CategoryFilter
-              selected={selectedFilters.category}
+              selected={category}
               handleChange={handleSetCategory}
               categories={categories}
             />
           </div>
         </div>
         <TagFilter
-          selectedTags={selectedFilters.tags}
+          selectedTags={selectedTags}
           tags={tags}
           onClick={handleDeleteTag}
           onChange={handleSetTags}

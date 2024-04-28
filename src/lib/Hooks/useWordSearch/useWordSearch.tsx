@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   SEARCH_TYPE,
   type SearchType,
@@ -12,11 +12,6 @@ type WordParams = {
   q: string
 }
 
-type SelectedWord = {
-  searchWord: string
-  searchType: SearchType
-}
-
 export type UseWordSearchPayloadType = {
   initialSearchWord?: string
   initialSearchType?: SearchType
@@ -24,7 +19,8 @@ export type UseWordSearchPayloadType = {
 
 export type UseWordSearchReturnType = {
   wordParams?: WordParams
-  selectedWord: SelectedWord
+  searchWord: string
+  searchType: SearchType
   handleSetSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleSetSearchType: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -54,21 +50,25 @@ export const useWordSearch = ({
     })
   }, [searchType, searchWord])
 
-  const handleSetSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWord(e.target.value)
-  }
+  const handleSetSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchWord(e.target.value)
+    },
+    [setSearchWord],
+  )
 
-  const handleSetSearchType = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    isSearchType(value) && setSearchType(value)
-  }
+  const handleSetSearchType = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target
+      isSearchType(value) && setSearchType(value)
+    },
+    [isSearchType, setSearchType],
+  )
 
   return {
     wordParams,
-    selectedWord: {
-      searchWord,
-      searchType,
-    },
+    searchWord,
+    searchType,
     handleSetSearch,
     handleSetSearchType,
   }

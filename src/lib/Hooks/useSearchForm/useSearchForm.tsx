@@ -33,27 +33,39 @@ export const useSearchForm = ({
   initialSearchWord,
 }: UseSearchFormPayloadType): UseSearchFormReturnType => {
   const isFirstRender = useRef(true)
+  const isSecondRender = useRef(true)
   const [articles, setArticles] = useState(initialArticles)
   const [isLoading, setIsLoading] = useState(false)
 
   const {
     filterParams,
-    selectedFilters,
+    tags,
+    category,
+    sortType,
     handleSetCategory,
     handleSetTags,
     handleDeleteTag,
     handleChangeSortType,
   } = useFilterSearch({ initialTags, initialCategory })
-  const { wordParams, selectedWord, handleSetSearch, handleSetSearchType } =
-    useWordSearch({
-      initialSearchType,
-      initialSearchWord,
-    })
+  const {
+    wordParams,
+    searchWord,
+    searchType,
+    handleSetSearch,
+    handleSetSearchType,
+  } = useWordSearch({
+    initialSearchType,
+    initialSearchWord,
+  })
 
   /** 絞り込み検索の実行処理 */
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false
+      return
+    }
+    if (isSecondRender.current) {
+      isSecondRender.current = false
       return
     }
     setIsLoading(true)
@@ -80,8 +92,11 @@ export const useSearchForm = ({
   return {
     articles,
     isLoading,
-    selectedFilters,
-    selectedWord,
+    tags,
+    category,
+    sortType,
+    searchWord,
+    searchType,
     handleSetCategory,
     handleSetTags,
     handleDeleteTag,

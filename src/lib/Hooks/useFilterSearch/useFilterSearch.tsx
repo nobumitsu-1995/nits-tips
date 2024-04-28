@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {
   isSortType,
   SORT_TYPE,
@@ -17,12 +17,6 @@ type FilterParams = {
   orders: Order
 }
 
-type SelectedFilters = {
-  tags: string[]
-  category: string
-  sortType: SortType
-}
-
 export type UseFilterSearchPayloadType = {
   initialCategory?: string
   initialTags: string[]
@@ -30,7 +24,9 @@ export type UseFilterSearchPayloadType = {
 
 export type UseFilterSearchReturnType = {
   filterParams?: FilterParams
-  selectedFilters: SelectedFilters
+  tags: string[]
+  category: string
+  sortType: SortType
   handleSetCategory: (event: React.ChangeEvent<HTMLSelectElement>) => void
   handleSetTags: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleDeleteTag: (id: string) => void
@@ -61,42 +57,52 @@ export const useFilterSearch = ({
     })
   }, [selectedCategory, selectedTags, sortType, generateFilters])
 
-  const handleSetCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(event.target.value)
-  }
+  const handleSetCategory = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setCategory(event.target.value)
+    },
+    [setCategory],
+  )
 
-  const handleSetTags = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value: _val } = e.target
-    const index = selectedTags.indexOf(_val)
+  const handleSetTags = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value: _val } = e.target
+      const index = selectedTags.indexOf(_val)
 
-    if (index > -1) {
+      if (index > -1) {
+        const newValue = [...selectedTags]
+        newValue.splice(index, 1)
+        setTags(newValue)
+      } else {
+        setTags((prev) => [...prev, _val])
+      }
+    },
+    [selectedTags, setTags],
+  )
+
+  const handleDeleteTag = useCallback(
+    (id: string) => {
+      const index = selectedTags.indexOf(id)
       const newValue = [...selectedTags]
       newValue.splice(index, 1)
       setTags(newValue)
-    } else {
-      setTags((prev) => [...prev, _val])
-    }
-  }
+    },
+    [selectedTags, setTags],
+  )
 
-  const handleDeleteTag = (id: string) => {
-    const index = selectedTags.indexOf(id)
-    const newValue = [...selectedTags]
-    newValue.splice(index, 1)
-    setTags(newValue)
-  }
-
-  const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target
-    isSortType(value) && setSortType(value)
-  }
+  const handleChangeSortType = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const { value } = e.target
+      isSortType(value) && setSortType(value)
+    },
+    [isSortType, setSortType],
+  )
 
   return {
     filterParams,
-    selectedFilters: {
-      tags: selectedTags,
-      category: selectedCategory,
-      sortType,
-    },
+    tags: selectedTags,
+    category: selectedCategory,
+    sortType,
     handleSetCategory,
     handleSetTags,
     handleDeleteTag,
