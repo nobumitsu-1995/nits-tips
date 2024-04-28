@@ -1,5 +1,2 @@
-export {
-  SearchTypeSelector,
-  SEARCH_TYPE,
-  type SearchType,
-} from './SearchTypeSelector'
+export { SEARCH_TYPE, type SearchType, isSearchType } from './model'
+export { SearchTypeSelector } from './SearchTypeSelector'

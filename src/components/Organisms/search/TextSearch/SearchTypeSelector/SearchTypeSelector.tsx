@@ -1,12 +1,7 @@
 import React from 'react'
 import { Radio } from '@Atoms/Radio'
 import * as styles from './SearchTypeSelector.css'
-
-export type SearchType = 'all' | 'title'
-export const SEARCH_TYPE: MappedConst<SearchType> = {
-  all: 'all',
-  title: 'title',
-}
+import { type SearchType, SEARCH_TYPE } from './model'
 
 type Props = {
   /** 名前 */
