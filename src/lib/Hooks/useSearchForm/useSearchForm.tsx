@@ -13,12 +13,12 @@ import { convertToArticles } from '@/lib/helpers/convertToArticles'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 import type { ArticleCardData } from '@/lib/interfaces/Article'
 
-type UseSearchFormPayloadType = {
+export type UseSearchFormPayloadType = {
   initialArticles: ArticleCardData[]
 } & UseFilterSearchPayloadType &
   UseWordSearchPayloadType
 
-type UseSearchFormReturnType = {
+export type UseSearchFormReturnType = {
   articles: ArticleCardData[]
   isLoading: boolean
   handleSubmitSearch: (e: React.FormEvent<HTMLFormElement>) => void
