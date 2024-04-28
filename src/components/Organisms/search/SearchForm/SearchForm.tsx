@@ -43,7 +43,7 @@ export const SearchForm: React.FC<Props> = ({
       required
       className={`${styles.input} ${isSlimType && styles.slim}`}
     />
-    <input type="text" name="searchType" value={searchType} hidden />
+    <input type="text" name="searchType" defaultValue={searchType} hidden />
     <button
       type="submit"
       aria-label="検索"
