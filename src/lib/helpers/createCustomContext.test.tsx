@@ -5,7 +5,9 @@ import { createCustomComtext } from './createCustomContext'
 type TestContextType = {
   value: string
 }
-const [TestProvider, useTestContext] = createCustomComtext<TestContextType>()
+const [TestProvider, useTestContext] = createCustomComtext<TestContextType>({
+  value: 'default',
+})
 
 const wrapper = ({ children }: PropsWithChildren) => {
   const testValue: TestContextType = { value: 'test' }
@@ -22,6 +24,7 @@ it('Providerで正しく囲まれている時、値が受け取れる', () => {
   expect(screen.getByText('test')).toBeInTheDocument()
 })
 
-it('Providerで正しく囲まれていない時、値が受け取れない', () => {
-  expect(() => render(<Component />)).toThrow()
+it('Providerで正しく囲まれていない時、default値が入る', () => {
+  render(<Component />)
+  expect(screen.getByText('default')).toBeInTheDocument()
 })
