@@ -38,14 +38,16 @@ export const useSearchForm = ({
 
   const {
     filterParams,
+    selectedFilters,
     handleSetCategory,
     handleSetTags,
     handleChangeSortType,
   } = useFilterSearch({ initialTags, initialCategory })
-  const { wordParams, handleSetSearch, handleSetSearchType } = useWordSearch({
-    initialSearchType,
-    initialSearchWord,
-  })
+  const { wordParams, selectedWord, handleSetSearch, handleSetSearchType } =
+    useWordSearch({
+      initialSearchType,
+      initialSearchWord,
+    })
 
   /** 絞り込み検索の実行処理 */
   useEffect(() => {
@@ -76,6 +78,8 @@ export const useSearchForm = ({
   return {
     articles,
     isLoading,
+    selectedFilters,
+    selectedWord,
     handleSetCategory,
     handleSetTags,
     handleChangeSortType,

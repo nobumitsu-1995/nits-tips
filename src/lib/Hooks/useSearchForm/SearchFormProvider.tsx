@@ -6,7 +6,7 @@ import {
   type UseSearchFormReturnType,
 } from './useSearchForm'
 
-type Common = 'articles' | 'isLoading'
+type Common = 'articles' | 'isLoading' | 'selectedFilters' | 'selectedWord'
 type SearchFormAction = Omit<UseSearchFormReturnType, Common> | null
 type SearchFormState = Pick<UseSearchFormReturnType, Common> | null
 
@@ -26,6 +26,8 @@ export const SearchFormProvider = ({
   const {
     articles,
     isLoading,
+    selectedFilters,
+    selectedWord,
     handleSetCategory,
     handleSetTags,
     handleChangeSortType,
@@ -55,6 +57,8 @@ export const SearchFormProvider = ({
         value={{
           articles,
           isLoading,
+          selectedFilters,
+          selectedWord,
         }}
       >
         {children}

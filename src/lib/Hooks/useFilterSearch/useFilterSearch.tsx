@@ -17,6 +17,11 @@ type FilterParams = {
   orders: Order
 }
 
+type SelectedFilters = {
+  tags: string[]
+  category: string
+}
+
 export type UseFilterSearchPayloadType = {
   initialCategory?: string
   initialTags: string[]
@@ -24,6 +29,7 @@ export type UseFilterSearchPayloadType = {
 
 export type UseFilterSearchReturnType = {
   filterParams?: FilterParams
+  selectedFilters: SelectedFilters
   handleSetCategory: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleSetTags: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleChangeSortType: (e: React.ChangeEvent<HTMLSelectElement>) => void
@@ -77,6 +83,10 @@ export const useFilterSearch = ({
 
   return {
     filterParams,
+    selectedFilters: {
+      tags: selectedTags,
+      category: selectedCategory,
+    },
     handleSetCategory,
     handleSetTags,
     handleChangeSortType,

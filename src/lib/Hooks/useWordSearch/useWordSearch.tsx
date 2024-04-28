@@ -12,6 +12,11 @@ type WordParams = {
   q: string
 }
 
+type SelectedWord = {
+  searchWord: string
+  searchType: SearchType
+}
+
 export type UseWordSearchPayloadType = {
   initialSearchWord?: string
   initialSearchType?: SearchType
@@ -19,6 +24,7 @@ export type UseWordSearchPayloadType = {
 
 export type UseWordSearchReturnType = {
   wordParams?: WordParams
+  selectedWord: SelectedWord
   handleSetSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleSetSearchType: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
@@ -59,6 +65,10 @@ export const useWordSearch = ({
 
   return {
     wordParams,
+    selectedWord: {
+      searchWord,
+      searchType,
+    },
     handleSetSearch,
     handleSetSearchType,
   }
