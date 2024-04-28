@@ -1,19 +1,18 @@
-import React from 'react'
-import { createContext, useContext, type PropsWithChildren } from 'react'
+import React, { type PropsWithChildren } from 'react'
 import {
   useSearchForm,
   type UseSearchFormPayloadType,
   type UseSearchFormReturnType,
 } from './useSearchForm'
+import { createCustomComtext } from '@/lib/helpers/createCustomContext'
 
 type Common = 'articles' | 'isLoading' | 'selectedFilters' | 'selectedWord'
-type SearchFormAction = Omit<UseSearchFormReturnType, Common> | null
-type SearchFormState = Pick<UseSearchFormReturnType, Common> | null
+type SearchFormAction = Omit<UseSearchFormReturnType, Common>
+type SearchFormState = Pick<UseSearchFormReturnType, Common>
 
-const SearchFormActionContext = createContext<SearchFormAction>(null)
-const SearchFormStateContext = createContext<SearchFormState>(null)
-const ActionProvider = SearchFormActionContext.Provider
-const StateProvider = SearchFormStateContext.Provider
+const [ActionProvider, useActionContext] =
+  createCustomComtext<SearchFormAction>()
+const [StateProvider, useStateContext] = createCustomComtext<SearchFormState>()
 
 export const SearchFormProvider = ({
   initialArticles,
@@ -30,6 +29,7 @@ export const SearchFormProvider = ({
     selectedWord,
     handleSetCategory,
     handleSetTags,
+    handleDeleteTag,
     handleChangeSortType,
     handleSetSearch,
     handleSetSearchType,
@@ -47,6 +47,7 @@ export const SearchFormProvider = ({
       value={{
         handleSetCategory,
         handleSetTags,
+        handleDeleteTag,
         handleChangeSortType,
         handleSetSearch,
         handleSetSearchType,
@@ -67,5 +68,5 @@ export const SearchFormProvider = ({
   )
 }
 
-export const useSearchFormAction = useContext(SearchFormActionContext)
-export const useSearchFormState = useContext(SearchFormStateContext)
+export const useSearchFormAction = useActionContext
+export const useSearchFormState = useStateContext
