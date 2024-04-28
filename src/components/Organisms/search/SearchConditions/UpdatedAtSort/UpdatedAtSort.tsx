@@ -1,22 +1,7 @@
 import React from 'react'
 import { ICON_TYPE } from '@Atoms/Icon'
 import { DropDown } from '@Molecules/DropDown'
-
-export type SortType = 'desc' | 'asc'
-export const SORT_TYPE: MappedConst<SortType> = {
-  desc: 'desc',
-  asc: 'asc',
-}
-const ITEMS = [
-  {
-    value: SORT_TYPE.desc,
-    label: '新しい順',
-  },
-  {
-    value: SORT_TYPE.asc,
-    label: '古い順',
-  },
-]
+import { ITEMS, type SortType } from './model'
 
 type Props = {
   selected: SortType
