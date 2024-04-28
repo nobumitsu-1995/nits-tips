@@ -9,7 +9,7 @@ export type CategoryType = {
 
 type Props = {
   selected: string
-  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
   categories: CategoryType[]
 }
 

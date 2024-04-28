@@ -10,7 +10,7 @@ import {
 type Props = {
   searchWord: string
   searchType: SearchType
-  setSearchType: React.Dispatch<React.SetStateAction<SearchType>>
+  setSearchType: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleSubmitSearch: (e: React.FormEvent<HTMLFormElement>) => void
   handleChangeSearch: React.ChangeEventHandler<HTMLInputElement>
 }

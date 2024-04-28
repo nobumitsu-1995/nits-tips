@@ -6,7 +6,7 @@ import { type SearchType, SEARCH_TYPE } from './model'
 type Props = {
   /** 名前 */
   searchType: SearchType
-  setSearchType: React.Dispatch<React.SetStateAction<SearchType>>
+  setSearchType: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const SearchTypeSelector: React.FC<Props> = ({
@@ -19,18 +19,14 @@ export const SearchTypeSelector: React.FC<Props> = ({
       value={SEARCH_TYPE.all}
       label="全文検索"
       isChecked={searchType === SEARCH_TYPE.all}
-      onChange={() => {
-        setSearchType(SEARCH_TYPE.all)
-      }}
+      onChange={setSearchType}
     />
     <Radio
       name="type"
       value={SEARCH_TYPE.title}
       label="タイトル検索"
       isChecked={searchType === SEARCH_TYPE.title}
-      onChange={() => {
-        setSearchType(SEARCH_TYPE.title)
-      }}
+      onChange={setSearchType}
     />
   </div>
 )

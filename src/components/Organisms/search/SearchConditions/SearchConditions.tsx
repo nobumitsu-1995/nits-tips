@@ -2,100 +2,63 @@ import React from 'react'
 import { Card } from '@Atoms/Card'
 import { Border } from '@Atoms/Border'
 import * as styles from './SearchConditions.css'
-import { UpdatedAtSort, type SortType } from './UpdatedAtSort'
+import { UpdatedAtSort } from './UpdatedAtSort'
 import { CategoryFilter, type CategoryType } from './CategoryFilter'
 import { TagFilter, type TagType } from './TagFilter'
-import { type SearchType } from '../TextSearch/SearchTypeSelector'
 import { WordFilter } from './WordFilter'
+import {
+  useSearchFormAction,
+  useSearchFormState,
+} from '@/lib/Hooks/useSearchForm'
 
 type Props = {
-  sortType: SortType
   categories: CategoryType[]
   tags: TagType[]
-  selectedCategory: string
-  selectedTags: string[]
-  searchWord: string
-  searchType: SearchType
-  setSortType: React.Dispatch<React.SetStateAction<SortType>>
-  setCategory: React.Dispatch<React.SetStateAction<string>>
-  setTags: React.Dispatch<React.SetStateAction<string[]>>
-  setSearchType: React.Dispatch<React.SetStateAction<SearchType>>
-  handleSubmitSearch: (e: React.FormEvent<HTMLFormElement>) => void
-  handleChangeSearch: React.ChangeEventHandler<HTMLInputElement>
 }
 
-export const SearchConditions: React.FC<Props> = ({
-  sortType,
-  categories,
-  tags,
-  selectedCategory,
-  selectedTags,
-  searchWord,
-  searchType,
-  setSortType,
-  setCategory,
-  setTags,
-  setSearchType,
-  handleSubmitSearch,
-  handleChangeSearch,
-}) => {
-  const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortType(e.target.value as SortType)
-  }
-  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value)
-  }
-  const handleClickTagButton = (id: string) => {
-    const index = selectedTags.indexOf(id)
-    const newValue = [...selectedTags]
-    newValue.splice(index, 1)
-    setTags(newValue)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value: _val } = e.target
-    const index = selectedTags.indexOf(_val)
-
-    if (index > -1) {
-      const newValue = [...selectedTags]
-      newValue.splice(index, 1)
-      setTags(newValue)
-    } else {
-      setTags((prev) => [...prev, _val])
-    }
-  }
+export const SearchConditions: React.FC<Props> = ({ categories, tags }) => {
+  const {
+    handleSetCategory,
+    handleSetTags,
+    handleDeleteTag,
+    handleChangeSortType,
+    handleSetSearch,
+    handleSetSearchType,
+    handleSubmitSearch,
+  } = useSearchFormAction()
+  const { selectedFilters, selectedWord } = useSearchFormState()
 
   return (
     <Card padding="12px 32px">
       <div className={styles.container}>
         <WordFilter
-          searchWord={searchWord}
-          searchType={searchType}
-          setSearchType={setSearchType}
+          searchWord={selectedWord.searchWord}
+          searchType={selectedWord.searchType}
+          setSearchType={handleSetSearchType}
           handleSubmitSearch={handleSubmitSearch}
-          handleChangeSearch={handleChangeSearch}
+          handleChangeSearch={handleSetSearch}
         />
         <Border margin="20px 0" />
         <div className={styles.searchConditions}>
           <div className={styles.itemContainer}>
             <UpdatedAtSort
-              selected={sortType}
+              selected={selectedFilters.sortType}
               handleChange={handleChangeSortType}
             />
           </div>
           <div className={styles.itemContainer}>
             <CategoryFilter
-              selected={selectedCategory}
-              handleChange={handleChangeCategory}
+              selected={selectedFilters.category}
+              handleChange={handleSetCategory}
               categories={categories}
             />
           </div>
         </div>
         <TagFilter
-          selectedTags={selectedTags}
+          selectedTags={selectedFilters.tags}
           tags={tags}
-          onClick={handleClickTagButton}
-          onChange={handleChange}
+          onClick={handleDeleteTag}
+          onChange={handleSetTags}
         />
       </div>
     </Card>
