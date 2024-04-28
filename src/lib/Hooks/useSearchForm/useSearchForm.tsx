@@ -41,6 +41,7 @@ export const useSearchForm = ({
     selectedFilters,
     handleSetCategory,
     handleSetTags,
+    handleDeleteTag,
     handleChangeSortType,
   } = useFilterSearch({ initialTags, initialCategory })
   const { wordParams, selectedWord, handleSetSearch, handleSetSearchType } =
@@ -67,6 +68,7 @@ export const useSearchForm = ({
   /** ワード検索実行時に発火する関数 */
   const handleSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     getBlogsData({
       ...wordParams,
       limit: 100,
@@ -82,6 +84,7 @@ export const useSearchForm = ({
     selectedWord,
     handleSetCategory,
     handleSetTags,
+    handleDeleteTag,
     handleChangeSortType,
     handleSetSearch,
     handleSetSearchType,

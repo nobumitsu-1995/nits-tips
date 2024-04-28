@@ -20,6 +20,7 @@ type FilterParams = {
 type SelectedFilters = {
   tags: string[]
   category: string
+  sortType: SortType
 }
 
 export type UseFilterSearchPayloadType = {
@@ -30,8 +31,9 @@ export type UseFilterSearchPayloadType = {
 export type UseFilterSearchReturnType = {
   filterParams?: FilterParams
   selectedFilters: SelectedFilters
-  handleSetCategory: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleSetCategory: (event: React.ChangeEvent<HTMLSelectElement>) => void
   handleSetTags: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleDeleteTag: (id: string) => void
   handleChangeSortType: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
@@ -59,7 +61,7 @@ export const useFilterSearch = ({
     })
   }, [selectedCategory, selectedTags, sortType, generateFilters])
 
-  const handleSetCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSetCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(event.target.value)
   }
 
@@ -76,6 +78,13 @@ export const useFilterSearch = ({
     }
   }
 
+  const handleDeleteTag = (id: string) => {
+    const index = selectedTags.indexOf(id)
+    const newValue = [...selectedTags]
+    newValue.splice(index, 1)
+    setTags(newValue)
+  }
+
   const handleChangeSortType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target
     isSortType(value) && setSortType(value)
@@ -86,9 +95,11 @@ export const useFilterSearch = ({
     selectedFilters: {
       tags: selectedTags,
       category: selectedCategory,
+      sortType,
     },
     handleSetCategory,
     handleSetTags,
+    handleDeleteTag,
     handleChangeSortType,
   }
 }
