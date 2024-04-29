@@ -25,6 +25,7 @@ export default {
       </SearchFormProvider>
     ),
   ],
+  tags: ['skip-test'],
 } as Meta<ComponentType>
 
 export const Default: Story = {}

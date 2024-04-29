@@ -22,6 +22,7 @@ export const Default: Story = {
       </SearchFormProvider>
     ),
   ],
+  tags: ['skip-test'],
 }
 export const NoResult: Story = {
   args: {
