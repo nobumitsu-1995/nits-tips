@@ -8,10 +8,14 @@ type Props = {
     title: string
     children: React.ReactNode
   }[]
+  initialPanel?: string
 }
 
-export const Tab: React.FC<Props> = ({ contents }) => {
-  const [current, setCurrent] = useState<string>(contents[0].id)
+export const Tab: React.FC<Props> = ({
+  contents,
+  initialPanel = contents[0].id,
+}) => {
+  const [current, setCurrent] = useState<string>(initialPanel)
   const handleClick = (value: string) => {
     setCurrent(value)
   }
