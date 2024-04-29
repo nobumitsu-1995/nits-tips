@@ -7,7 +7,7 @@ import {
 import { generateFilters } from '@/lib/helpers/generateFilters'
 
 type Order = 'updatedAt' | '-updatedAt'
-const ORDER_VALUE: Record<SortType, Order> = {
+export const ORDER_VALUE: Record<SortType, Order> = {
   asc: 'updatedAt',
   desc: '-updatedAt',
 }
