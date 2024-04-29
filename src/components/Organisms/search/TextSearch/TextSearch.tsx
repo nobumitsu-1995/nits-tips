@@ -6,6 +6,7 @@ import {
   SearchTypeSelector,
   SEARCH_TYPE,
   type SearchType,
+  isSearchType,
 } from './SearchTypeSelector'
 import { useSearchParams } from '@/lib/Hooks/useSearchParams'
 
@@ -32,6 +33,11 @@ export const TextSearch: React.FC = () => {
   const handleSubmitForm = () => {
     setSearchParamsToStorage({ searchType, searchWord })
   }
+  const handleSetSearchType = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (isSearchType(e.target.value)) {
+      setSearchType(e.target.value)
+    }
+  }
 
   return (
     <section>
@@ -39,7 +45,7 @@ export const TextSearch: React.FC = () => {
       <div className={styles.formContainer}>
         <SearchTypeSelector
           searchType={searchType}
-          setSearchType={setSearchType}
+          setSearchType={handleSetSearchType}
         />
         <SearchForm
           id={a11yId}

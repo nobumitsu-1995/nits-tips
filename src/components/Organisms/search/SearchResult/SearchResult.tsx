@@ -2,14 +2,10 @@ import React from 'react'
 import { ArticleList } from '@Organisms/Top/ArticleList'
 import { NoResult } from '../NoResult'
 import { Loading } from '@/components/UI/Atoms/Loading'
-import type { ArticleCardData } from '@/lib/interfaces/Article'
+import { useSearchFormState } from '@/lib/Hooks/useSearchForm'
 
-type Props = {
-  articles: ArticleCardData[]
-  isLoading: boolean
-}
-
-export const SearchResult: React.FC<Props> = ({ articles, isLoading }) => {
+export const SearchResult: React.FC = () => {
+  const { articles, isLoading } = useSearchFormState()
   if (isLoading) return <Loading />
   if (articles.length === 0) return <NoResult />
 

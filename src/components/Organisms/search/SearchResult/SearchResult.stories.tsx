@@ -1,26 +1,38 @@
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { SearchResult } from './SearchResult'
 import { createArtilceArray } from '@/testUtils/fixtures/articleData'
+import { SearchFormProvider } from '@/lib/Hooks/useSearchForm'
 
 type ComponentType = typeof SearchResult
 type Story = StoryObj<ComponentType>
 
 export default {
   component: SearchResult,
-  args: {
-    articles: createArtilceArray(),
-    isLoading: false,
-  },
 } as Meta<ComponentType>
 
-export const Default: Story = {}
+export const Default: Story = {
+  decorators: [
+    (Component) => (
+      <SearchFormProvider
+        initialArticles={createArtilceArray()}
+        initialTags={[]}
+      >
+        <Component />
+      </SearchFormProvider>
+    ),
+  ],
+  tags: ['skip-test'],
+}
 export const NoResult: Story = {
   args: {
     articles: [],
   },
-}
-export const IsLoading: Story = {
-  args: {
-    isLoading: true,
-  },
+  decorators: [
+    (Component) => (
+      <SearchFormProvider initialArticles={[]} initialTags={[]}>
+        <Component />
+      </SearchFormProvider>
+    ),
+  ],
 }

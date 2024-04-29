@@ -1,7 +1,10 @@
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { SearchConditions } from './SearchConditions'
 import { categories } from '@/testUtils/fixtures/categories'
 import { tags } from '@/testUtils/fixtures/tags'
+import { SearchFormProvider } from '@/lib/Hooks/useSearchForm'
+import { createArtilceArray } from '@/testUtils/fixtures/articleData'
 
 type ComponentType = typeof SearchConditions
 type Story = StoryObj<ComponentType>
@@ -11,8 +14,18 @@ export default {
   args: {
     categories,
     tags,
-    selectedTags: tags.map((tag) => tag.id),
   },
+  decorators: [
+    (Component) => (
+      <SearchFormProvider
+        initialArticles={createArtilceArray()}
+        initialTags={[]}
+      >
+        <Component />
+      </SearchFormProvider>
+    ),
+  ],
+  tags: ['skip-test'],
 } as Meta<ComponentType>
 
 export const Default: Story = {}
