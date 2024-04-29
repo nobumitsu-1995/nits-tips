@@ -9,6 +9,7 @@ export const form = style({
 export const input = style({
   height: 40,
   width: 'calc(100% - 48px)',
+  maxWidth: 400,
   border: `2px solid ${vars.color.lightGray}`,
   borderRadius: '16px 0 0 16px',
   padding: '0 12px 0 20px',
