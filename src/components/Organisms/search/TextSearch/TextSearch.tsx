@@ -19,6 +19,7 @@ export const TextSearch: React.FC = () => {
   const { searchParams, setSearchParamsToStorage } = useSearchParams<Storage>()
   const [searchType, setSearchType] = useState<SearchType>(SEARCH_TYPE.all)
   const [searchWord, setSearchWord] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const a11yId = useId()
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export const TextSearch: React.FC = () => {
     setSearchWord(e.target.value)
   }
   const handleSubmitForm = () => {
+    setIsLoading(true)
     setSearchParamsToStorage({ searchType, searchWord })
   }
   const handleSetSearchType = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +55,7 @@ export const TextSearch: React.FC = () => {
           searchWord={searchWord}
           handleChangeSearch={handleChangeSearch}
           onSubmit={handleSubmitForm}
+          isLoading={isLoading}
         />
       </div>
     </section>

@@ -41,6 +41,7 @@ export const SearchConditions: React.FC<Props> = ({ categories, tags }) => {
     sortType,
     searchWord,
     searchType,
+    isLoading,
   } = useSearchFormState()
 
   const contents = [
@@ -51,6 +52,7 @@ export const SearchConditions: React.FC<Props> = ({ categories, tags }) => {
         <WordFilter
           searchWord={searchWord}
           searchType={searchType}
+          isLoading={isLoading}
           setSearchType={handleSetSearchType}
           handleSubmitSearch={handleSubmitSearch}
           handleChangeSearch={handleSetSearch}
