@@ -44,7 +44,6 @@ export const SearchForm: React.FC<Props> = ({
       name="searchWord"
       value={searchWord}
       onChange={handleChangeSearch}
-      disabled={isLoading}
       required
       className={`${styles.input} ${isSlimType && styles.slim}`}
     />
