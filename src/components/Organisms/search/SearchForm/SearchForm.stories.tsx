@@ -9,3 +9,9 @@ export default {
 } as Meta<ComponentType>
 
 export const Default: Story = {}
+
+export const IsLoading: Story = {
+  args: {
+    isLoading: true,
+  },
+}
