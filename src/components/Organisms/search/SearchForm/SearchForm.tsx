@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon } from '@Atoms/Icon'
+import { SmallLoading } from '@Atoms/SmallLoading'
 import * as styles from './SearchForm.css'
 import { SEARCH_TYPE, type SearchType } from '../TextSearch'
 
@@ -16,6 +17,8 @@ type Props = {
   handleChangeSearch: React.ChangeEventHandler<HTMLInputElement>
   /** スリムタイプになる */
   isSlimType?: boolean
+  /** ローディング状態の管理 */
+  isLoading: boolean
 }
 
 export const SearchForm: React.FC<Props> = ({
@@ -25,6 +28,7 @@ export const SearchForm: React.FC<Props> = ({
   searchWord,
   handleChangeSearch,
   isSlimType = false,
+  isLoading,
 }) => (
   <form
     aria-labelledby={id}
@@ -47,9 +51,10 @@ export const SearchForm: React.FC<Props> = ({
     <button
       type="submit"
       aria-label="検索"
+      disabled={isLoading}
       className={`${styles.button} ${isSlimType && styles.slim}`}
     >
-      <Icon type="search" size={24} />
+      {isLoading ? <SmallLoading /> : <Icon type="search" size={24} />}
     </button>
   </form>
 )

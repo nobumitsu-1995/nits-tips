@@ -1,0 +1,1 @@
+export { SmallLoading } from './SmallLoading'

@@ -10,6 +10,7 @@ import {
 type Props = {
   searchWord: string
   searchType: SearchType
+  isLoading: boolean
   setSearchType: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleSubmitSearch: (e: React.FormEvent<HTMLFormElement>) => void
   handleChangeSearch: React.ChangeEventHandler<HTMLInputElement>
@@ -18,6 +19,7 @@ type Props = {
 export const WordFilter: React.FC<Props> = ({
   searchWord,
   searchType,
+  isLoading,
   setSearchType,
   handleSubmitSearch,
   handleChangeSearch,
@@ -43,6 +45,7 @@ export const WordFilter: React.FC<Props> = ({
         handleChangeSearch={handleChangeSearch}
         searchType={searchType}
         isSlimType
+        isLoading={isLoading}
       />
     </div>
   )
