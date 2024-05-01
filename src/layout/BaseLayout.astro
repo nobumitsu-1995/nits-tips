@@ -7,7 +7,14 @@ import { Nav } from '../components/Organisms/common/Nav'
 import { Footer } from '../components/Organisms/common/Footer'
 import { ToTopButton } from '@/components/UI/Molecules/ToTopButton/ToTopButton'
 
-const { pageTitle, description, ogUrl, ogType = 'article', ogTitle } = Astro.props
+const {
+  pageTitle,
+  description,
+  ogUrl,
+  ogType = 'article',
+  ogTitle,
+  ogImage = 'https://nits-tips.blog/nits-tips.png',
+} = Astro.props
 ---
 
 <html lang='ja'>
@@ -44,7 +51,7 @@ const { pageTitle, description, ogUrl, ogType = 'article', ogTitle } = Astro.pro
     <meta property='og:title' content={ogTitle} />
     <meta property='og:description' content={description} />
     <meta property='og:site_name' content='nits-tips' />
-    <meta property='og:image' content='https://nits-tips.blog/nits-tips.png' />
+    <meta property='og:image' content={ogImage} />
     <meta name='twitter:card' content='summary_large_image' />
     <script
       async
