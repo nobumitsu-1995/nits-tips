@@ -25,11 +25,12 @@ const { blog } = Astro.props
 const pageTitle = `nits-tips | ${blog.title}`
 const description = `${blog.description}`
 const ogTitle = blog.title
+const ogImage = new URL(`/og/${blog.id}.png`, Astro.url.origin).toString()
 const relatedBlogs = await getRelativeBlogs(blog)
 const githubAccount = await getGithubAccount()
 ---
 
-<BaseLayout pageTitle={pageTitle} description={description} ogTitle={ogTitle}>
+<BaseLayout pageTitle={pageTitle} description={description} ogTitle={ogTitle} ogImage={ogImage}>
   <div class={styles.container}>
     <div class={styles.wrapper}>
       <main class={styles.mainContainer}>
