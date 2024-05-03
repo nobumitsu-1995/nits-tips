@@ -65,7 +65,7 @@ export const ToastProvider: React.FC<Props> = ({
           showToast,
           hideToast,
         }),
-        [],
+        [toastStatus.isShow],
       )}
     >
       {children}
