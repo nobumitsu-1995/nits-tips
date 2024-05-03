@@ -31,7 +31,7 @@ export const useScrollY = ({
     } else {
       setIsShow(false)
     }
-  }, [scrollY])
+  }, [scrollY, threshold])
 
   return {
     isShow,

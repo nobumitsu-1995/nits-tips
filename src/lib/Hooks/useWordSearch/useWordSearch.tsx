@@ -62,7 +62,7 @@ export const useWordSearch = ({
       const { value } = e.target
       isSearchType(value) && setSearchType(value)
     },
-    [isSearchType, setSearchType],
+    [setSearchType],
   )
 
   return {

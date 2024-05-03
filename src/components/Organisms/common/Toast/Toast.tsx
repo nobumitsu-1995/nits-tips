@@ -19,7 +19,7 @@ export const Toast: React.FC<Props> = ({ message, type, hideToast }) => {
     setTimeout(() => {
       hideToast()
     }, 2000)
-  }, [])
+  }, [hideToast])
 
   return (
     <div

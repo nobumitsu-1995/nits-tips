@@ -20,12 +20,9 @@ export const useSearchParams = <
     setSearchParams(storageParams)
   }, [])
 
-  const setSearchParamsToStorage = useCallback(
-    (params: Args<T>) => {
-      setStorage({ key: STORAGE_KEY, params })
-    },
-    [setStorage],
-  )
+  const setSearchParamsToStorage = useCallback((params: Args<T>) => {
+    setStorage({ key: STORAGE_KEY, params })
+  }, [])
 
   return {
     searchParams,

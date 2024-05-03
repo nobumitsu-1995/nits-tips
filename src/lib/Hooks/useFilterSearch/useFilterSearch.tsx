@@ -55,7 +55,7 @@ export const useFilterSearch = ({
       filters,
       orders,
     })
-  }, [selectedCategory, selectedTags, sortType, generateFilters])
+  }, [selectedCategory, selectedTags, sortType])
 
   const handleSetCategory = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -95,7 +95,7 @@ export const useFilterSearch = ({
       const { value } = e.target
       isSortType(value) && setSortType(value)
     },
-    [isSortType, setSortType],
+    [setSortType],
   )
 
   return {
