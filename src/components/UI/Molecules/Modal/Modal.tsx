@@ -20,7 +20,6 @@ export const Modal: React.FC<Props> = ({
   <div
     className={`${styles.modal} ${isOpen ? styles.isOpen : styles.isHidden}`}
     aria-controls={ariaControls}
-    aria-expanded={isOpen}
   >
     <Card padding={padding}>{children}</Card>
   </div>
