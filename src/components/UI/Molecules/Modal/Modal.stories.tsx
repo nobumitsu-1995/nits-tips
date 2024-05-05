@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useId, useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Modal } from './Modal'
 
@@ -9,14 +9,19 @@ export default {
   component: Modal,
   decorators: [
     () => {
+      const buttonId = useId()
       const [isOpen, setIsOpen] = useState(false)
 
       return (
         <>
-          <button type="button" onClick={() => setIsOpen((prev) => !prev)}>
+          <button
+            id={buttonId}
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
             button
           </button>
-          <Modal isOpen={isOpen}>
+          <Modal ariaControls={buttonId} isOpen={isOpen}>
             <p>component</p>
           </Modal>
         </>
