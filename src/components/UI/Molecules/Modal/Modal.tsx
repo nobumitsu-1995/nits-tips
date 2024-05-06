@@ -2,16 +2,18 @@ import React, { type PropsWithChildren } from 'react'
 import * as styles from './Modal.css'
 
 type Props = PropsWithChildren<{
-  /** buttonのidを設定する */
-  ariaControls: string
+  /** buttonのaria-controlsを設定する */
+  id: string
   /** 開閉状態 */
   isOpen: boolean
+  /** モーダルに追加指定するstyle */
+  style?: string
 }>
 
-export const Modal: React.FC<Props> = ({ ariaControls, isOpen, children }) => (
+export const Modal: React.FC<Props> = ({ id, isOpen, style, children }) => (
   <div
-    className={`${styles.modal} ${isOpen ? styles.isOpen : styles.isHidden}`}
-    aria-controls={ariaControls}
+    className={`${style} ${isOpen ? styles.isOpen : styles.isHidden}`}
+    id={id}
   >
     {children}
   </div>

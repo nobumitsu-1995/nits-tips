@@ -1,13 +1,6 @@
 import { style } from '@vanilla-extract/css'
-import { breakpoint } from '../../../../styles/theme.css'
-
-export const container = style({
-  '@media': {
-    [`${breakpoint.small}`]: {
-      fontSize: 12,
-    },
-  },
-})
+import { breakpoint, vars } from '../../../../styles/theme.css'
+import { hover } from '../../../../styles/global.css'
 
 export const searchConditions = style({
   display: 'flex',
@@ -25,4 +18,38 @@ export const searchConditions = style({
 
 export const itemContainer = style({
   flexShrink: 0,
+})
+
+export const button = style([
+  hover,
+  {
+    display: 'none',
+    '@media': {
+      [`${breakpoint.small}`]: {
+        position: 'fixed',
+        zIndex: 2,
+        top: 12,
+        right: 12,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 36,
+        height: 36,
+        backgroundColor: vars.color.lightGray,
+        border: 'none',
+        borderRadius: '50%',
+        cursor: 'pointer',
+      },
+    },
+  },
+])
+
+export const modal = style({
+  '@media': {
+    [`${breakpoint.small}`]: {
+      position: 'fixed',
+      top: 12,
+      left: 0,
+    },
+  },
 })

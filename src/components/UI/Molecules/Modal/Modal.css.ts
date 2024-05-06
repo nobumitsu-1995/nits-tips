@@ -1,13 +1,34 @@
-import { style } from '@vanilla-extract/css'
+import { keyframes, style } from '@vanilla-extract/css'
 
-export const modal = style({
-  transition: 'transform 0.3s',
+const slideOpen = keyframes({
+  from: {
+    display: 'none',
+    transform: 'translateX(100vw)',
+  },
+  '1%': {
+    display: 'block',
+  },
+  to: {
+    transform: 'translateX(0)',
+  },
+})
+
+const slideClose = keyframes({
+  from: {
+    display: 'block',
+    transform: 'translateX(0)',
+  },
+  to: {
+    transform: 'translateX(100vw)',
+  },
 })
 
 export const isHidden = style({
-  transform: 'translateX(100vw)',
+  display: 'none',
+  animation: `${slideClose} 0.5s ease`,
 })
 
 export const isOpen = style({
-  transform: 'translateX(0)',
+  display: 'block',
+  animation: `${slideOpen} 0.5s ease`,
 })

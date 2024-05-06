@@ -15,13 +15,14 @@ export default {
       return (
         <>
           <button
-            id={buttonId}
+            aria-controls={buttonId}
+            aria-expanded={isOpen}
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
           >
             button
           </button>
-          <Modal ariaControls={buttonId} isOpen={isOpen}>
+          <Modal id={buttonId} isOpen={isOpen}>
             <p>component</p>
           </Modal>
         </>
