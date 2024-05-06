@@ -33,8 +33,8 @@ export const button = style([
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 36,
-        height: 36,
+        width: 40,
+        height: 40,
         backgroundColor: vars.color.lightGray,
         border: 'none',
         borderRadius: '50%',
@@ -48,7 +48,7 @@ export const modal = style({
   '@media': {
     [`${breakpoint.small}`]: {
       position: 'fixed',
-      top: 12,
+      top: 16,
       left: 0,
     },
   },
