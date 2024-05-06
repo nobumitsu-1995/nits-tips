@@ -38,7 +38,7 @@ const selectedTags = tag?.split(',') ?? []
 
 <BaseLayout pageTitle={pageTitle} description={description} ogTitle={pageTitle}>
   <ResultComponent
-    client:load
+    client:only
     blogs={blogs}
     categories={categories}
     tags={tags}
