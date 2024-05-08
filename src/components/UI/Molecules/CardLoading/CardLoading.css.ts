@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css'
 
 export const publishedAt = style({
   display: 'flex',
-  gap: '0 20px',
+  gap: '6px 20px',
   flexWrap: 'wrap',
 })
 

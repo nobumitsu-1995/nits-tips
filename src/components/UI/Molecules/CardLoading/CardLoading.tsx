@@ -19,10 +19,10 @@ export const CardLoading: React.FC = () => (
       <TextLoading height="48px" />
     </div>
     <div className={styles.text}>
-      <TextLoading height="58px" />
+      <TextLoading height="65px" />
     </div>
     <ul className={styles.tagList}>
-      {Array(3)
+      {Array(2)
         .fill('')
         .map((_, i) => (
           // eslint-disable-next-line react/no-array-index-key
