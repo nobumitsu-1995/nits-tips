@@ -1,8 +1,8 @@
 import React from 'react'
 import { ArticleList } from '@Organisms/Top/ArticleList'
 import { NoResult } from '../NoResult'
-import { Loading } from '@/components/UI/Atoms/Loading'
 import { useSearchFormState } from '@/lib/Hooks/useSearchForm'
+import { Loading } from './Loading'
 
 export const SearchResult: React.FC = () => {
   const { articles, isLoading } = useSearchFormState()
