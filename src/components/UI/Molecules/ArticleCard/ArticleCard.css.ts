@@ -17,7 +17,6 @@ export const title = style([
 ])
 
 export const text = style([
-  hover,
   lineClamp,
   {
     margin: '8px 0px 12px',
