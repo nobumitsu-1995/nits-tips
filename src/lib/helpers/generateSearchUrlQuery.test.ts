@@ -24,3 +24,12 @@ test('絞り込み検索の引数でtagsが空配列で渡された時、絞込�
 test('ワード検索の引数が渡された時、ワード検索用のURLクエリを作成する', () => {
   expect(generateSearchUrlQuery(WORD_SEARCH_PARAMS)).toMatchSnapshot()
 })
+
+test('ワード検索の引数でスペース有のキーワードが渡された時、ワード検索用のURLクエリを作成する', () => {
+  expect(
+    generateSearchUrlQuery({
+      ...WORD_SEARCH_PARAMS,
+      searchWord: 'testSearchWord1 testSearchWord2',
+    }),
+  ).toMatchSnapshot()
+})

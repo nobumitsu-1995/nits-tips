@@ -2,6 +2,7 @@ import {
   SEARCH_TYPE,
   type SearchType,
 } from '@/components/Organisms/search/TextSearch'
+import { replaceSpacesWithComma } from './replaceSpacesWithComma'
 
 type FilterSearch = {
   tags: string[]
@@ -23,7 +24,7 @@ const isFilterSearch = (args: Args): args is WordSearch =>
   'category' in args && 'tags' in args
 
 const generateWordSearchUrl = ({ searchWord, searchType }: WordSearch) =>
-  `searchWord=${searchWord}&searchType=${SEARCH_TYPE[searchType]}`
+  `searchWord=${encodeURI(replaceSpacesWithComma(searchWord ?? ''))}&searchType=${SEARCH_TYPE[searchType]}`
 const generateFilterSearchUrl = ({ tags, category }: FilterSearch) =>
   tags.length > 0
     ? `category=${category}&tag=${tags.join(',')}`
