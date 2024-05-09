@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ワード検索の引数が渡された時、ワード検索用のURLクエリを作成する 1`] = `"searchWord=testSearchWord&searchType=all"`;
+
+exports[`ワード検索の引数でスペース有のキーワードが渡された時、ワード検索用のURLクエリを作成する 1`] = `"searchWord=testSearchWord1,testSearchWord2&searchType=all"`;
+
+exports[`絞り込み検索の引数が渡された時、絞込検索用のURLクエリを作成する 1`] = `"category=testCategory&tag=testTag1,testTag2"`;
+
+exports[`絞り込み検索の引数でtagsが空配列で渡された時、絞込検索用のURLクエリを作成する 1`] = `"category=testCategory"`;
