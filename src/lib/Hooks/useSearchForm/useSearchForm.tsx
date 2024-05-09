@@ -12,6 +12,7 @@ import type {
 import { convertToArticles } from '@/lib/helpers/convertToArticles'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
 import type { ArticleCardData } from '@/lib/interfaces/Article'
+import { updateQueryParams } from './updateQueryParams'
 
 export type UseSearchFormPayloadType = {
   initialArticles: ArticleCardData[]
@@ -77,10 +78,17 @@ export const useSearchForm = ({
       .finally(() => setIsLoading(false))
   }, [filterParams])
 
+  /** クエリパラメータの更新(フィルター検索) */
+  useEffect(() => {
+    updateQueryParams({ tags, category })
+  }, [category, tags])
+
   /** ワード検索実行時に発火する関数 */
   const handleSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
+
+    updateQueryParams({ searchWord, searchType })
     getBlogsData({
       ...wordParams,
       limit: 100,
