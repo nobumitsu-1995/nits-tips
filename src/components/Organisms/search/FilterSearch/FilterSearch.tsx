@@ -7,6 +7,7 @@ import type { MicroCMS } from '@/types/microCMS'
 import { Button, BUTTON_TYPE } from '@/components/UI/Atoms/Button'
 import { TagSelector } from './TagSelector'
 import { useSearchParams } from '@/lib/Hooks/useSearchParams'
+import { generateSearchUrlQuery } from '@/lib/helpers/generateSearchUrlQuery'
 
 type Props = {
   categoriesData: Pick<MicroCMS['category'], 'id' | 'label'>[]
@@ -46,11 +47,7 @@ export const FilterSearch: React.FC<Props> = ({ categoriesData, tagsData }) => {
 
   const handleClick = () => {
     setIsLoading(true)
-    const url =
-      tags.length > 0
-        ? `/search/result/?category=${category}&tag=${tags.join(',')}`
-        : `/search/result/?category=${category}`
-
+    const url = `/search/result/?${generateSearchUrlQuery({ category, tags })}`
     setSearchParamsToStorage({ category, tags })
     window.location.href = url
   }
