@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { FilterSearch } from './FilterSearch'
 import { categories } from '@/testUtils/fixtures/categories'
-import { tags } from '@/testUtils/fixtures/tags'
+import { tagData } from '@/testUtils/fixtures/tagData'
 
 type ComponentType = typeof FilterSearch
 type Story = StoryObj<ComponentType>
@@ -12,11 +12,9 @@ export default {
     categoriesData: categories.map((category) => ({
       id: category.id,
       label: category.label,
+      href: '/',
     })),
-    tagsData: tags.map((tag) => ({
-      id: tag.id,
-      label: tag.label,
-    })),
+    tagsData: tagData,
   },
 } as Meta<ComponentType>
 
