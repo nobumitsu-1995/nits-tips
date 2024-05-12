@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from '@Atoms/Select'
 import * as styles from './TagSelector.css'
-import type { TagType } from '../../SearchConditions/TagFilter'
+import type { TagType } from '../..'
 
 type Props = {
   selectedTags: string[]
