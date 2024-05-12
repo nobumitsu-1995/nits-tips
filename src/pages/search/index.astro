@@ -7,6 +7,7 @@ import BaseLayout from '@layout/BaseLayout.astro'
 import { getAllCategories } from '@/lib/API/microCMS/getAllCategories'
 import { getAllTags } from '@/lib/API/microCMS/getAllTags'
 import * as styles from '@/styles/pages/search.css'
+import { convertToTagData } from '@/lib/helpers/convertToTagData'
 
 export const prerender = false
 
@@ -22,7 +23,10 @@ const tags = await getAllTags()
       <Card padding='48px 28px'>
         <TextSearch client:load />
         <Border />
-        <FilterSearch client:load categoriesData={categories} tagsData={tags} />
+        <FilterSearch
+          categoriesData={convertToTagData(categories)}
+          tagsData={convertToTagData(tags)}
+        />
       </Card>
     </div>
   </main>
