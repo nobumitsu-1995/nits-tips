@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`カテゴリ配列を表示用に整形する 1`] = `
+[
+  {
+    "href": "/search/result/?category=daz0qkbj6",
+    "id": "daz0qkbj6",
+    "label": "フロントエンド",
+    "src": "",
+  },
+  {
+    "href": "/search/result/?category=zovf4yshp3",
+    "id": "zovf4yshp3",
+    "label": "バックエンド",
+    "src": "",
+  },
+  {
+    "href": "/search/result/?category=air585mxa",
+    "id": "air585mxa",
+    "label": "その他",
+    "src": "",
+  },
+]
+`;
+
+exports[`タグ配列を表示用に整形する 1`] = `
+[
+  {
+    "href": "/search/result/?tag=o39i0-i8y7r",
+    "id": "o39i0-i8y7r",
+    "label": "React",
+    "src": "https://images.microcms-assets.io/assets/1ea46e2b90a147b58b1b144f170fce22/eb4b4b189c1c41c19b57e5615f1d46a6/react_icon_130845.svg",
+  },
+]
+`;
