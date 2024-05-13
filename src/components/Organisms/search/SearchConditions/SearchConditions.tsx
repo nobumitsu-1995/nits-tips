@@ -29,7 +29,7 @@ const CONTENT_TITLE: Record<ContentId, string> = {
 
 export const SearchConditions: React.FC<Props> = ({ categories, tags }) => {
   const buttonId = useId()
-  const [isOpen, setIsOpen] = useState(window.screen.width >= 550)
+  const [isOpen, setIsOpen] = useState(true)
   const {
     handleSetCategory,
     handleSetTags,
