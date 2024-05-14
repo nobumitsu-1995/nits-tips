@@ -24,7 +24,7 @@ const tags = await getAllTags()
         <TextSearch client:load />
         <Border />
         <FilterSearch
-          categoriesData={convertToTagData(categories)}
+          categoriesData={convertToTagData(categories, true)}
           tagsData={convertToTagData(tags)}
         />
       </Card>
