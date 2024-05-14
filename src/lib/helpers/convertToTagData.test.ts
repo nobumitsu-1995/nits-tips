@@ -8,6 +8,6 @@ test('タグ配列を表示用に整形する', () => {
 })
 
 test('カテゴリ配列を表示用に整形する', () => {
-  const result = convertToTagData(categories)
+  const result = convertToTagData(categories, true)
   expect(result).toMatchSnapshot()
 })
