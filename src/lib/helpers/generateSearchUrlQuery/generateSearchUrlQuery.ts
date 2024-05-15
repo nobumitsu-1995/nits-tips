@@ -2,7 +2,7 @@ import {
   SEARCH_TYPE,
   type SearchType,
 } from '@/components/Organisms/search/TextSearch'
-import { replaceSpacesWithComma } from './replaceSpacesWithComma'
+import { replaceSpacesWithComma } from '../replaceSpacesWithComma'
 
 type FilterSearch = {
   tags: string[]
