@@ -1,0 +1,1 @@
+export { createOGP } from './createOGP'

@@ -1,0 +1,1 @@
+export { convertToArticles } from './convertToArticles'
