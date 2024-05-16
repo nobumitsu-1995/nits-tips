@@ -26,6 +26,7 @@ const expected = [
     ],
     title: '（サンプル）まずはこの記事を開きましょう',
     updatedAt: '2024-02-24',
+    thumbnail: '/og/0.png',
   },
   {
     description: `概要です。
@@ -51,6 +52,7 @@ const expected = [
     ],
     title: '（サンプル）まずはこの記事を開きましょう',
     updatedAt: '2024-02-24',
+    thumbnail: '/og/1.png',
   },
 ]
 

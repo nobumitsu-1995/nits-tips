@@ -13,4 +13,5 @@ export const convertToArticles = (
     tagData: convertToTagData(data.tags),
     publishedAt: convertDate(data.publishedAt),
     updatedAt: convertDate(data.updatedAt),
+    thumbnail: `/og/${data.id}.png`,
   }))
