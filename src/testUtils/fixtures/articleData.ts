@@ -8,6 +8,7 @@ export const createArticle = ({
   tagData = tags,
   publishedAt = '2024/03/17',
   updatedAt = '2024/03/17',
+  thumbnail = 'https://placehold.co/1200x630/F0DB4F/000',
 }: Partial<ArticleCardData>): ArticleCardData => ({
   id,
   title,
@@ -15,6 +16,7 @@ export const createArticle = ({
   tagData,
   publishedAt,
   updatedAt,
+  thumbnail,
 })
 
 export const createArtilceArray = (n = 15) =>
