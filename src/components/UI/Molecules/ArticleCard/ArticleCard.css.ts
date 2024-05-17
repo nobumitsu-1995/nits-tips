@@ -6,8 +6,9 @@ import { hover } from '../../../../styles/global.css'
 export const img = style([
   hover,
   {
-    width: '100%',
+    width: 'calc(100% + 40px)',
     marginTop: 8,
+    transform: 'translateX(-20px)',
   },
 ])
 
