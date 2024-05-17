@@ -13,5 +13,7 @@ export const convertToArticles = (
     tagData: convertToTagData(data.tags),
     publishedAt: convertDate(data.publishedAt),
     updatedAt: convertDate(data.updatedAt),
-    thumbnail: `/og/${data.id}.png`,
+    thumbnail: import.meta.env.DEV
+      ? 'https://placehold.co/1200x630/F0DB4F/000'
+      : `/og/${data.id}.png`,
   }))
