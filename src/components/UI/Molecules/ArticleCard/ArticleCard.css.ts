@@ -3,16 +3,12 @@ import { vars } from '../../../../styles/theme.css'
 import { lineClamp } from '../../../../styles/variables.css'
 import { hover } from '../../../../styles/global.css'
 
-export const title = style([
+export const img = style([
   hover,
-  lineClamp,
   {
+    width: 'calc(100% + 40px)',
     marginTop: 8,
-    height: 48,
-    fontSize: 20,
-    lineHeight: 1.2,
-    WebkitLineClamp: 2,
-    color: vars.color.darkGray,
+    transform: 'translateX(-20px)',
   },
 ])
 

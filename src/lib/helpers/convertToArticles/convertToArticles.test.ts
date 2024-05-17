@@ -26,6 +26,7 @@ const expected = [
     ],
     title: '（サンプル）まずはこの記事を開きましょう',
     updatedAt: '2024-02-24',
+    thumbnail: 'https://placehold.co/1200x630/F0DB4F/000',
   },
   {
     description: `概要です。
@@ -51,6 +52,7 @@ const expected = [
     ],
     title: '（サンプル）まずはこの記事を開きましょう',
     updatedAt: '2024-02-24',
+    thumbnail: 'https://placehold.co/1200x630/F0DB4F/000',
   },
 ]
 

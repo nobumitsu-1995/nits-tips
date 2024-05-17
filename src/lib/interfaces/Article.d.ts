@@ -30,4 +30,6 @@ export type ArticleCardData = {
   publishedAt: string
   /** 最終更新日 */
   updatedAt?: string
+  /** サムネイル */
+  thumbnail: string
 }
