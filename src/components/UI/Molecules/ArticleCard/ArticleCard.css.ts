@@ -3,12 +3,15 @@ import { vars } from '../../../../styles/theme.css'
 import { lineClamp } from '../../../../styles/variables.css'
 import { hover } from '../../../../styles/global.css'
 
+export const container = style({
+  padding: '0 20px',
+})
+
 export const img = style([
   hover,
   {
-    width: 'calc(100% + 40px)',
+    width: '100%',
     marginTop: 8,
-    transform: 'translateX(-20px)',
   },
 ])
 
