@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Container } from './Container'
+import { About } from './About'
 
-type ComponentType = typeof Container
+type ComponentType = typeof About
 type Story = StoryObj<ComponentType>
 
 export default {
-  component: Container,
+  component: About,
   args: {
     name: 'hoge',
   },

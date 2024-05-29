@@ -1,1 +1,1 @@
-export { Container as About } from './Container'
+export { About } from './About'

@@ -1,1 +1,1 @@
-export { Container as ContactForm } from './Container'
+export { ContactForm } from './ContactForm'
