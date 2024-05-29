@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Container } from './Container'
+import { Top } from './Top'
 import { blogs } from '@/testUtils/fixtures/blogsData'
 
-type ComponentType = typeof Container
+type ComponentType = typeof Top
 type Story = StoryObj<ComponentType>
 
 export default {
-  component: Container,
+  component: Top,
   args: {
     blogs: blogs(15),
   },

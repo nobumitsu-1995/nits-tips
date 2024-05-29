@@ -1,1 +1,1 @@
-export { Container as Top } from './Container'
+export { Top } from './Top'

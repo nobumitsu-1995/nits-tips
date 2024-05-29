@@ -1,1 +1,1 @@
-export { Container as PrivacyPolicy } from './Container'
+export { PrivacyPolicy } from './PrivacyPolicy'
