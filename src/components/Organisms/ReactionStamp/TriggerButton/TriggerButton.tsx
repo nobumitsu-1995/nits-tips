@@ -1,24 +1,18 @@
-import React, { useState } from 'react'
-import * as styles from './TriggerButton.css'
+import React from 'react'
+import { CircleButton } from '@/components/UI/Molecules/CircleButton'
+import { ICON_TYPE } from '@/components/UI/Atoms/Icon'
 
 type Props = {
-  /** 名前 */
-  name: string
+  onClick: () => void
 }
 
-export const TriggerButton: React.FC<Props> = ({ name }) => {
-  const [state, setState] = useState('')
-  const handleClick = () => {
-    setState('click')
-  }
-
-  return (
-    <div className={styles.triggerButton}>
-      <p>{name}</p>
-      <p>{state}</p>
-      <button type="button" onClick={handleClick}>
-        button
-      </button>
-    </div>
-  )
-}
+export const TriggerButton: React.FC<Props> = ({ onClick }) => (
+  <CircleButton
+    iconType={ICON_TYPE.add_reaction}
+    tooltipText="スタンプでリアクションする"
+    onClick={onClick}
+    buttonSize={28}
+    iconSize={18}
+    withTooltip={false}
+  />
+)
