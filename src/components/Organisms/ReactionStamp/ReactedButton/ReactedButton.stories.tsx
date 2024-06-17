@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { ReactedButton } from './ReactedButton'
-import { REACTION_STAMPS } from './model'
+import { REACTION_STAMPS } from '../model'
 
 type ComponentType = typeof ReactedButton
 type Story = StoryObj<ComponentType>
@@ -24,6 +24,6 @@ export const Default: Story = {
 export const IsActive: Story = {
   args: {
     stamp: REACTION_STAMPS[1],
-    isActive: true,
+    isChecked: true,
   },
 }
