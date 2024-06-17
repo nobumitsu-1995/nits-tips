@@ -24,6 +24,6 @@ export const Default: Story = {
 export const IsActive: Story = {
   args: {
     stamp: REACTION_STAMPS[1],
-    isActive: true,
+    isChecked: true,
   },
 }
