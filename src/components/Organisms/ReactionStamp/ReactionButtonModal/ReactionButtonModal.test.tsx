@@ -1,11 +1,29 @@
 import React from 'react'
+import { composeStories } from '@storybook/react'
 import { setup } from '@/testUtils'
-import { ReactionButtonModal } from './ReactionButtonModal'
+import * as stories from './ReactionButtonModal.stories'
 
-test('sample test', async () => {
-  const { getByRole, getByText, user } = setup(
-    <ReactionButtonModal name="hoge" />,
-  )
-  await user.click(getByRole('button', { name: 'button' }))
-  expect(getByText('click').innerHTML).toBe('click')
+const { Default } = composeStories(stories)
+
+test('リアクション状況によって適切なボタンラベルが入る', async () => {
+  const { getByRole } = setup(<Default />)
+
+  expect(
+    getByRole('button', { name: 'goodリアクションを取り消す' }),
+  ).toBeInTheDocument()
+  expect(
+    getByRole('button', { name: 'watchリアクションを取り消す' }),
+  ).toBeInTheDocument()
+  expect(
+    getByRole('button', { name: 'niceリアクションをする' }),
+  ).toBeInTheDocument()
+  expect(
+    getByRole('button', { name: 'geniusリアクションをする' }),
+  ).toBeInTheDocument()
+  expect(
+    getByRole('button', { name: 'hoorayリアクションを取り消す' }),
+  ).toBeInTheDocument()
+  expect(
+    getByRole('button', { name: 'loveリアクションをする' }),
+  ).toBeInTheDocument()
 })

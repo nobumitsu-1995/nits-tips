@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as styles from './ReactionButtonModal.css'
+import { REACTION_STAMPS, type StampId } from '../model'
+import { ReactionButton } from './ReactionButton'
 
 type Props = {
-  /** 名前 */
-  name: string
+  reactedStampId: StampId[]
+  onClick: (stampId: StampId) => void
 }
 
-export const ReactionButtonModal: React.FC<Props> = ({ name }) => {
-  const [state, setState] = useState('')
-  const handleClick = () => {
-    setState('click')
-  }
-
-  return (
-    <div className={styles.reactionButtonModal}>
-      <p>{name}</p>
-      <p>{state}</p>
-      <button type="button" onClick={handleClick}>
-        button
-      </button>
-    </div>
-  )
-}
+export const ReactionButtonModal: React.FC<Props> = ({
+  reactedStampId,
+  onClick,
+}) => (
+  <div className={styles.reactionButtonModal}>
+    {REACTION_STAMPS.map((stamp) => (
+      <ReactionButton
+        key={stamp.stampId}
+        stamp={stamp}
+        onClick={onClick}
+        isReacted={reactedStampId.includes(stamp.stampId)}
+      />
+    ))}
+  </div>
+)
