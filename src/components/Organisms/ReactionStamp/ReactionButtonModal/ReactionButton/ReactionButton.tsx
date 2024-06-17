@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as styles from './ReactionButton.css'
+import type { Stamp, StampId } from '../../model'
 
 type Props = {
-  /** 名前 */
-  name: string
+  isReacted: boolean
+  stamp: Stamp
+  handleClick: (stampId: StampId) => void
 }
 
-export const ReactionButton: React.FC<Props> = ({ name }) => {
-  const [state, setState] = useState('')
-  const handleClick = () => {
-    setState('click')
-  }
-
-  return (
-    <div className={styles.reactionButton}>
-      <p>{name}</p>
-      <p>{state}</p>
-      <button type="button" onClick={handleClick}>
-        button
-      </button>
-    </div>
-  )
-}
+export const ReactionButton: React.FC<Props> = ({
+  isReacted,
+  stamp,
+  handleClick,
+}) => (
+  <button
+    className={styles.reactionButton}
+    aria-label={`${isReacted ? `${stamp.label}リアクションを取り消す` : `${stamp.label}リアクションをする`}`}
+    type="button"
+    onClick={() => handleClick(stamp.stampId)}
+  >
+    {stamp.icon}
+  </button>
+)
