@@ -2,6 +2,9 @@ import { style } from '@vanilla-extract/css'
 
 export const reactionStamp = style({
   position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  gap: 12,
 })
 
 export const modalContainer = style({

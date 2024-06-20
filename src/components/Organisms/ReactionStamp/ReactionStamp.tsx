@@ -5,7 +5,7 @@ import * as styles from './ReactionStamp.css'
 import { TriggerButton } from './TriggerButton'
 import { ReactionButtonModal } from './ReactionButtonModal'
 import { REACTION_STAMPS } from './model'
-import { ReactedButton } from './ReactedButton'
+import { ReactedButtons } from './ReactedButtons'
 
 export const ReactionStamp: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,6 +19,7 @@ export const ReactionStamp: React.FC = () => {
         <>
           <div className={`${styles.modal}`}>
             <ReactionButtonModal
+              /** ここはHooksで作ったのが渡ってくる想定 */
               reactedStampId={[1, 2, 3]}
               onClick={() => {}}
             />
@@ -30,18 +31,14 @@ export const ReactionStamp: React.FC = () => {
         </>
       )}
       <TriggerButton onClick={handleClick} />
-      {[
-        { stamp: REACTION_STAMPS[0], count: 12, isChecked: false },
-        { stamp: REACTION_STAMPS[5], count: 24, isChecked: true },
-      ].map((stamp) => (
-        <ReactedButton
-          key={stamp.stamp.stampId}
-          stamp={stamp.stamp}
-          count={stamp.count}
-          isChecked={stamp.isChecked}
-          onClick={() => {}}
-        />
-      ))}
+      <ReactedButtons
+        /** ここはHooksで作ったのが渡ってくる想定 */
+        reactedStamps={[
+          { stamp: REACTION_STAMPS[0], count: 12, isChecked: false },
+          { stamp: REACTION_STAMPS[5], count: 24, isChecked: true },
+        ]}
+        onClick={() => {}}
+      />
     </div>
   )
 }
