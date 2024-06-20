@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from '../../../../styles/theme.css'
-import { hover } from '../../../../styles/global.css'
+import { vars } from '../../../../../styles/theme.css'
+import { hover } from '../../../../../styles/global.css'
 
 export const reactedButton = style([
   hover,
