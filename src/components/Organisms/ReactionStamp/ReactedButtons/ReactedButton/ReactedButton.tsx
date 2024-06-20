@@ -1,12 +1,12 @@
 import React from 'react'
 import * as styles from './ReactedButton.css'
-import { type Stamp } from '../model'
+import { type Stamp, type StampId } from '../../model'
 
 type Props = {
   stamp: Stamp
   count: number
   isChecked: boolean
-  onClick: () => void
+  onClick: (stampId: StampId) => void
 }
 
 export const ReactedButton: React.FC<Props> = ({
@@ -21,7 +21,7 @@ export const ReactedButton: React.FC<Props> = ({
     aria-checked={isChecked}
     className={`${styles.reactedButton} ${isChecked && styles.active}`}
     type="button"
-    onClick={onClick}
+    onClick={() => onClick(stamp.stampId)}
   >
     {stamp.icon}
     <span className={styles.count}>{count}</span>
