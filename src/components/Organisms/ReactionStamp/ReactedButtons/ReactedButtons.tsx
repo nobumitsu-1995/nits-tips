@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Stamp, StampId } from '../model'
 import { ReactedButton } from './ReactedButton'
+import * as styles from './ReactedButtons.css'
 
 type Props = {
   reactedStamps: {
@@ -12,7 +13,7 @@ type Props = {
 }
 
 export const ReactedButtons: React.FC<Props> = ({ reactedStamps, onClick }) => (
-  <ul>
+  <ul className={styles.reactedButtons}>
     {reactedStamps.map(({ stamp, count, isChecked }) => (
       <li key={stamp.stampId}>
         <ReactedButton
@@ -25,5 +26,3 @@ export const ReactedButtons: React.FC<Props> = ({ reactedStamps, onClick }) => (
     ))}
   </ul>
 )
-
-export default ReactedButtons
