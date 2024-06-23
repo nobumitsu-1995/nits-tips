@@ -1,11 +1,7 @@
 import { customFetch } from './fetch'
 
-type Response = {
-  hoge: string
-}
-
 export const deleteReactionStamp = async (id: number) => {
-  const response = await customFetch<undefined, Response>({
+  const response = await customFetch<undefined, undefined>({
     method: 'DELETE',
     url: `/reactionStamps/${id}`,
   })
@@ -14,5 +10,8 @@ export const deleteReactionStamp = async (id: number) => {
     throw new Error(response.error)
   }
 
-  return response.data
+  return {
+    ok: response.ok,
+    data: 'success',
+  }
 }

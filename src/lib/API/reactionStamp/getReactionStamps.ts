@@ -1,7 +1,15 @@
+import type { StampId } from '@/components/Organisms/ReactionStamp/model'
 import { customFetch } from './fetch'
 
 type Response = {
-  hoge: string
+  ReactionStampSummary: {
+    StampId: StampId
+    Total: number
+  }[]
+  ReactedStamp: {
+    id: number
+    stamp_id: number
+  }
 }
 
 export const getReactionStamps = async () => {

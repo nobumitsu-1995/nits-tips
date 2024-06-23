@@ -7,7 +7,8 @@ type Arguments = {
 }
 
 type Response = {
-  hoge: string
+  ID: number
+  StampId: number
 }
 
 export const postReactionStamp = async (args: Arguments) => {
