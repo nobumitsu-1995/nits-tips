@@ -6,7 +6,7 @@ export const client = createClient({
   serviceDomain: SERVICE_DOMAIN,
   apiKey:
     import.meta.env.STORYBOOK_ENV === 'true'
-      ? import.meta.env.VITE_MICROCMS_API_KEY
+      ? 'hoge'
       : import.meta.env.PUBLIC_MICROCMS_API_KEY,
 })
 

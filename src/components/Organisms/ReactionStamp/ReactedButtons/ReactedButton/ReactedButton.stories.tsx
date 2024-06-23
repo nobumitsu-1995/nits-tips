@@ -11,7 +11,7 @@ export default {
   args: {
     onClick: fn(),
     count: 12,
-    isActive: false,
+    isChecked: false,
   },
 } as Meta<ComponentType>
 
@@ -21,7 +21,7 @@ export const Default: Story = {
   },
 }
 
-export const IsActive: Story = {
+export const IsChecked: Story = {
   args: {
     stamp: REACTION_STAMPS[1],
     isChecked: true,
