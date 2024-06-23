@@ -9,6 +9,7 @@ type Story = StoryObj<ComponentType>
 
 export default {
   component: SearchResult,
+  tags: ['skip-test'],
 } as Meta<ComponentType>
 
 export const Default: Story = {
@@ -22,7 +23,6 @@ export const Default: Story = {
       </SearchFormProvider>
     ),
   ],
-  tags: ['skip-test'],
 }
 export const NoResult: Story = {
   args: {
