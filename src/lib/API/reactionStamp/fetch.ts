@@ -19,21 +19,19 @@ export const customFetch = async <T, U>({
   url,
   body,
 }: Arguments<T>): Promise<Response<U>> => {
-  const response = await fetch(
-    `${import.meta.env.PUBLIC_REACTION_STAMP_API_DOMAIN}${url}`,
-    {
-      method,
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(body),
+  const fetchUrl = `${import.meta.env.PUBLIC_REACTION_STAMP_API_DOMAIN || 'http://localhost:8080'}${url}`
+  const response = await fetch(fetchUrl, {
+    method,
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  )
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(body),
+  })
 
   if (!response.ok) {
     return {
