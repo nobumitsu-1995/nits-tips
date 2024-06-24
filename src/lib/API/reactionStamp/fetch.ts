@@ -40,10 +40,7 @@ export const customFetch = async <T, U>({
     }
   }
 
-  const data = await response.json()
+  const data = (await response.json()) as Success<U>
 
-  return {
-    ok: true,
-    data,
-  }
+  return data
 }
