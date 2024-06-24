@@ -64,11 +64,12 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     setIsLoading(true)
     setReactionStampSummary((prev) => {
       const target = prev.findIndex((stamp) => stamp.StampId === stampId)
-      const updatedStamp = {
+      // eslint-disable-next-line no-param-reassign
+      prev[target] = {
         ...prev[target],
         Total: prev[target].Total + 1,
       }
-      return [...prev, updatedStamp]
+      return prev
     })
     setReactedStamp({
       stampId,
@@ -91,11 +92,12 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
           const target = updatedStamp.findIndex(
             (stamp) => stamp.StampId === stampId,
           )
-          const prev = {
+          // eslint-disable-next-line no-param-reassign
+          updatedStamp[target] = {
             ...updatedStamp[target],
             Total: updatedStamp[target].Total - 1,
           }
-          return [...updatedStamp, prev]
+          return updatedStamp
         })
         setReactedStamp(undefined)
       })
@@ -109,11 +111,12 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     setIsLoading(true)
     setReactionStampSummary((prev) => {
       const target = prev.findIndex((stamp) => stamp.StampId === stampId)
-      const updatedStamp = {
+      // eslint-disable-next-line no-param-reassign
+      prev[target] = {
         ...prev[target],
         Total: prev[target].Total - 1,
       }
-      return [...prev, updatedStamp]
+      return prev
     })
     setReactedStamp(undefined)
 
@@ -125,11 +128,12 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
           const target = updatedStamp.findIndex(
             (stamp) => stamp.StampId === stampId,
           )
-          const prev = {
+          // eslint-disable-next-line no-param-reassign
+          updatedStamp[target] = {
             ...updatedStamp[target],
             Total: updatedStamp[target].Total + 1,
           }
-          return [...updatedStamp, prev]
+          return updatedStamp
         })
         setReactedStamp({
           id,
