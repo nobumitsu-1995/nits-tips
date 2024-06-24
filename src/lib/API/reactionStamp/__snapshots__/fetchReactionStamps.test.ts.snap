@@ -9,48 +9,42 @@ exports[`reactionStamp削除APIを叩いて、正常に処理が実行できる�
 
 exports[`reactionStamp取得APIを叩いて、正常に値が取得できる。 1`] = `
 {
-  "data": {
-    "ReactedStamp": {
-      "id": 18,
-      "stamp_id": 1,
-    },
-    "ReactionStampSummary": [
-      {
-        "StampId": 1,
-        "Total": 40,
-      },
-      {
-        "StampId": 2,
-        "Total": 7,
-      },
-      {
-        "StampId": 3,
-        "Total": 0,
-      },
-      {
-        "StampId": 4,
-        "Total": 1,
-      },
-      {
-        "StampId": 5,
-        "Total": 0,
-      },
-      {
-        "StampId": 6,
-        "Total": 0,
-      },
-    ],
+  "ReactedStamp": {
+    "id": 18,
+    "stamp_id": 1,
   },
-  "ok": true,
+  "ReactionStampSummary": [
+    {
+      "StampId": 1,
+      "Total": 40,
+    },
+    {
+      "StampId": 2,
+      "Total": 7,
+    },
+    {
+      "StampId": 3,
+      "Total": 0,
+    },
+    {
+      "StampId": 4,
+      "Total": 1,
+    },
+    {
+      "StampId": 5,
+      "Total": 0,
+    },
+    {
+      "StampId": 6,
+      "Total": 0,
+    },
+  ],
 }
 `;
 
 exports[`reactionStamp追加APIを叩いて、正常に値が取得できる。 1`] = `
 {
-  "data": {
-    "ID": 68,
-    "StampId": 2,
-  },
-  "ok": true,
+  "ID": 68,
+  "StampId": 2,
 }
 `;
