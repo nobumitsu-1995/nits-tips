@@ -7,13 +7,9 @@ import {
 } from '@/lib/API/reactionStamp'
 
 type ReactionStampSummary = {
-  StampId: StampId
-  Total: number
-}
-
-type ReactedStamp = {
-  id?: number
-  stampId: number
+  stamp: StampId
+  count: number
+  isChecked: boolean
 }
 
 type HandlePostStampPayload = {
@@ -29,7 +25,7 @@ type HandleDeleteStampPayload = {
 type UseReactionStampReturnType = {
   isLoading: boolean
   reactionStampSummary: ReactionStampSummary[]
-  reactedStamp?: ReactedStamp
+  reactedStamp: StampId[]
   handlePostStamp: (payload: HandlePostStampPayload) => void
   handleDeleteStamp: (payload: HandleDeleteStampPayload) => void
 }
@@ -38,20 +34,23 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
   const [reactionStampSummary, setReactionStampSummary] = useState<
     ReactionStampSummary[]
   >([])
-  const [reactedStamp, setReactedStamp] = useState<ReactedStamp | undefined>(
-    undefined,
-  )
+  const [reactedStamp, setReactedStamp] = useState<StampId[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   /** stamp情報の取得 */
   useEffect(() => {
     getReactionStamps()
       .then((res) => {
-        setReactionStampSummary(res.ReactionStampSummary)
-        setReactedStamp({
-          id: res.ReactedStamp.id,
-          stampId: res.ReactedStamp.stamp_id,
-        })
+        setReactionStampSummary(
+          res.ReactionStampSummary.map((stamp) => ({
+            stamp: stamp.StampId,
+            count: stamp.Total,
+            isChecked: res.ReactedStamp.some(
+              (resReactedStamp) => resReactedStamp.stamp_id === stamp.StampId,
+            ),
+          })),
+        )
+        setReactedStamp(res.ReactedStamp.map((stamp) => stamp.stamp_id))
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
@@ -63,82 +62,75 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     /** 楽観的更新 */
     setIsLoading(true)
     setReactionStampSummary((prev) => {
-      const target = prev.findIndex((stamp) => stamp.StampId === stampId)
+      const target = prev.findIndex(({ stamp }) => stamp === stampId)
       // eslint-disable-next-line no-param-reassign
       prev[target] = {
         ...prev[target],
-        Total: prev[target].Total + 1,
+        count: prev[target].count + 1,
+        isChecked: true,
       }
       return prev
     })
-    setReactedStamp({
-      stampId,
-    })
+    setReactedStamp((prev) => [...prev, stampId])
 
     /** 実際の更新処理 */
     postReactionStamp({
       stamp_id: stampId,
       article_id: articleId,
     })
-      .then((res) => {
-        setReactedStamp({
-          id: res.ID,
-          stampId: res.StampId,
-        })
-      })
       .catch(() => {
         /** fetchに失敗した時、直前データに切り戻す */
         setReactionStampSummary((updatedStamp) => {
           const target = updatedStamp.findIndex(
-            (stamp) => stamp.StampId === stampId,
+            ({ stamp }) => stamp === stampId,
           )
           // eslint-disable-next-line no-param-reassign
           updatedStamp[target] = {
             ...updatedStamp[target],
-            Total: updatedStamp[target].Total - 1,
+            count: updatedStamp[target].count - 1,
+            isChecked: false,
           }
           return updatedStamp
         })
-        setReactedStamp(undefined)
+        setReactedStamp((prev) => prev.filter((stamp) => stamp !== stampId))
       })
       .finally(() => {
         setIsLoading(false)
       })
   }
 
-  const handleDeleteStamp = ({ id, stampId }: HandleDeleteStampPayload) => {
+  const handleDeleteStamp = ({ stampId }: HandleDeleteStampPayload) => {
     /** 楽観的更新 */
     setIsLoading(true)
     setReactionStampSummary((prev) => {
-      const target = prev.findIndex((stamp) => stamp.StampId === stampId)
+      const target = prev.findIndex((stamp) => stamp.stamp === stampId)
       // eslint-disable-next-line no-param-reassign
       prev[target] = {
         ...prev[target],
-        Total: prev[target].Total - 1,
+        count: prev[target].count - 1,
+        isChecked: false,
       }
       return prev
     })
-    setReactedStamp(undefined)
+    setReactedStamp((prev) => prev.filter((stamp) => stamp !== stampId))
 
     /** 実際の更新処理 */
-    deleteReactionStamp(id)
+    deleteReactionStamp(stampId)
       .catch(() => {
         /** fetchに失敗した時、直前データに切り戻す */
         setReactionStampSummary((updatedStamp) => {
           const target = updatedStamp.findIndex(
-            (stamp) => stamp.StampId === stampId,
+            (stamp) => stamp.stamp === stampId,
           )
           // eslint-disable-next-line no-param-reassign
           updatedStamp[target] = {
             ...updatedStamp[target],
-            Total: updatedStamp[target].Total + 1,
+            count: updatedStamp[target].count + 1,
+            isChecked: true,
           }
           return updatedStamp
         })
-        setReactedStamp({
-          id,
-          stampId,
-        })
+        setReactedStamp((prev) => [...prev, stampId])
       })
       .finally(() => {
         setIsLoading(false)
