@@ -8,7 +8,7 @@ type Response = {
   }[]
   ReactedStamp: {
     id: number
-    stamp_id: number
+    stamp_id: StampId
   }[]
 }
 

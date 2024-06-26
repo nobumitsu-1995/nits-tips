@@ -7,8 +7,9 @@ import {
 } from '@/lib/API/reactionStamp'
 
 type ReactionStampSummary = {
-  StampId: StampId
-  Total: number
+  stamp: StampId
+  count: number
+  isChecked: boolean
 }
 
 type HandlePostStampPayload = {
@@ -24,7 +25,7 @@ type HandleDeleteStampPayload = {
 type UseReactionStampReturnType = {
   isLoading: boolean
   reactionStampSummary: ReactionStampSummary[]
-  reactedStamp: number[]
+  reactedStamp: StampId[]
   handlePostStamp: (payload: HandlePostStampPayload) => void
   handleDeleteStamp: (payload: HandleDeleteStampPayload) => void
 }
@@ -33,14 +34,22 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
   const [reactionStampSummary, setReactionStampSummary] = useState<
     ReactionStampSummary[]
   >([])
-  const [reactedStamp, setReactedStamp] = useState<number[]>([])
+  const [reactedStamp, setReactedStamp] = useState<StampId[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   /** stamp情報の取得 */
   useEffect(() => {
     getReactionStamps()
       .then((res) => {
-        setReactionStampSummary(res.ReactionStampSummary)
+        setReactionStampSummary(
+          res.ReactionStampSummary.map((stamp) => ({
+            stamp: stamp.StampId,
+            count: stamp.Total,
+            isChecked: res.ReactedStamp.some(
+              (resReactedStamp) => resReactedStamp.stamp_id === stamp.StampId,
+            ),
+          })),
+        )
         setReactedStamp(res.ReactedStamp.map((stamp) => stamp.stamp_id))
       })
       .catch((e) => {
@@ -53,11 +62,12 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     /** 楽観的更新 */
     setIsLoading(true)
     setReactionStampSummary((prev) => {
-      const target = prev.findIndex((stamp) => stamp.StampId === stampId)
+      const target = prev.findIndex(({ stamp }) => stamp === stampId)
       // eslint-disable-next-line no-param-reassign
       prev[target] = {
         ...prev[target],
-        Total: prev[target].Total + 1,
+        count: prev[target].count + 1,
+        isChecked: true,
       }
       return prev
     })
@@ -72,12 +82,13 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
         /** fetchに失敗した時、直前データに切り戻す */
         setReactionStampSummary((updatedStamp) => {
           const target = updatedStamp.findIndex(
-            (stamp) => stamp.StampId === stampId,
+            ({ stamp }) => stamp === stampId,
           )
           // eslint-disable-next-line no-param-reassign
           updatedStamp[target] = {
             ...updatedStamp[target],
-            Total: updatedStamp[target].Total - 1,
+            count: updatedStamp[target].count - 1,
+            isChecked: false,
           }
           return updatedStamp
         })
@@ -92,11 +103,12 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     /** 楽観的更新 */
     setIsLoading(true)
     setReactionStampSummary((prev) => {
-      const target = prev.findIndex((stamp) => stamp.StampId === stampId)
+      const target = prev.findIndex((stamp) => stamp.stamp === stampId)
       // eslint-disable-next-line no-param-reassign
       prev[target] = {
         ...prev[target],
-        Total: prev[target].Total - 1,
+        count: prev[target].count - 1,
+        isChecked: false,
       }
       return prev
     })
@@ -108,12 +120,13 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
         /** fetchに失敗した時、直前データに切り戻す */
         setReactionStampSummary((updatedStamp) => {
           const target = updatedStamp.findIndex(
-            (stamp) => stamp.StampId === stampId,
+            (stamp) => stamp.stamp === stampId,
           )
           // eslint-disable-next-line no-param-reassign
           updatedStamp[target] = {
             ...updatedStamp[target],
-            Total: updatedStamp[target].Total + 1,
+            count: updatedStamp[target].count + 1,
+            isChecked: true,
           }
           return updatedStamp
         })
