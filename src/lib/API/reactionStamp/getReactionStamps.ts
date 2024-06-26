@@ -9,7 +9,7 @@ type Response = {
   ReactedStamp: {
     id: number
     stamp_id: number
-  }
+  }[]
 }
 
 export const getReactionStamps = async () => {
