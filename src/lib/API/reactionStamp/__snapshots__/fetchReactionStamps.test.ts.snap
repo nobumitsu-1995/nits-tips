@@ -9,10 +9,16 @@ exports[`reactionStamp削除APIを叩いて、正常に処理が実行できる�
 
 exports[`reactionStamp取得APIを叩いて、正常に値が取得できる。 1`] = `
 {
-  "ReactedStamp": {
-    "id": 18,
-    "stamp_id": 1,
-  },
+  "ReactedStamp": [
+    {
+      "id": 18,
+      "stamp_id": 1,
+    },
+    {
+      "id": 21,
+      "stamp_id": 3,
+    },
+  ],
   "ReactionStampSummary": [
     {
       "StampId": 1,
