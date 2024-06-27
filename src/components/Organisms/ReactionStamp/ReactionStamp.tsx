@@ -4,13 +4,36 @@ import React, { useState } from 'react'
 import * as styles from './ReactionStamp.css'
 import { TriggerButton } from './TriggerButton'
 import { ReactionButtonModal } from './ReactionButtonModal'
-import { REACTION_STAMPS } from './model'
 import { ReactedButtons } from './ReactedButtons'
+import type { useReactionStamp } from '@/lib/Hooks/useReactionStamp'
+import type { StampId } from './model'
 
-export const ReactionStamp: React.FC = () => {
+type Props = ReturnType<typeof useReactionStamp> & {
+  articleId: string
+}
+
+export const ReactionStamp: React.FC<Props> = ({
+  isLoading,
+  reactionStampSummary,
+  reactedStamp,
+  handlePostStamp,
+  handleDeleteStamp,
+  articleId,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleClick = () => {
     setIsOpen((prev) => !prev)
+  }
+
+  const handleClickStamp = (stampId: StampId) => {
+    reactedStamp.includes(stampId)
+      ? handleDeleteStamp({
+          stampId,
+        })
+      : handlePostStamp({
+          stampId,
+          articleId,
+        })
   }
 
   return (
@@ -19,9 +42,9 @@ export const ReactionStamp: React.FC = () => {
         <>
           <div className={`${styles.modal}`}>
             <ReactionButtonModal
-              /** ここはHooksで作ったのが渡ってくる想定 */
-              reactedStampId={[1, 2, 3]}
-              onClick={() => {}}
+              isDisabled={isLoading}
+              reactedStampId={reactedStamp}
+              onClick={handleClickStamp}
             />
           </div>
           <div
@@ -32,12 +55,9 @@ export const ReactionStamp: React.FC = () => {
       )}
       <TriggerButton onClick={handleClick} />
       <ReactedButtons
-        /** ここはHooksで作ったのが渡ってくる想定 */
-        reactedStamps={[
-          { stamp: REACTION_STAMPS[0], count: 12, isChecked: false },
-          { stamp: REACTION_STAMPS[5], count: 24, isChecked: true },
-        ]}
-        onClick={() => {}}
+        isDisabled={isLoading}
+        reactedStamps={reactionStampSummary}
+        onClick={handleClickStamp}
       />
     </div>
   )
