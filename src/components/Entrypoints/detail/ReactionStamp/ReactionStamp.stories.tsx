@@ -7,12 +7,8 @@ type Story = StoryObj<ComponentType>
 export default {
   component: ReactionStamp,
   args: {
-    name: 'hoge',
+    articleId: 'hoge',
   },
 } as Meta<ComponentType>
 
-export const Primary: Story = {
-  args: {
-    name: 'primary',
-  },
-}
+export const Default: Story = {}
