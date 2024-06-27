@@ -4,6 +4,7 @@ import { ReactedButton } from './ReactedButton'
 import * as styles from './ReactedButtons.css'
 
 type Props = {
+  isDisabled: boolean
   reactedStamps: {
     stamp: Stamp
     count: number
@@ -12,7 +13,11 @@ type Props = {
   onClick: (stampId: StampId) => void
 }
 
-export const ReactedButtons: React.FC<Props> = ({ reactedStamps, onClick }) => (
+export const ReactedButtons: React.FC<Props> = ({
+  isDisabled,
+  reactedStamps,
+  onClick,
+}) => (
   <ul className={styles.reactedButtons}>
     {reactedStamps.map(({ stamp, count, isChecked }) => (
       <li key={stamp.stampId}>
@@ -20,6 +25,7 @@ export const ReactedButtons: React.FC<Props> = ({ reactedStamps, onClick }) => (
           stamp={stamp}
           count={count}
           isChecked={isChecked}
+          isDisabled={isDisabled}
           onClick={() => onClick(stamp.stampId)}
         />
       </li>

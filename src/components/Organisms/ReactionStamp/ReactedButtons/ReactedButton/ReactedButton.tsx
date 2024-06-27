@@ -6,6 +6,7 @@ type Props = {
   stamp: Stamp
   count: number
   isChecked: boolean
+  isDisabled: boolean
   onClick: (stampId: StampId) => void
 }
 
@@ -13,12 +14,14 @@ export const ReactedButton: React.FC<Props> = ({
   stamp,
   count,
   isChecked,
+  isDisabled,
   onClick,
 }) => (
   <button
     aria-label={`${count}の${stamp.label}リアクション ${isChecked ? `${stamp.label}リアクションを取り消す` : `${stamp.label}リアクションをする`}`}
     role="switch"
     aria-checked={isChecked}
+    disabled={isDisabled}
     className={`${styles.reactedButton} ${isChecked && styles.active}`}
     type="button"
     onClick={() => onClick(stamp.stampId)}

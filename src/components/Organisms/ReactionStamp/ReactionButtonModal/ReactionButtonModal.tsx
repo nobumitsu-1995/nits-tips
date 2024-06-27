@@ -4,11 +4,13 @@ import { REACTION_STAMPS, type StampId } from '../model'
 import { ReactionButton } from './ReactionButton'
 
 type Props = {
+  isDisabled: boolean
   reactedStampId: StampId[]
   onClick: (stampId: StampId) => void
 }
 
 export const ReactionButtonModal: React.FC<Props> = ({
+  isDisabled,
   reactedStampId,
   onClick,
 }) => (
@@ -19,6 +21,7 @@ export const ReactionButtonModal: React.FC<Props> = ({
         stamp={stamp}
         onClick={onClick}
         isReacted={reactedStampId.includes(stamp.stampId)}
+        isDisabled={isDisabled}
       />
     ))}
   </div>
