@@ -1,4 +1,7 @@
-import type { StampId } from '@/components/Organisms/ReactionStamp/model'
+import {
+  REACTION_STAMPS,
+  type StampId,
+} from '@/components/Organisms/ReactionStamp/model'
 import { customFetch } from './fetch'
 
 type Response = {
@@ -22,5 +25,23 @@ export const getReactionStamps = async () => {
     throw new Error(response.error)
   }
 
-  return response.data
+  const reactedStamps = response.data.ReactedStamp.map(
+    (stamp) => stamp.stamp_id,
+  )
+  const reactionStampSummary = response.data.ReactionStampSummary.map(
+    (stamp) => ({
+      stamp: REACTION_STAMPS.find(
+        (reactionStamp) => reactionStamp.stampId === stamp.StampId,
+      )!,
+      count: stamp.Total,
+      isChecked: response.data.ReactedStamp.some(
+        (resReactedStamp) => resReactedStamp.stamp_id === stamp.StampId,
+      ),
+    }),
+  )
+
+  return {
+    reactionStampSummary,
+    reactedStamps,
+  }
 }

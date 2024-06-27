@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { StampId } from '@/components/Organisms/ReactionStamp/model'
+import type { Stamp, StampId } from '@/components/Organisms/ReactionStamp/model'
 import {
   deleteReactionStamp,
   getReactionStamps,
@@ -7,7 +7,7 @@ import {
 } from '@/lib/API/reactionStamp'
 
 type ReactionStampSummary = {
-  stamp: StampId
+  stamp: Stamp
   count: number
   isChecked: boolean
 }
@@ -18,7 +18,6 @@ type HandlePostStampPayload = {
 }
 
 type HandleDeleteStampPayload = {
-  id: number
   stampId: StampId
 }
 
@@ -41,16 +40,8 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
   useEffect(() => {
     getReactionStamps()
       .then((res) => {
-        setReactionStampSummary(
-          res.ReactionStampSummary.map((stamp) => ({
-            stamp: stamp.StampId,
-            count: stamp.Total,
-            isChecked: res.ReactedStamp.some(
-              (resReactedStamp) => resReactedStamp.stamp_id === stamp.StampId,
-            ),
-          })),
-        )
-        setReactedStamp(res.ReactedStamp.map((stamp) => stamp.stamp_id))
+        setReactionStampSummary(res.reactionStampSummary)
+        setReactedStamp(res.reactedStamps)
       })
       .catch((e) => {
         // eslint-disable-next-line no-console
@@ -62,7 +53,7 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     /** 楽観的更新 */
     setIsLoading(true)
     setReactionStampSummary((prev) => {
-      const target = prev.findIndex(({ stamp }) => stamp === stampId)
+      const target = prev.findIndex(({ stamp }) => stamp.stampId === stampId)
       // eslint-disable-next-line no-param-reassign
       prev[target] = {
         ...prev[target],
@@ -82,7 +73,7 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
         /** fetchに失敗した時、直前データに切り戻す */
         setReactionStampSummary((updatedStamp) => {
           const target = updatedStamp.findIndex(
-            ({ stamp }) => stamp === stampId,
+            ({ stamp }) => stamp.stampId === stampId,
           )
           // eslint-disable-next-line no-param-reassign
           updatedStamp[target] = {
@@ -103,7 +94,7 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
     /** 楽観的更新 */
     setIsLoading(true)
     setReactionStampSummary((prev) => {
-      const target = prev.findIndex((stamp) => stamp.stamp === stampId)
+      const target = prev.findIndex((stamp) => stamp.stamp.stampId === stampId)
       // eslint-disable-next-line no-param-reassign
       prev[target] = {
         ...prev[target],
@@ -120,7 +111,7 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
         /** fetchに失敗した時、直前データに切り戻す */
         setReactionStampSummary((updatedStamp) => {
           const target = updatedStamp.findIndex(
-            (stamp) => stamp.stamp === stampId,
+            (stamp) => stamp.stamp.stampId === stampId,
           )
           // eslint-disable-next-line no-param-reassign
           updatedStamp[target] = {

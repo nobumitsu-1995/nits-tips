@@ -20,7 +20,10 @@ const Component = () => {
       {reactionStampSummary &&
         reactionStampSummary.length > 0 &&
         reactionStampSummary.map((stamp) => (
-          <p key={stamp.stamp} data-testid={`stamp-${stamp.stamp}`}>
+          <p
+            key={stamp.stamp.stampId}
+            data-testid={`stamp-${stamp.stamp.stampId}`}
+          >
             {stamp.count}
           </p>
         ))}
@@ -44,7 +47,6 @@ const Component = () => {
         type="button"
         onClick={() =>
           handleDeleteStamp({
-            id: 0,
             stampId: 1,
           })
         }
