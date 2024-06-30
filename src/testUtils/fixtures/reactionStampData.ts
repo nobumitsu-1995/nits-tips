@@ -25,14 +25,5 @@ export const reactionStamps = {
       Total: 0,
     },
   ],
-  ReactedStamp: [
-    {
-      id: 18,
-      stamp_id: 1,
-    },
-    {
-      id: 21,
-      stamp_id: 3,
-    },
-  ],
+  ReactedStamp: [1, 3],
 }

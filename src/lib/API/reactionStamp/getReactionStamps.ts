@@ -9,10 +9,7 @@ type Response = {
     StampId: StampId
     Total: number
   }[]
-  ReactedStamp: {
-    id: number
-    stamp_id: StampId
-  }[]
+  ReactedStamp: StampId[]
 }
 
 export const getReactionStamps = async () => {
@@ -25,9 +22,6 @@ export const getReactionStamps = async () => {
     throw new Error(response.error)
   }
 
-  const reactedStamps = response.data.ReactedStamp.map(
-    (stamp) => stamp.stamp_id,
-  )
   const reactionStampSummary = response.data.ReactionStampSummary.map(
     (stamp) => ({
       stamp: REACTION_STAMPS.find(
@@ -35,13 +29,13 @@ export const getReactionStamps = async () => {
       )!,
       count: stamp.Total,
       isChecked: response.data.ReactedStamp.some(
-        (resReactedStamp) => resReactedStamp.stamp_id === stamp.StampId,
+        (resReactedStamp) => resReactedStamp === stamp.StampId,
       ),
     }),
   )
 
   return {
     reactionStampSummary,
-    reactedStamps,
+    reactedStamps: response.data.ReactedStamp,
   }
 }
