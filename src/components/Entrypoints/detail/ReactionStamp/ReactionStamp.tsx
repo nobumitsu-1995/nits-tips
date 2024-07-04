@@ -7,6 +7,6 @@ type Props = {
 }
 
 export const ReactionStamp: React.FC<Props> = ({ articleId }) => {
-  const returnValue = useReactionStamp()
+  const returnValue = useReactionStamp({ articleId })
   return <ReactionStampComponent articleId={articleId} {...returnValue} />
 }
