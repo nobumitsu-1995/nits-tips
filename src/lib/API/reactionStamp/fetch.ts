@@ -27,6 +27,7 @@ export const customFetch = async <T, U>({
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
+      Cookie: 'sessionId',
     },
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
