@@ -5,6 +5,8 @@ import { setup } from '@/testUtils'
 import { useReactionStamp } from './useReactionStamp'
 import server from '@/testUtils/mocks/server'
 
+const ARTICLE_ID = 'articleId'
+
 const Component = () => {
   const {
     isLoading,
@@ -12,7 +14,7 @@ const Component = () => {
     reactedStamp,
     handlePostStamp,
     handleDeleteStamp,
-  } = useReactionStamp()
+  } = useReactionStamp({ articleId: ARTICLE_ID })
 
   return (
     <div>

@@ -2,8 +2,9 @@ import { deleteReactionStamp } from './deleteReactionStamp'
 import { getReactionStamps } from './getReactionStamps'
 import { postReactionStamp } from './postReactionStamp'
 
+const ARTICLE_ID = 'articleId'
 test('reactionStamp取得APIを叩いて、正常に値が取得できる。', async () => {
-  const response = await getReactionStamps()
+  const response = await getReactionStamps({ articleId: ARTICLE_ID })
   expect(response).toMatchSnapshot()
 })
 
