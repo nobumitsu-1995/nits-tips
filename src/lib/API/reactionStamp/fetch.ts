@@ -27,6 +27,7 @@ export const customFetch = async <T, U>({
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
+      Cookie: 'sessionId',
     },
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
@@ -40,7 +41,10 @@ export const customFetch = async <T, U>({
     }
   }
 
-  const data = (await response.json()) as Success<U>
+  const data = await response.json()
 
-  return data
+  return {
+    ok: true,
+    data,
+  }
 }

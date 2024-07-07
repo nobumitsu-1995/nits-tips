@@ -4,6 +4,10 @@ import {
 } from '@/components/Organisms/ReactionStamp/model'
 import { customFetch } from './fetch'
 
+type Args = {
+  articleId: string
+}
+
 type Response = {
   ReactionStampSummary: {
     StampId: StampId
@@ -12,10 +16,10 @@ type Response = {
   ReactedStamp: StampId[]
 }
 
-export const getReactionStamps = async () => {
+export const getReactionStamps = async ({ articleId }: Args) => {
   const response = await customFetch<undefined, Response>({
     method: 'GET',
-    url: '/reactionStamps',
+    url: `/reactionStamps/${articleId}`,
   })
 
   if (!response.ok) {
