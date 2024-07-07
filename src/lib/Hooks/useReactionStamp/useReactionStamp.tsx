@@ -21,6 +21,10 @@ type HandleDeleteStampPayload = {
   stampId: StampId
 }
 
+type UseReactionStampPayloadType = {
+  articleId: string
+}
+
 type UseReactionStampReturnType = {
   isLoading: boolean
   reactionStampSummary: ReactionStampSummary[]
@@ -29,7 +33,9 @@ type UseReactionStampReturnType = {
   handleDeleteStamp: (payload: HandleDeleteStampPayload) => void
 }
 
-export const useReactionStamp = (): UseReactionStampReturnType => {
+export const useReactionStamp = ({
+  articleId,
+}: UseReactionStampPayloadType): UseReactionStampReturnType => {
   const [reactionStampSummary, setReactionStampSummary] = useState<
     ReactionStampSummary[]
   >([])
@@ -38,7 +44,7 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
 
   /** stamp情報の取得 */
   useEffect(() => {
-    getReactionStamps()
+    getReactionStamps({ articleId })
       .then((res) => {
         setReactionStampSummary(res.reactionStampSummary)
         setReactedStamp(res.reactedStamps)
@@ -47,8 +53,9 @@ export const useReactionStamp = (): UseReactionStampReturnType => {
         // eslint-disable-next-line no-console
         console.error(e)
       })
-  }, [])
+  }, [articleId])
 
+  // eslint-disable-next-line no-shadow
   const handlePostStamp = ({ stampId, articleId }: HandlePostStampPayload) => {
     /** 楽観的更新 */
     setIsLoading(true)
