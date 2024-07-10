@@ -7,6 +7,71 @@ exports[`reactionStamp削除APIを叩いて、正常に処理が実行できる�
 }
 `;
 
+exports[`reactionStamp取得APIを叩いて、正常に値が取得できる。 1`] = `
+{
+  "reactedStamps": [
+    1,
+    3,
+  ],
+  "reactionStampSummary": [
+    {
+      "count": 40,
+      "isChecked": true,
+      "stamp": {
+        "icon": "👍",
+        "label": "good",
+        "stampId": 1,
+      },
+    },
+    {
+      "count": 7,
+      "isChecked": false,
+      "stamp": {
+        "icon": "👀",
+        "label": "watch",
+        "stampId": 2,
+      },
+    },
+    {
+      "count": 0,
+      "isChecked": true,
+      "stamp": {
+        "icon": "😄",
+        "label": "nice",
+        "stampId": 3,
+      },
+    },
+    {
+      "count": 1,
+      "isChecked": false,
+      "stamp": {
+        "icon": "🚀",
+        "label": "genius",
+        "stampId": 4,
+      },
+    },
+    {
+      "count": 0,
+      "isChecked": false,
+      "stamp": {
+        "icon": "🎉",
+        "label": "hooray",
+        "stampId": 5,
+      },
+    },
+    {
+      "count": 0,
+      "isChecked": false,
+      "stamp": {
+        "icon": "❤️",
+        "label": "love",
+        "stampId": 6,
+      },
+    },
+  ],
+}
+`;
+
 exports[`reactionStamp追加APIを叩いて、正常に値が取得できる。 1`] = `
 {
   "data": {

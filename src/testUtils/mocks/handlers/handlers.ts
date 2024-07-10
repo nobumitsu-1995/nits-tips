@@ -14,6 +14,6 @@ const { all, get, post, put, patch, delete: httpDelete } = http
 export const handlers = [
   httpDelete('http://localhost:8080/reactionStamps/:id', deleteReactionStampResolver),
   post('http://localhost:8080/reactionStamps', postReactionStampResolver),
-  get('http://localhost:8080/reactionStamps', getReactionStampsResolver),
+  get('http://localhost:8080/reactionStamps/:id', getReactionStampsResolver),
   all('/sample', sampleResolver),
 ]
