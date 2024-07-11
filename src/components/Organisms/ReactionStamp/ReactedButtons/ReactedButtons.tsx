@@ -17,18 +17,22 @@ export const ReactedButtons: React.FC<Props> = ({
   isDisabled,
   reactedStamps,
   onClick,
-}) => (
-  <ul className={styles.reactedButtons}>
-    {reactedStamps.map(({ stamp, count, isChecked }) => (
-      <li key={stamp.stampId}>
-        <ReactedButton
-          stamp={stamp}
-          count={count}
-          isChecked={isChecked}
-          isDisabled={isDisabled}
-          onClick={() => onClick(stamp.stampId)}
-        />
-      </li>
-    ))}
-  </ul>
-)
+}) => {
+  const filteredReactedStamps = reactedStamps.filter(({ count }) => count !== 0)
+
+  return (
+    <ul className={styles.reactedButtons}>
+      {filteredReactedStamps.map(({ stamp, count, isChecked }) => (
+        <li key={stamp.stampId}>
+          <ReactedButton
+            stamp={stamp}
+            count={count}
+            isChecked={isChecked}
+            isDisabled={isDisabled}
+            onClick={() => onClick(stamp.stampId)}
+          />
+        </li>
+      ))}
+    </ul>
+  )
+}
