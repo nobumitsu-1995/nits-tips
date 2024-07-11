@@ -26,6 +26,7 @@ export const ReactionStamp: React.FC<Props> = ({
   }
 
   const handleClickStamp = (stampId: StampId) => {
+    setIsOpen(false)
     reactedStamp.includes(stampId)
       ? handleDeleteStamp({
           stampId,
