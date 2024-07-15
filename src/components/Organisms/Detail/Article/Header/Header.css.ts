@@ -34,3 +34,7 @@ export const containerLeft = style({
     },
   },
 })
+
+export const reactionStampContainer = style({
+  marginTop: 20,
+})

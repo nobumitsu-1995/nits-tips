@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { type PropsWithChildren } from 'react'
 import { TagList } from '@Molecules/TagList'
 import { PublishedAt } from '@Atoms/PublishedAt'
 import * as styles from './Header.css'
 import { Author } from './Author'
 import type { ArticleData } from '@/lib/interfaces/Article'
 
-type Props = Omit<ArticleData, 'content'>
+type Props = PropsWithChildren<Omit<ArticleData, 'content'>>
 
 export const Header: React.FC<Props> = ({
   author,
@@ -13,6 +13,7 @@ export const Header: React.FC<Props> = ({
   tagData,
   publishedAt,
   updatedAt,
+  children,
 }) => (
   <div>
     <h1 className={styles.title}>{title}</h1>
@@ -27,5 +28,6 @@ export const Header: React.FC<Props> = ({
       </div>
       <Author {...author} />
     </div>
+    <div className={styles.reactionStampContainer}>{children}</div>
   </div>
 )
