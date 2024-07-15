@@ -1,1 +1,1 @@
-export { ReactionStamp } from './ReactionStamp'
+export { Container as ReactionStamp } from './Container'

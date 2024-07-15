@@ -27,5 +27,9 @@ export const Header: React.FC<Props> = ({
       </div>
       <Author {...author} />
     </div>
+    <div
+      className={styles.reactionStampContainer}
+      data-reaction-stamp-entrypoint1
+    />
   </div>
 )

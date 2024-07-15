@@ -5,12 +5,16 @@ import * as styles from './ReactionStamp.css'
 import { TriggerButton } from './TriggerButton'
 import { ReactionButtonModal } from './ReactionButtonModal'
 import { ReactedButtons } from './ReactedButtons'
-import type { useReactionStamp } from '@/lib/Hooks/useReactionStamp'
 import type { StampId } from './model'
+import type {
+  useReactionStampAction,
+  useReactionStampState,
+} from '@/lib/Hooks/useReactionStamp'
 
-type Props = ReturnType<typeof useReactionStamp> & {
-  articleId: string
-}
+type Props = ReturnType<typeof useReactionStampAction> &
+  ReturnType<typeof useReactionStampState> & {
+    articleId: string
+  }
 
 export const ReactionStamp: React.FC<Props> = ({
   isLoading,
@@ -26,6 +30,7 @@ export const ReactionStamp: React.FC<Props> = ({
   }
 
   const handleClickStamp = (stampId: StampId) => {
+    setIsOpen(false)
     reactedStamp.includes(stampId)
       ? handleDeleteStamp({
           stampId,

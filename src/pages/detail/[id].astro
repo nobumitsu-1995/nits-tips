@@ -3,6 +3,7 @@ import BaseLayout from '@layout/BaseLayout.astro'
 import { Main } from '@Entrypoints/detail/Main'
 import { SideBar } from '@Entrypoints/detail/SideBar'
 import { Share } from '@Entrypoints/detail/Share'
+import { ReactionStamp } from '@Entrypoints/detail/ReactionStamp'
 import { getAllBlogs } from '@/lib/API/microCMS/getAllBlogs'
 import { getRelativeBlogs } from '@/lib/API/microCMS/getRelativeBlogs'
 import { getGithubAccount } from '@/lib/API/getGithubAccount'
@@ -34,7 +35,9 @@ const githubAccount = await getGithubAccount()
   <div class={styles.container}>
     <div class={styles.wrapper}>
       <main class={styles.mainContainer}>
-        <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount} />
+        <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount}>
+          <ReactionStamp client:only='react' articleId={blog.id} />
+        </Main>
       </main>
       <aside class={styles.asideContainer}>
         <SideBar content={blog.content}>

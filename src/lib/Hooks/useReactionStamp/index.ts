@@ -1,1 +1,5 @@
-export { useReactionStamp } from './useReactionStamp'
+export {
+  ReactionStampProvider,
+  useReactionStampAction,
+  useReactionStampState,
+} from './ReactionStampProvider'
