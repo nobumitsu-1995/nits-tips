@@ -21,11 +21,11 @@ type HandleDeleteStampPayload = {
   stampId: StampId
 }
 
-type UseReactionStampPayloadType = {
+export type UseReactionStampPayloadType = {
   articleId: string
 }
 
-type UseReactionStampReturnType = {
+export type UseReactionStampReturnType = {
   isLoading: boolean
   reactionStampSummary: ReactionStampSummary[]
   reactedStamp: StampId[]
