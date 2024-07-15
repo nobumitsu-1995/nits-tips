@@ -8,7 +8,9 @@ import {
 
 type State = 'isLoading' | 'reactionStampSummary' | 'reactedStamp'
 type ReactionStampAction = Omit<UseReactionStampReturnType, State>
-type ReactionStampState = Pick<UseReactionStampReturnType, State>
+type ReactionStampState = {
+  articleId: string
+} & Pick<UseReactionStampReturnType, State>
 
 const [ActionProvider, useActionContext] =
   createCustomComtext<ReactionStampAction>({
@@ -20,6 +22,7 @@ const [StateProvider, useStateContext] =
     isLoading: false,
     reactionStampSummary: [],
     reactedStamp: [],
+    articleId: '',
   })
 
 export const ReactionStampProvider = ({
@@ -46,6 +49,7 @@ export const ReactionStampProvider = ({
           isLoading,
           reactionStampSummary,
           reactedStamp,
+          articleId,
         }}
       >
         {children}
