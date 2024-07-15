@@ -36,7 +36,7 @@ const githubAccount = await getGithubAccount()
     <div class={styles.wrapper}>
       <main class={styles.mainContainer}>
         <Main blog={blog} relatedBlogs={relatedBlogs} githubAccount={githubAccount}>
-          <ReactionStamp client:load articleId={blog.id} />
+          <ReactionStamp client:only='react' articleId={blog.id} />
         </Main>
       </main>
       <aside class={styles.asideContainer}>
