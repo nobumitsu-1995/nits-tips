@@ -10,15 +10,24 @@ const Presenter: React.FC = () => {
   const reactionStampActions = useReactionStampAction()
   const reactionStampStates = useReactionStampState()
 
+  const articleHeaderDOM = document.querySelector(
+    '[data-reaction-stamp-entrypoint1]',
+  )
+  const articleBottomDOM = document.querySelector(
+    '[data-reaction-stamp-entrypoint2]',
+  )
+
+  if (!articleHeaderDOM || !articleBottomDOM) return null
+
   return (
     <>
       {createPortal(
         <ReactionStamp {...reactionStampActions} {...reactionStampStates} />,
-        document.querySelector('[data-reaction-stamp-entrypoint1]')!,
+        articleHeaderDOM,
       )}
       {createPortal(
         <ReactionStamp {...reactionStampActions} {...reactionStampStates} />,
-        document.querySelector('[data-reaction-stamp-entrypoint2]')!,
+        articleBottomDOM,
       )}
     </>
   )
