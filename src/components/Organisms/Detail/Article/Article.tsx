@@ -13,12 +13,13 @@ export const Article: React.FC<Props> = ({ children, ...props }) => {
   const { content, ...headerProps } = props
   return (
     <Card padding="30px 32px">
-      <Header {...headerProps}>{children}</Header>
+      <Header {...headerProps} />
       <Border margin="20px 0 36px" />
       <Content content={content} />
       <Border margin="36px 0" />
       <TagList tagData={headerProps.tagData} />
-      <div className={styles.container}>{children}</div>
+      <div className={styles.container} data-reaction-stamp-entrypoint2 />
+      {children}
     </Card>
   )
 }
