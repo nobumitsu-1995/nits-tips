@@ -5,6 +5,7 @@ import {
   type UseReactionStampPayloadType,
   type UseReactionStampReturnType,
 } from './useReactionStamp'
+import { ToastProvider } from '../useToastProvider/useToastProvider'
 
 type State = 'isLoading' | 'reactionStampSummary' | 'reactedStamp'
 type ReactionStampAction = Omit<UseReactionStampReturnType, State>
@@ -38,23 +39,25 @@ export const ReactionStampProvider = ({
   } = useReactionStamp({ articleId })
 
   return (
-    <ActionProvider
-      value={{
-        handleDeleteStamp,
-        handlePostStamp,
-      }}
-    >
-      <StateProvider
+    <ToastProvider>
+      <ActionProvider
         value={{
-          isLoading,
-          reactionStampSummary,
-          reactedStamp,
-          articleId,
+          handleDeleteStamp,
+          handlePostStamp,
         }}
       >
-        {children}
-      </StateProvider>
-    </ActionProvider>
+        <StateProvider
+          value={{
+            isLoading,
+            reactionStampSummary,
+            reactedStamp,
+            articleId,
+          }}
+        >
+          {children}
+        </StateProvider>
+      </ActionProvider>
+    </ToastProvider>
   )
 }
 

@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react'
-import type { Stamp, StampId } from '@/components/Organisms/ReactionStamp/model'
+import {
+  REACTION_STAMPS,
+  type Stamp,
+  type StampId,
+} from '@/components/Organisms/ReactionStamp/model'
 import {
   deleteReactionStamp,
   getReactionStamps,
   postReactionStamp,
 } from '@/lib/API/reactionStamp'
+import { TOAST_TYPE, useToastProvider } from '../useToastProvider'
 
 type ReactionStampSummary = {
   stamp: Stamp
@@ -33,27 +38,34 @@ export type UseReactionStampReturnType = {
   handleDeleteStamp: (payload: HandleDeleteStampPayload) => void
 }
 
+const INITIAL_STAMP_SUMMARY: ReactionStampSummary[] = REACTION_STAMPS.map(
+  (stamp) => ({
+    stamp,
+    count: 0,
+    isChecked: false,
+  }),
+)
+
+const ERROR_TEXT =
+  'スタンプの押下に失敗しました。しばらくしてから再度お試しください。'
+
 export const useReactionStamp = ({
   articleId,
 }: UseReactionStampPayloadType): UseReactionStampReturnType => {
   const [reactionStampSummary, setReactionStampSummary] = useState<
     ReactionStampSummary[]
-  >([])
+  >(INITIAL_STAMP_SUMMARY)
+  const { showToast } = useToastProvider()
   const [reactedStamp, setReactedStamp] = useState<StampId[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   /** stamp情報の取得 */
   useEffect(() => {
-    getReactionStamps({ articleId })
-      .then((res) => {
-        setReactionStampSummary(res.reactionStampSummary)
-        setReactedStamp(res.reactedStamps)
-      })
-      .catch((e) => {
-        // eslint-disable-next-line no-console
-        console.error(e)
-      })
-  }, [articleId])
+    getReactionStamps({ articleId }).then((res) => {
+      setReactionStampSummary(res.reactionStampSummary)
+      setReactedStamp(res.reactedStamps)
+    })
+  }, [articleId, showToast])
 
   // eslint-disable-next-line no-shadow
   const handlePostStamp = ({ stampId, articleId }: HandlePostStampPayload) => {
@@ -91,6 +103,10 @@ export const useReactionStamp = ({
           return updatedStamp
         })
         setReactedStamp((prev) => prev.filter((stamp) => stamp !== stampId))
+        showToast({
+          message: ERROR_TEXT,
+          type: TOAST_TYPE.failed,
+        })
       })
       .finally(() => {
         setIsLoading(false)
@@ -129,6 +145,10 @@ export const useReactionStamp = ({
           return updatedStamp
         })
         setReactedStamp((prev) => [...prev, stampId])
+        showToast({
+          message: ERROR_TEXT,
+          type: TOAST_TYPE.failed,
+        })
       })
       .finally(() => {
         setIsLoading(false)
