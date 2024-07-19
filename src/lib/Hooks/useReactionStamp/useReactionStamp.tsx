@@ -61,15 +61,10 @@ export const useReactionStamp = ({
 
   /** stamp情報の取得 */
   useEffect(() => {
-    getReactionStamps({ articleId })
-      .then((res) => {
-        setReactionStampSummary(res.reactionStampSummary)
-        setReactedStamp(res.reactedStamps)
-      })
-      .catch((e) => {
-        // eslint-disable-next-line no-console
-        console.error(e)
-      })
+    getReactionStamps({ articleId }).then((res) => {
+      setReactionStampSummary(res.reactionStampSummary)
+      setReactedStamp(res.reactedStamps)
+    })
   }, [articleId, showToast])
 
   // eslint-disable-next-line no-shadow
