@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { type PropsWithChildren } from 'react'
 import { waitFor } from '@testing-library/react'
 import { http, HttpResponse } from 'msw'
 import { setup } from '@/testUtils'
 import { useReactionStamp } from './useReactionStamp'
 import server from '@/testUtils/mocks/server'
+import { ReactionStampProvider } from './ReactionStampProvider'
 
 const ARTICLE_ID = 'articleId'
 
+const Wrapper: React.FC<PropsWithChildren> = ({ children }) => (
+  <ReactionStampProvider articleId="hoge">{children}</ReactionStampProvider>
+)
 const Component = () => {
   const {
     isLoading,
@@ -60,8 +64,12 @@ const Component = () => {
 }
 
 test('reactionStampSummary,reactedStampの初期表示が正常にされている。', async () => {
-  expect.assertions(10)
-  const { getByTestId } = setup(<Component />)
+  expect.assertions(11)
+  const { getByTestId } = setup(
+    <Wrapper>
+      <Component />
+    </Wrapper>,
+  )
 
   await waitFor(() => {
     expect(getByTestId('loading').innerHTML).toBe('false')
@@ -78,7 +86,11 @@ test('reactionStampSummary,reactedStampの初期表示が正常にされてい�
 
 test('postをした時、正常に値が更新される', async () => {
   expect.assertions(2)
-  const { getByRole, getByTestId, user } = setup(<Component />)
+  const { getByRole, getByTestId, user } = setup(
+    <Wrapper>
+      <Component />
+    </Wrapper>,
+  )
   await user.click(getByRole('button', { name: 'post' }))
 
   await waitFor(() => {
@@ -89,7 +101,11 @@ test('postをした時、正常に値が更新される', async () => {
 
 test('deleteをした時、正常に値が更新される', async () => {
   expect.assertions(2)
-  const { getByRole, getByTestId, queryByTestId, user } = setup(<Component />)
+  const { getByRole, getByTestId, queryByTestId, user } = setup(
+    <Wrapper>
+      <Component />
+    </Wrapper>,
+  )
   await user.click(getByRole('button', { name: 'delete' }))
 
   await waitFor(() => {
@@ -99,32 +115,41 @@ test('deleteをした時、正常に値が更新される', async () => {
 })
 
 test('postしたが正常に処理されなかった時、直前のデータに切り戻される', async () => {
-  expect.assertions(2)
+  expect.assertions(3)
   server.use(
     http.post('http://localhost:8080/reactionStamps', () =>
       HttpResponse.error(),
     ),
   )
-  const { getByRole, getByTestId, queryByTestId, user } = setup(<Component />)
+  const { getByRole, getByTestId, queryByTestId, user } = setup(
+    <Wrapper>
+      <Component />
+    </Wrapper>,
+  )
   await user.click(getByRole('button', { name: 'post' }))
-
   await waitFor(() => {
+    expect(getByRole('alert')).toBeInTheDocument()
     expect(getByTestId('stamp-2').innerHTML).toBe('7')
     expect(queryByTestId('reactedStamp-2')).not.toBeInTheDocument()
   })
 })
 
 test('deleteしたが正常に処理されなかった時、直前のデータに切り戻される', async () => {
-  expect.assertions(2)
+  expect.assertions(3)
   server.use(
     http.delete('http://localhost:8080/reactionStamps/:id', () =>
       HttpResponse.error(),
     ),
   )
-  const { getByRole, getByTestId, user } = setup(<Component />)
+  const { getByRole, getByTestId, user } = setup(
+    <Wrapper>
+      <Component />
+    </Wrapper>,
+  )
   await user.click(getByRole('button', { name: 'delete' }))
 
   await waitFor(() => {
+    expect(getByRole('alert')).toBeInTheDocument()
     expect(getByTestId('stamp-1').innerHTML).toBe('40')
     expect(getByTestId('reactedStamp-1').innerHTML).toBe('1')
   })
