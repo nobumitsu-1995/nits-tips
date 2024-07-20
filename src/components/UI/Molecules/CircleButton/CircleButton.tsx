@@ -24,6 +24,8 @@ type Props = {
   buttonSize?: number
   /** buttonに追加するstyle(className) */
   buttonStyle?: string
+  /** buttonタグにデフォルトで用意されているattributes */
+  buttonAttributes?: JSX.IntrinsicElements['button']
 }
 
 export const CircleButton: React.FC<Props> = ({
@@ -37,10 +39,14 @@ export const CircleButton: React.FC<Props> = ({
   buttonColor = vars.color.lightGray,
   buttonSize = 48,
   buttonStyle = '',
+  buttonAttributes,
 }) => (
   <button
     type="button"
-    onClick={onClick}
+    onClick={(event) => {
+      event.stopPropagation()
+      onClick(event)
+    }}
     aria-label={tooltipText}
     className={`${styles.circleButton} ${buttonStyle}`}
     style={{
@@ -48,6 +54,7 @@ export const CircleButton: React.FC<Props> = ({
       width: buttonSize,
       height: buttonSize,
     }}
+    {...buttonAttributes}
   >
     <Icon type={iconType} size={iconSize} color={iconColor} style={iconStyle} />
     {withTooltip && (

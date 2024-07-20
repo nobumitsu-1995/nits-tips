@@ -7,21 +7,10 @@ export const reactionStamp = style({
   gap: 12,
 })
 
-export const modalContainer = style({
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 1,
-  width: '100vw',
-  height: '100vh',
-})
-
 export const modal = style({
   position: 'absolute',
-  top: -32,
-  zIndex: 2,
-})
-
-export const isOpen = style({
-  display: 'block',
+  border: 'none',
+  background: 'none',
+  top: -54,
+  left: '-65%',
 })

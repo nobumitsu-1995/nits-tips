@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react'
+import React, { useEffect, useId, useRef, useState } from 'react'
 import * as styles from './ReactionStamp.css'
 import { TriggerButton } from './TriggerButton'
 import { ReactionButtonModal } from './ReactionButtonModal'
@@ -25,6 +23,29 @@ export const ReactionStamp: React.FC<Props> = ({
   articleId,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const a11yId = useId()
+
+  useEffect(() => {
+    const dialogElement = dialogRef.current
+    if (!dialogElement) return
+
+    if (isOpen) {
+      dialogElement.show()
+      return
+    }
+
+    dialogElement.close()
+  }, [isOpen])
+
+  useEffect(() => {
+    document.addEventListener('click', () => {
+      const dialogElement = dialogRef.current
+      if (!dialogElement || !isOpen) return
+      setIsOpen(false)
+    })
+  }, [isOpen])
+
   const handleClick = () => {
     setIsOpen((prev) => !prev)
   }
@@ -43,22 +64,18 @@ export const ReactionStamp: React.FC<Props> = ({
 
   return (
     <div className={styles.reactionStamp}>
-      {isOpen && (
-        <>
-          <div className={`${styles.modal}`}>
-            <ReactionButtonModal
-              isDisabled={isLoading}
-              reactedStampId={reactedStamp}
-              onClick={handleClickStamp}
-            />
-          </div>
-          <div
-            className={styles.modalContainer}
-            onClick={() => setIsOpen(false)}
-          />
-        </>
-      )}
-      <TriggerButton onClick={handleClick} />
+      <dialog className={styles.modal} ref={dialogRef} id={a11yId}>
+        <ReactionButtonModal
+          isDisabled={isLoading}
+          reactedStampId={reactedStamp}
+          onClick={handleClickStamp}
+        />
+      </dialog>
+      <TriggerButton
+        onClick={handleClick}
+        ariaExpanded={isOpen}
+        ariaControls={a11yId}
+      />
       <ReactedButtons
         isDisabled={isLoading}
         reactedStamps={reactionStampSummary}
