@@ -7,6 +7,9 @@ import go from 'highlight.js/lib/languages/go'
 import ruby from 'highlight.js/lib/languages/ruby'
 import php from 'highlight.js/lib/languages/php'
 import diff from 'highlight.js/lib/languages/diff'
+import yaml from 'highlight.js/lib/languages/yaml'
+import shell from 'highlight.js/lib/languages/shell'
+import dockerfile from 'highlight.js/lib/languages/dockerfile'
 import 'highlight.js/styles/a11y-dark.min.css'
 
 export const setupHljs = () => {
@@ -18,4 +21,7 @@ export const setupHljs = () => {
   hljs.registerLanguage('ruby', ruby)
   hljs.registerLanguage('php', php)
   hljs.registerLanguage('diff', diff)
+  hljs.registerLanguage('yaml', yaml)
+  hljs.registerLanguage('shell', shell)
+  hljs.registerLanguage('dockerfile', dockerfile)
 }
