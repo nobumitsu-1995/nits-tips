@@ -7,6 +7,7 @@ import { getDraftBlog } from '@/lib/API/microCMS/getDraftBlog'
 import { getRelativeBlogs } from '@/lib/API/microCMS/getRelativeBlogs'
 import { getGithubAccount } from '@/lib/API/getGithubAccount'
 import * as styles from '@/styles/pages/detail.css'
+import { convertHighlight } from '@/lib/helpers/convertHighlight'
 
 export const prerender = false
 
@@ -26,6 +27,7 @@ if (!blog) return
 blog['publishedAt'] = '2024-03-30T06:49:42.006Z'
 const relatedBlogs = await getRelativeBlogs(blog)
 const githubAccount = await getGithubAccount()
+blog['content'] = convertHighlight(blog.content)
 
 const authorization = Astro.request.headers.get('authorization')
 const pieces = authorization?.split(/\s+/g)
@@ -64,37 +66,10 @@ if (authorization) {
   </div>
 </BaseLayout>
 <script>
-  import hljs from 'highlight.js/lib/core'
-  import javascript from 'highlight.js/lib/languages/javascript'
-  import typescript from 'highlight.js/lib/languages/typescript'
-  import json from 'highlight.js/lib/languages/json'
-  import css from 'highlight.js/lib/languages/css'
-  import go from 'highlight.js/lib/languages/go'
-  import ruby from 'highlight.js/lib/languages/ruby'
-  import php from 'highlight.js/lib/languages/php'
-  import diff from 'highlight.js/lib/languages/diff'
-  import yaml from 'highlight.js/lib/languages/yaml'
-  import shell from 'highlight.js/lib/languages/shell'
-  import dockerfile from 'highlight.js/lib/languages/dockerfile'
-  import 'highlight.js/styles/a11y-dark.min.css'
-  hljs.registerLanguage('javascript', javascript)
-  hljs.registerLanguage('typescript', typescript)
-  hljs.registerLanguage('json', json)
-  hljs.registerLanguage('css', css)
-  hljs.registerLanguage('go', go)
-  hljs.registerLanguage('ruby', ruby)
-  hljs.registerLanguage('php', php)
-  hljs.registerLanguage('diff', diff)
-  hljs.registerLanguage('yaml', yaml)
-  hljs.registerLanguage('shell', shell)
-  hljs.registerLanguage('dockerfile', dockerfile)
-  hljs.initHighlighting()
-</script>
-<script>
-  document.querySelectorAll('code').forEach((pre) => {
+  document.querySelectorAll('pre').forEach((pre) => {
     pre.setAttribute('tabindex', '0')
   })
-  document.querySelectorAll('table').forEach((pre) => {
-    pre.setAttribute('tabindex', '0')
+  document.querySelectorAll('table').forEach((table) => {
+    table.setAttribute('tabindex', '0')
   })
 </script>
