@@ -9,12 +9,12 @@ globalStyle(`${content} img`, {
 })
 
 globalStyle(`${content} h2`, {
-  margin: '16px 0',
+  margin: '40px 0 12px',
   lineHeight: 2,
 })
 
 globalStyle(`${content} h3`, {
-  margin: '16px 0',
+  margin: '32px 0 12px',
   lineHeight: 2,
 })
 
@@ -81,6 +81,8 @@ globalStyle(`${content} code`, {
   padding: '2px 6px',
   backgroundColor: '#2b2b2b',
   borderRadius: 2,
+  lineHeight: 1.3,
+  fontSize: 18,
   color: '#f8f8f2',
 })
 
