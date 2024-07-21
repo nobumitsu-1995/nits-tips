@@ -11,6 +11,7 @@ import * as styles from '@/styles/pages/detail.css'
 import { Card } from '@Atoms/Card'
 import { SearchCard } from '@Organisms/search/SearchCard'
 import { SearchCardForm } from '@Entrypoints/search/SearchCardForm'
+import { convertHighlight } from '@/lib/helpers/convertHighlight'
 
 export const prerender = true
 export async function getStaticPaths() {
@@ -29,6 +30,7 @@ const ogTitle = blog.title
 const ogImage = new URL(`/og/${blog.id}.png`, Astro.url.origin).toString()
 const relatedBlogs = await getRelativeBlogs(blog)
 const githubAccount = await getGithubAccount()
+blog['content'] = convertHighlight(blog.content)
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description} ogTitle={ogTitle} ogImage={ogImage}>
@@ -59,37 +61,10 @@ const githubAccount = await getGithubAccount()
   </div>
 </BaseLayout>
 <script>
-  import hljs from 'highlight.js/lib/core'
-  import javascript from 'highlight.js/lib/languages/javascript'
-  import typescript from 'highlight.js/lib/languages/typescript'
-  import json from 'highlight.js/lib/languages/json'
-  import css from 'highlight.js/lib/languages/css'
-  import go from 'highlight.js/lib/languages/go'
-  import ruby from 'highlight.js/lib/languages/ruby'
-  import php from 'highlight.js/lib/languages/php'
-  import diff from 'highlight.js/lib/languages/diff'
-  import yaml from 'highlight.js/lib/languages/yaml'
-  import shell from 'highlight.js/lib/languages/shell'
-  import dockerfile from 'highlight.js/lib/languages/dockerfile'
-  import 'highlight.js/styles/a11y-dark.min.css'
-  hljs.registerLanguage('javascript', javascript)
-  hljs.registerLanguage('typescript', typescript)
-  hljs.registerLanguage('json', json)
-  hljs.registerLanguage('css', css)
-  hljs.registerLanguage('go', go)
-  hljs.registerLanguage('ruby', ruby)
-  hljs.registerLanguage('php', php)
-  hljs.registerLanguage('diff', diff)
-  hljs.registerLanguage('yaml', yaml)
-  hljs.registerLanguage('shell', shell)
-  hljs.registerLanguage('dockerfile', dockerfile)
-  hljs.initHighlighting()
-</script>
-<script>
-  document.querySelectorAll('code').forEach((pre) => {
+  document.querySelectorAll('pre').forEach((pre) => {
     pre.setAttribute('tabindex', '0')
   })
-  document.querySelectorAll('table').forEach((pre) => {
-    pre.setAttribute('tabindex', '0')
+  document.querySelectorAll('table').forEach((table) => {
+    table.setAttribute('tabindex', '0')
   })
 </script>

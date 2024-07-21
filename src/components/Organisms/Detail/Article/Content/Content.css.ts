@@ -86,6 +86,16 @@ globalStyle(`${content} code`, {
   color: '#f8f8f2',
 })
 
+globalStyle(`${content} pre`, {
+  overflowX: 'scroll',
+  padding: '12px 16px',
+  backgroundColor: '#2b2b2b',
+  borderRadius: 4,
+  lineHeight: 1.3,
+  fontSize: 18,
+  color: '#f8f8f2',
+})
+
 globalStyle(`${content} table`, {
   display: 'block',
   overflowX: 'auto',

@@ -1,1 +1,0 @@
-export { setupHljs } from './setupHljs'

@@ -1,0 +1,1 @@
+export { convertHighlight } from './convertHighlight'
