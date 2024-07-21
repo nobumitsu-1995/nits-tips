@@ -87,6 +87,7 @@ globalStyle(`${content} code`, {
 })
 
 globalStyle(`${content} pre`, {
+  overflowX: 'scroll',
   padding: '12px 16px',
   backgroundColor: '#2b2b2b',
   borderRadius: 4,
