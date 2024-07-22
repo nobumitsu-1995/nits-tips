@@ -11,10 +11,7 @@ type Props = PropsWithChildren<{
 }>
 
 export const Modal: React.FC<Props> = ({ id, isOpen, style, children }) => (
-  <div
-    className={`${style} ${isOpen ? styles.isOpen : styles.isHidden}`}
-    id={id}
-  >
+  <div className={`${style} ${!isOpen && styles.isHidden}`} id={id}>
     {children}
   </div>
 )
