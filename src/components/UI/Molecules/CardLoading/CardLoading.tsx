@@ -16,7 +16,7 @@ export const CardLoading: React.FC = () => (
         ))}
     </ul>
     <div className={styles.title}>
-      <TextLoading height="48px" />
+      <TextLoading height="200px" />
     </div>
     <div className={styles.text}>
       <TextLoading height="65px" />
