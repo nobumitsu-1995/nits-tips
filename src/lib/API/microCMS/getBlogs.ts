@@ -12,6 +12,7 @@ export const getBlogsData = async (query?: MicroCMSQueries) => {
   const blogs = await getMicroCMSContents<Response | undefined>({
     endpoint: ENDPOINT,
     queries: {
+      orders: '-publishedAt',
       limit: 15,
       ...query,
     },
