@@ -9,6 +9,7 @@ export const getAllBlogs = async () => {
   const data = await client.getAllContents<Blog>({
     endpoint: ENDPOINT,
     queries: {
+      orders: '-publishedAt',
       filters: `isHidden[not_equals]true`,
     },
   })

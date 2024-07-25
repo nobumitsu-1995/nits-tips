@@ -18,11 +18,6 @@ afterEach(() => {
 
 test('getAllBlogsで正常に値が取得できる', async () => {
   await getAllBlogs()
-  expect(mockedFetch).toHaveBeenCalledWith(
-    expect.stringContaining(
-      'blogs?filters=isHidden%5Bnot_equals%5Dtrue&limit=0',
-    ),
-    expect.any(Object),
-  )
+  expect(mockedFetch).toMatchSnapshot()
   expect(mockedJson).toHaveBeenCalledWith()
 })
