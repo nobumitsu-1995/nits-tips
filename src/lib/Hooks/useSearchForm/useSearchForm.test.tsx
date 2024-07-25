@@ -61,12 +61,7 @@ test('filterParamsが更新された時、fetchが走り記事を取得する', 
 
   await waitFor(() => {
     expect(getByTestId('loading').textContent).toBe('false')
-    expect(mockedFetch).toHaveBeenCalledWith(
-      expect.stringContaining(
-        'blogs?limit=100&filters=isHidden%5Bnot_equals%5Dtrue%5Band%5Dcategory%5Bequals%5DtestCategory%5Band%5Dtags%5Bcontains%5DtestTag%5Band%5Dtags%5Bcontains%5DtestTag2&orders=-updatedAt',
-      ),
-      expect.any(Object),
-    )
+    expect(mockedFetch).toMatchSnapshot()
     expect(mockedJson).toHaveBeenCalledWith()
   })
 })
@@ -82,12 +77,7 @@ test('handleSubmitSearchが呼ばれたときにisLoadingがtrueになり、後�
 
   await waitFor(() => {
     expect(getByTestId('loading').textContent).toBe('false')
-    expect(mockedFetch).toHaveBeenCalledWith(
-      expect.stringContaining(
-        'blogs?limit=100&filters=isHidden%5Bnot_equals%5Dtrue&q=search',
-      ),
-      expect.any(Object),
-    )
+    expect(mockedFetch).toMatchSnapshot()
     expect(mockedJson).toHaveBeenCalledWith()
   })
 })
