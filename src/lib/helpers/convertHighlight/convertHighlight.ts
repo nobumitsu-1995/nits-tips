@@ -10,6 +10,7 @@ export const convertHighlight = (content: string) => {
 
     $(elm).html(result.value)
     $(elm).addClass(elm.attribs.class)
+    $('<pre>').replaceWith('<pre tabindex="0">')
   })
 
   return $.html()
