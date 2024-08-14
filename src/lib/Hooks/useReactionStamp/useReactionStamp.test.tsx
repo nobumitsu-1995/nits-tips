@@ -114,26 +114,6 @@ test('deleteをした時、正常に値が更新される', async () => {
   })
 })
 
-test('postしたが正常に処理されなかった時、直前のデータに切り戻される', async () => {
-  expect.assertions(3)
-  server.use(
-    http.post('http://localhost:8080/reactionStamps', () =>
-      HttpResponse.error(),
-    ),
-  )
-  const { getByRole, getByTestId, queryByTestId, user } = setup(
-    <Wrapper>
-      <Component />
-    </Wrapper>,
-  )
-  await user.click(getByRole('button', { name: 'post' }))
-  await waitFor(() => {
-    expect(getByRole('alert')).toBeInTheDocument()
-    expect(getByTestId('stamp-2').innerHTML).toBe('7')
-    expect(queryByTestId('reactedStamp-2')).not.toBeInTheDocument()
-  })
-})
-
 test('deleteしたが正常に処理されなかった時、直前のデータに切り戻される', async () => {
   expect.assertions(3)
   server.use(

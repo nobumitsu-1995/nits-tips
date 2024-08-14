@@ -1,5 +1,5 @@
 import type { StampId } from '@/components/Organisms/ReactionStamp/model'
-import { customFetch } from './fetch'
+import { fetchWithRetry } from './fetch'
 
 type Arguments = {
   stamp_id: StampId
@@ -12,7 +12,7 @@ type Response = {
 }
 
 export const postReactionStamp = async (args: Arguments) => {
-  const response = await customFetch<Arguments, Response>({
+  const response = await fetchWithRetry<Arguments, Response>({
     method: 'POST',
     url: '/reactionStamps',
     body: args,
