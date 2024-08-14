@@ -1,3 +1,5 @@
+import { delay } from '@/lib/helpers/delay'
+
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Arguments<T> = {
   method: Method
@@ -55,3 +57,32 @@ export const customFetch = async <T, U>({
     data,
   }
 }
+
+const RETRY_INTERVAL = 10000
+
+/* eslint-disable no-constant-condition */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-console */
+export const fetchWithRetry = async <T, U>(
+  args: Arguments<T>,
+): Promise<Response<U>> => {
+  while (true) {
+    try {
+      const response = await customFetch<T, U>(args)
+
+      if (!response.ok) {
+        console.error(`Fetch failed with status: ${response.error}`)
+      }
+
+      return response
+    } catch (error) {
+      console.error(`Fetch error: ${error}`)
+    }
+
+    console.log('Retrying in 10 seconds...')
+    await delay(RETRY_INTERVAL)
+  }
+}
+/* eslint-enable no-constant-condition */
+/* eslint-enable no-await-in-loop */
+/* eslint-enable no-console */
