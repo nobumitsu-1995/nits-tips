@@ -96,11 +96,32 @@ globalStyle(`${content} pre`, {
   color: '#f8f8f2',
 })
 
-globalStyle(`${content} table`, {
-  display: 'block',
-  overflowX: 'auto',
-  tableLayout: 'auto',
-  borderCollapse: 'collapse',
+globalStyle(`${content} pre`, {
+  overflowX: 'scroll',
+  padding: '12px 16px',
+  backgroundColor: '#2b2b2b',
+  borderRadius: 4,
+  lineHeight: 1.3,
+  fontSize: 18,
+  color: '#f8f8f2',
+})
+
+globalStyle(`${content} pre.with_file_name`, {
+  paddingTop: 36,
+  position: 'relative',
+})
+
+globalStyle(`${content} pre .file_name`, {
+  position: 'absolute',
+  top: 0,
+  left: 12,
+  padding: '4px 8px',
+  backgroundColor: vars.color.lightGray,
+  borderRadius: '0 0 4px 4px',
+  color: vars.color.darkGray,
+  fontFamily: '"Hiragino Kaku Gothic Pro", "Noto Sans JP", sans-serif',
+  fontSize: 14,
+  fontWeight: 'bold',
 })
 
 globalStyle(`${content} table p`, {
