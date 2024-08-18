@@ -8,6 +8,10 @@ export type IconType =
   | 'sort'
   | 'cancel'
   | 'add_reaction'
+  | 'keyboard_arrow_left'
+  | 'keyboard_arrow_right'
+  | 'keyboard_double_arrow_left'
+  | 'keyboard_double_arrow_right'
 
 export const ICON_TYPE: MappedConst<IconType> = {
   arrow_upward: 'arrow_upward',
@@ -19,6 +23,10 @@ export const ICON_TYPE: MappedConst<IconType> = {
   sort: 'sort',
   cancel: 'cancel',
   add_reaction: 'add_reaction',
+  keyboard_arrow_left: 'keyboard_arrow_left',
+  keyboard_arrow_right: 'keyboard_arrow_right',
+  keyboard_double_arrow_left: 'keyboard_double_arrow_left',
+  keyboard_double_arrow_right: 'keyboard_double_arrow_right',
 }
 
 export const ICON_TYPE_ARRAY: MappedConstKey<IconType> = [
@@ -31,4 +39,8 @@ export const ICON_TYPE_ARRAY: MappedConstKey<IconType> = [
   'sort',
   'cancel',
   'add_reaction',
+  'keyboard_arrow_left',
+  'keyboard_arrow_right',
+  'keyboard_double_arrow_left',
+  'keyboard_double_arrow_right',
 ]
