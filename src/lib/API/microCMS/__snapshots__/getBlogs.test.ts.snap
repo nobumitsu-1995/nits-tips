@@ -4,7 +4,7 @@ exports[`getBlogsで正常に値が取得できる 1`] = `
 [MockFunction spy] {
   "calls": [
     [
-      "https://nits-tips.microcms.io/api/v1/blogs?orders=updatedAt&limit=15&filters=isHidden%5Bnot_equals%5Dtrue",
+      "https://nits-tips.microcms.io/api/v1/blogs?orders=updatedAt&limit=100&filters=isHidden%5Bnot_equals%5Dtrue",
       {
         "headers": Headers {
           Symbol(entries): {
