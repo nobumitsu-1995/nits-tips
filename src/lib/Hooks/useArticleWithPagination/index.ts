@@ -1,0 +1,1 @@
+export { useArticleWithPagination } from './useArticleWithPagination'
