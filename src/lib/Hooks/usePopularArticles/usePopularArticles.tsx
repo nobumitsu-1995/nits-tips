@@ -22,7 +22,7 @@ const POPULAR_ARTICLE_IDS = [
 export const usePopularArticles = ({
   articles,
 }: UsePopularArticlesPayloadType): UsePopularArticlesReturnType => ({
-  popularArticles: articles.filter((article) =>
-    POPULAR_ARTICLE_IDS.includes(article.id),
-  ),
+  popularArticles: articles
+    .filter((article) => POPULAR_ARTICLE_IDS.includes(article.id))
+    .reverse(),
 })
