@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '@/layout/BaseLayout.astro'
 import { Top } from '@/components/Entrypoints/top/Top'
+import { NewestArticles } from '@/components/Entrypoints/top/NewestArticles'
 import { getBlogsData } from '@/lib/API/microCMS/getBlogs'
+import { getAllTags } from '@/lib/API/microCMS/getAllTags'
+import { convertToTagData } from '@/lib/helpers/convertToTagData'
 
 export const prerender = true
 const pageTitle = 'nits-tips | 最新記事'
@@ -11,8 +14,11 @@ const blogs =
   (await getBlogsData({
     filters: 'isHidden[not_equals]true',
   })) ?? []
+const tags = await getAllTags()
 ---
 
 <BaseLayout pageTitle={pageTitle} description={description} ogType={ogType} ogTitle={pageTitle}>
-  <Top blogs={blogs} />
+  <Top blogs={blogs} tagsData={convertToTagData(tags)}>
+    <NewestArticles client:load blogs={blogs} />
+  </Top>
 </BaseLayout>
