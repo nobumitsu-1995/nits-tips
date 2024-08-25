@@ -21,3 +21,12 @@ export const top = style({
 export const container = style({
   marginTop: 34,
 })
+
+export const fieldset = style({
+  border: 'none',
+  marginTop: 24,
+})
+
+export const legend = style({
+  marginBottom: 16,
+})
