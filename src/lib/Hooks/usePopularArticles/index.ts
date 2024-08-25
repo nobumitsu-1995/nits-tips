@@ -1,0 +1,1 @@
+export { usePopularArticles } from './usePopularArticles'
