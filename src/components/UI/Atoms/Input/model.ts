@@ -1,3 +1,5 @@
+import type { JSX } from 'react'
+
 export type InputType = NonNullable<JSX.IntrinsicElements['input']['type']>
 export const INPUT_TYPE: MappedConst<InputType> = {
   button: 'button',
