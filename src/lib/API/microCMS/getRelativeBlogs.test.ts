@@ -19,8 +19,8 @@ afterEach(() => {
 
 test('getRelativeBlogsで正常に値が取得できる', async () => {
   await getRelativeBlogs(blog())
-  expect(mockedFetch).toMatchSnapshot
-  expect(mockedFetch).toMatchSnapshot()
-  expect(mockedFetch).toMatchSnapshot
+  expect(await mockedFetch()).toMatchSnapshot()
+  expect(await mockedFetch()).toMatchSnapshot()
+  expect(await mockedFetch()).toMatchSnapshot()
   expect(mockedJson).toHaveBeenCalledWith()
 })

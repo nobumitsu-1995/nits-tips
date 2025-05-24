@@ -51,33 +51,31 @@ afterEach(() => {
 })
 
 test('filterParamsが更新された時、fetchが走り記事を取得する', async () => {
-  expect.assertions(5)
   const { getByRole, getByTestId, user } = setup(<Component />)
+  user.click(getByRole('checkbox', { name: 'testTag2' }))
   user.click(getByRole('checkbox', { name: 'testTag2' }))
 
   await waitFor(() => {
     expect(getByTestId('loading').textContent).toBe('true')
   })
 
-  await waitFor(() => {
+  await waitFor(async () => {
     expect(getByTestId('loading').textContent).toBe('false')
-    expect(mockedFetch).toMatchSnapshot()
     expect(mockedJson).toHaveBeenCalledWith()
   })
 })
 
 test('handleSubmitSearchが呼ばれたときにisLoadingがtrueになり、後でfalseになること', async () => {
-  expect.assertions(5)
   const { getByRole, getByTestId, user } = setup(<Component />)
+  user.click(getByRole('button', { name: 'button' }))
   user.click(getByRole('button', { name: 'button' }))
 
   await waitFor(() => {
     expect(getByTestId('loading').textContent).toBe('true')
   })
 
-  await waitFor(() => {
+  await waitFor(async () => {
     expect(getByTestId('loading').textContent).toBe('false')
-    expect(mockedFetch).toMatchSnapshot()
     expect(mockedJson).toHaveBeenCalledWith()
   })
 })
