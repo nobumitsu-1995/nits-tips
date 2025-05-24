@@ -18,6 +18,6 @@ afterEach(() => {
 
 test('getAllBlogsで正常に値が取得できる', async () => {
   await getAllBlogs()
-  expect(mockedFetch).toMatchSnapshot()
+  expect(await mockedFetch()).toMatchSnapshot()
   expect(mockedJson).toHaveBeenCalledWith()
 })

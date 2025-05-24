@@ -21,6 +21,6 @@ test('getBlogsで正常に値が取得できる', async () => {
     filters: 'isHidden[not_equals]true',
     orders: 'updatedAt',
   })
-  expect(mockedFetch).toMatchSnapshot()
+  expect(await mockedFetch()).toMatchSnapshot()
   expect(mockedJson).toHaveBeenCalledWith()
 })

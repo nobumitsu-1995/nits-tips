@@ -1,44 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`getBlogsで正常に値が取得できる 1`] = `
-[MockFunction spy] {
-  "calls": [
-    [
-      "https://nits-tips.microcms.io/api/v1/blogs?orders=updatedAt&limit=100&filters=isHidden%5Bnot_equals%5Dtrue",
+{
+  "json": [MockFunction spy] {
+    "calls": [
+      [],
+    ],
+    "results": [
       {
-        "headers": Headers {
-          Symbol(entries): {
-            "x-microcms-api-key": {
-              "name": "X-MICROCMS-API-KEY",
-              "value": [
-                "sample",
-              ],
-            },
-          },
-        },
-        "method": "GET",
+        "type": "return",
+        "value": Promise {},
       },
     ],
-  ],
-  "results": [
-    {
-      "type": "return",
-      "value": {
-        "json": [MockFunction spy] {
-          "calls": [
-            [],
-          ],
-          "results": [
-            {
-              "type": "return",
-              "value": {},
-            },
-          ],
-        },
-        "ok": true,
-        "status": 200,
-      },
-    },
-  ],
+  },
+  "ok": true,
+  "status": 200,
 }
 `;
