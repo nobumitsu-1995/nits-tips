@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type JSX } from 'react'
 import { Icon, type IconType } from '@Atoms/Icon'
 import * as styles from './CircleButton.css'
 import { vars } from '@/styles/theme.css'
