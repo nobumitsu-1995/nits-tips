@@ -7,7 +7,8 @@ export const blog = (id = 'h8mr8y9vhx') => ({
   publishedAt: '2024-02-24T11:19:08.516Z',
   revisedAt: '2024-02-24T12:14:45.636Z',
   title: '（サンプル）まずはこの記事を開きましょう',
-  description: '概要です。\n概要です。\n概要です。\n概要です。\n',
+  description:
+    '概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n概要です。\n',
   content: articleContent,
   eyecatch: {
     url: 'https://images.microcms-assets.io/assets/1ea46e2b90a147b58b1b144f170fce22/c3c1c47f364e4336a6722db0ffc0de1d/blog-template.png',

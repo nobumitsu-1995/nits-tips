@@ -7,6 +7,10 @@ export const container = style({
   padding: '0 20px',
 })
 
+export const descriptionContainer = style({
+  position: 'relative',
+})
+
 export const img = style([
   hover,
   {
